@@ -1115,7 +1115,9 @@ def test_inventory_waits_for_a_slow_write_but_connects_quickly(make_client, make
     ],
     ids=["lost_response", "server_error", "invalid_response"],
 )
-def test_claim_sequence_survives_retries_and_renewal_then_advances_per_kind(make_client, kind, failure):
+def test_claim_sequence_survives_retries_and_renewal_then_advances_per_kind(
+    make_client, make_registration_response, kind, failure
+):
     client, requests = make_client(
         make_registration_response(),
         failure,
@@ -1148,7 +1150,7 @@ def test_claim_sequence_survives_retries_and_renewal_then_advances_per_kind(make
 
 
 @pytest.mark.parametrize("kind", ["callbacks", "priority"])
-def test_work_acknowledgment_sends_only_the_claim_identity(make_client, kind):
+def test_work_acknowledgment_sends_only_the_claim_identity(make_client, make_registration_response, kind):
     client, requests = make_client(make_registration_response(), httpx2.Response(204))
     client.register_job()
     work = ProcessorWorkItem(

@@ -182,6 +182,8 @@ class PendingBundleInventory:
     body: DagBundleInventoryBody
     found_files: set[DagFileInfo]
     source: DagParseSource
+    unusable_sources: frozenset[str] = frozenset()
+    """Filtered roots whose stored definitions remain protected by ``failed_sources``."""
     attempts: int = 0
     next_attempt_time: float = 0.0
 
@@ -1095,6 +1097,7 @@ class DagFileProcessorManager(LoggingMixin):
             sequence=pending.body.dispatch_sequence,
             files=pending.body.files,
             failed_sources=pending.body.failed_sources,
+            unusable_sources=pending.unusable_sources,
         )
 
     def _discard_unusable_bundle_source(self, bundle_name: str) -> None:
@@ -1359,7 +1362,11 @@ class DagFileProcessorManager(LoggingMixin):
                     continue
 
                 if self.api_client is not None:
-                    discovery = self._filter_api_discovery_result(bundle.name, discovery)
+                    api_discovery = self._filter_api_discovery_result(bundle.name, discovery)
+                    unusable_sources = frozenset(
+                        str(file.rel_path) for file in discovery.files - api_discovery.files
+                    )
+                    discovery = api_discovery
                 found_files = discovery.files
 
                 if self.api_client is not None:
@@ -1382,6 +1389,7 @@ class DagFileProcessorManager(LoggingMixin):
                         body=inventory,
                         found_files=found_files,
                         source=self._bundle_parse_sources.pop(bundle.name),
+                        unusable_sources=unusable_sources,
                     )
                     continue
 
@@ -1897,6 +1905,7 @@ class DagFileProcessorManager(LoggingMixin):
         except ValidationError:
             self.log.exception("Unable to report failed parse for %s; preserving previous result", file)
             self._record_failed_publication(file, stat)
+            self.work_source.attempt_finished(proc.id, had_callbacks=False)
 
     def _record_failed_publication(self, file: DagFileInfo, stat: DagFileStat) -> None:
         self._file_stats[file] = attrs.evolve(

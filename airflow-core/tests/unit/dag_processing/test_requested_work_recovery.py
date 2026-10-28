@@ -38,11 +38,13 @@ from airflow.dag_processing.api_requested_work import DeferredCallback, Priority
 from airflow.dag_processing.bundles.base import BaseDagBundle, DagBundleRefreshError
 from airflow.dag_processing.bundles.local import LocalDagBundle
 from airflow.dag_processing.manager import (
+    DagBundleDiscoveryResult,
     DagFileInfo,
     DagFileProcessorManager,
+    DagFileStat,
     PendingDagPublication,
 )
-from airflow.dag_processing.processor import DagFileProcessorProcess, DagParseSource
+from airflow.dag_processing.processor import DagFileParsingResult, DagFileProcessorProcess, DagParseSource
 
 from tests_common.test_utils.config import conf_vars
 from unit.dag_processing.requested_work_helpers import get_api_work_source
@@ -321,6 +323,155 @@ def test_priority_claims_waiting_for_fresh_inventory_keep_the_budget_bounded(api
 
     client.claim_work.assert_called_once_with("priority", [bundle.name], 2)
     assert len(get_api_work_source(manager)._priority_claims) == 2
+
+
+@pytest.mark.parametrize("outcome", ["no_result", "timeout"])
+@mock.patch("airflow.dag_processing.manager.time.monotonic", autospec=True, return_value=100)
+def test_unrepresentable_failed_parse_releases_priority_claim(monotonic, api_manager, outcome):
+    manager, client, bundle = api_manager
+    manager._parallelism = 1
+    manager.processor_timeout = 10
+    manager._num_run = 1
+    work = _make_work(bundle.name, "directory/" * 110 + "a.py")
+    client.claim_work.return_value = [work]
+    [file] = manager.claim_priority_files()
+    processor = mock.create_autospec(DagFileProcessorProcess, instance=True)
+    processor.id = uuid7()
+    processor.pid = 123
+    processor.dispatch_sequence = 1
+    processor.start_time = 89
+    processor.is_ready = True
+    processor.had_callbacks = False
+    processor.parsing_result = None
+    processor.parse_source = DagParseSource()
+    manager._processors[file] = processor
+    manager._file_stats[file] = DagFileStat(num_dags=1)
+    source = get_api_work_source(manager)
+    source.parse_started(file, processor.id)
+
+    if outcome == "timeout":
+        manager._kill_timed_out_processors()
+    else:
+        manager._collect_results()
+    source.flush()
+
+    client.publish_parse_result.assert_not_called()
+    client.acknowledge_work.assert_called_once_with("priority", work)
+    processor.close.assert_called_once_with()
+    assert manager._file_stats[file].num_dags == 1
+    assert not source.has_outstanding_work()
+    assert manager.max_runs_reached()
+
+
+@pytest.mark.parametrize("stage", ["queued", "running", "publishing", "callback"])
+@pytest.mark.parametrize("retry_inventory", [False, True])
+@mock.patch("airflow.dag_processing.manager.time.monotonic", autospec=True, return_value=100)
+@mock.patch.object(DagFileProcessorManager, "_find_files_in_bundle", autospec=True)
+@mock.patch.object(DagFileProcessorManager, "_create_process", autospec=True)
+def test_filtered_container_releases_priority_capacity(
+    create, discover, monotonic, api_manager, stage, retry_inventory
+):
+    manager, client, bundle = api_manager
+    manager._parallelism = 1
+    manager._num_run = 1
+    archive, healthy = [
+        DagFileInfo(bundle_name=bundle.name, bundle_path=bundle.path, rel_path=Path(path))
+        for path in ("archive.zip", "healthy.py")
+    ]
+    for file in (archive, healthy):
+        file.absolute_path.touch()
+    discovered_archive = DagFileInfo(
+        bundle_name=bundle.name,
+        bundle_path=bundle.path,
+        rel_path=archive.rel_path,
+        definition_locs=frozenset({"archive.zip/good.py", r"archive.zip/bad\member.py"}),
+    )
+    discover.return_value = DagBundleDiscoveryResult(files={discovered_archive, healthy})
+    known_files = {bundle.name: {archive, healthy}}
+    work = _make_work(bundle.name, "archive.zip/good.py")
+    client.claim_work.return_value = [work]
+    manager._queue_requested_files_for_parsing()
+    source = get_api_work_source(manager)
+
+    def create_process(_, file, *, source):
+        processor = mock.create_autospec(DagFileProcessorProcess, instance=True)
+        processor.id = uuid7()
+        processor.pid = 123
+        processor.dispatch_sequence = 1
+        processor.start_time = 99
+        processor.is_ready = True
+        processor.had_callbacks = False
+        processor.parsing_result = DagFileParsingResult(fileloc=str(file.absolute_path), serialized_dags=[])
+        processor.parse_source = source
+        return processor
+
+    create.side_effect = create_process
+    old = create_process(manager, archive, source=DagParseSource())
+    if stage in ("running", "publishing"):
+        source.parse_started(archive, old.id)
+        if stage == "running":
+            manager._processors[archive] = old
+        else:
+            manager._pending_publications[archive] = manager._build_pending_publication(
+                archive, old, 1, DagFileStat(run_count=1)
+            )
+    elif stage == "callback":
+        old.had_callbacks = True
+        old.parsing_result = None
+        request = DagCallbackRequest(
+            filepath="archive.zip", bundle_name=bundle.name, bundle_version=None, dag_id="dag", run_id="run"
+        )
+        callback_work = _make_work(bundle.name, "archive.zip", callback=request)
+        source._callback_attempts[old.id] = [callback_work]
+        manager._processors[archive] = old
+
+    publish = client.publish_inventory.side_effect
+    if retry_inventory:
+        client.publish_inventory.side_effect = httpx2.ReadTimeout("Lost inventory acknowledgment")
+        manager._refresh_dag_bundles(known_files)
+        source.flush()
+        assert source.has_priority_request(archive)
+        assert known_files[bundle.name] == {archive, healthy}
+        client.acknowledge_work.assert_not_called()
+        client.publish_inventory.side_effect = publish
+        monotonic.return_value = manager._pending_inventories[bundle.name].next_attempt_time
+    manager._refresh_dag_bundles(known_files)
+    source.flush()
+
+    inventory = client.publish_inventory.call_args.args[1]
+    assert inventory.files == ["healthy.py"]
+    assert inventory.failed_sources == ["archive.zip"]
+    assert known_files[bundle.name] == {healthy}
+    assert archive not in manager._pending_publications
+    assert archive not in manager._file_queue
+    assert not source.has_priority_request(archive)
+    client.acknowledge_work.assert_called_once_with("priority", work)
+    if stage == "running":
+        old.kill.assert_called_once_with(signal.SIGKILL)
+        old.close.assert_called_once_with()
+    elif stage == "callback":
+        old.kill.assert_not_called()
+        old.close.assert_not_called()
+        assert source._callback_attempts == {old.id: [callback_work]}
+        manager._collect_results()
+        source.flush()
+        client.acknowledge_work.assert_called_with("callbacks", callback_work)
+        manager.handle_removed_files(known_files)
+
+    healthy_work = _make_work(bundle.name, "healthy.py")
+    client.claim_work.return_value = [healthy_work]
+    manager._queue_requested_files_for_parsing()
+    client.claim_work.assert_called_with("priority", [bundle.name], 1)
+    manager._refresh_dag_bundles(known_files)
+    manager._start_new_processes()
+    assert set(manager._processors) == {healthy}
+    manager._collect_results()
+    manager._publish_pending_results()
+    source.flush()
+
+    client.acknowledge_work.assert_called_with("priority", healthy_work)
+    assert not source.has_outstanding_work()
+    assert manager.max_runs_reached()
 
 
 @pytest.mark.parametrize("stage", ["running", "publishing", "acknowledging", "stale"])

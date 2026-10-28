@@ -311,23 +311,32 @@ def test_callback_preparation_defers_then_expires_without_duplicate_ack(monotoni
 
 
 @pytest.mark.parametrize(
-    ("sequence", "files", "failed_sources", "acknowledged"),
+    ("sequence", "files", "failed_sources", "unusable_sources", "acknowledged"),
     [
-        (7, [], [], False),
-        (8, ["a.py"], [], False),
-        (8, [], ["a.py"], False),
-        (8, [], [], True),
+        (7, [], [], [], False),
+        (8, ["a.py"], [], [], False),
+        (8, [], ["a.py"], [], False),
+        (8, [], [], [], True),
+        (7, [], ["a.py"], ["a.py"], False),
+        (8, [], ["a.py"], ["a.py"], True),
+        (8, [], ["a.py"], ["a.py.other"], False),
     ],
 )
-def test_inventory_reconciles_only_authoritative_missing_files(
-    api_source, sequence, files, failed_sources, acknowledged
+def test_inventory_reconciles_only_authoritative_missing_or_unusable_files(
+    api_source, sequence, files, failed_sources, unusable_sources, acknowledged
 ):
     source, client, bundle = api_source
     work = _make_work(bundle.name)
     client.claim_work.return_value = [work]
     file = _claim_priority(source, bundle)[0]
 
-    source.inventory_published(bundle.name, sequence=sequence, files=files, failed_sources=failed_sources)
+    source.inventory_published(
+        bundle.name,
+        sequence=sequence,
+        files=files,
+        failed_sources=failed_sources,
+        unusable_sources=unusable_sources,
+    )
     source.flush()
 
     assert source.has_priority_request(file) is not acknowledged

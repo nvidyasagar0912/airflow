@@ -106,6 +106,7 @@ class RequestedWorkSource:
         sequence: int,
         files: Collection[str],
         failed_sources: Collection[str],
+        unusable_sources: Collection[str] = (),
     ) -> None:
         """Reconcile priority requests against the bundle's accepted inventory."""
 

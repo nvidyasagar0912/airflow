@@ -297,16 +297,23 @@ class ExecutionAPIWorkSource(RequestedWorkSource, LoggingMixin):
         sequence: int,
         files: Collection[str],
         failed_sources: Collection[str],
+        unusable_sources: Collection[str] = (),
     ) -> None:
-        """Acknowledge missing files only after an authoritative inventory newer than their claims."""
+        """Acknowledge missing or unusable files only after an inventory newer than their claims."""
         failed = set(failed_sources)
+        unusable = set(unusable_sources)
         for key, claim in list(self._priority_claims.items()):
             item = claim.work
             if (
                 item.bundle_name == bundle_name
                 and sequence >= claim.inventory_sequence
-                and item.relative_fileloc not in files
-                and not is_source_discovery_failed(item.relative_fileloc, failed)
+                and (
+                    is_source_discovery_failed(item.relative_fileloc, unusable)
+                    or (
+                        item.relative_fileloc not in files
+                        and not is_source_discovery_failed(item.relative_fileloc, failed)
+                    )
+                )
             ):
                 self._pending_work_acks.append(("priority", item))
                 del self._priority_claims[key]
