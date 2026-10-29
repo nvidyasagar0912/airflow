@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/evidence/harness/diagnose_startup.py", line 48, in main
+    names, base_url, connection = harness.prepare_arm(
+                                  ^^^^^^^^^^^^^^^^^^^^
+  File "/evidence/harness/run_local_e2e.py", line 424, in prepare_arm
+    schema = http_json(base_url, "/execution/openapi.json?version=2027-02-28")
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/evidence/harness/run_local_e2e.py", line 210, in http_json
+    raw = response.read()
+          ^^^^^^^^^^^^^^^
+  File "/usr/python/lib/python3.12/http/client.py", line 510, in read
+    s = self._safe_read(self.length)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/python/lib/python3.12/http/client.py", line 671, in _safe_read
+    raise IncompleteRead(data, amt - len(data))
+http.client.IncompleteRead: IncompleteRead(0 bytes read, 115091 more expected)

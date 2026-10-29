@@ -1,0 +1,122 @@
+[
+  {
+    "timestamp": "2026-10-28T19:05:01.581839+00:00",
+    "task_states": {
+      "null": 4
+    },
+    "runs": {
+      "e2e_diagwarm_small_000": "queued",
+      "e2e_diagwarm_small_001": "queued",
+      "e2e_diagwarm_small_002": "queued",
+      "e2e_diagwarm_small_003": "queued"
+    }
+  },
+  {
+    "timestamp": "2026-10-28T19:05:02.636378+00:00",
+    "task_states": {
+      "queued": 4
+    },
+    "runs": {
+      "e2e_diagwarm_small_000": "running",
+      "e2e_diagwarm_small_001": "running",
+      "e2e_diagwarm_small_002": "running",
+      "e2e_diagwarm_small_003": "running"
+    }
+  },
+  {
+    "timestamp": "2026-10-28T19:05:03.695295+00:00",
+    "task_states": {
+      "queued": 4
+    },
+    "runs": {
+      "e2e_diagwarm_small_000": "running",
+      "e2e_diagwarm_small_001": "running",
+      "e2e_diagwarm_small_002": "running",
+      "e2e_diagwarm_small_003": "running"
+    }
+  },
+  {
+    "timestamp": "2026-10-28T19:05:04.761218+00:00",
+    "task_states": {
+      "running": 4
+    },
+    "runs": {
+      "e2e_diagwarm_small_000": "running",
+      "e2e_diagwarm_small_001": "running",
+      "e2e_diagwarm_small_002": "running",
+      "e2e_diagwarm_small_003": "running"
+    }
+  },
+  {
+    "timestamp": "2026-10-28T19:05:05.824681+00:00",
+    "task_states": {
+      "running": 4
+    },
+    "runs": {
+      "e2e_diagwarm_small_000": "running",
+      "e2e_diagwarm_small_001": "running",
+      "e2e_diagwarm_small_002": "running",
+      "e2e_diagwarm_small_003": "running"
+    }
+  },
+  {
+    "timestamp": "2026-10-28T19:05:06.883756+00:00",
+    "task_states": {
+      "running": 4
+    },
+    "runs": {
+      "e2e_diagwarm_small_000": "running",
+      "e2e_diagwarm_small_001": "running",
+      "e2e_diagwarm_small_002": "running",
+      "e2e_diagwarm_small_003": "running"
+    }
+  },
+  {
+    "timestamp": "2026-10-28T19:05:07.937474+00:00",
+    "task_states": {
+      "running": 4
+    },
+    "runs": {
+      "e2e_diagwarm_small_000": "running",
+      "e2e_diagwarm_small_001": "running",
+      "e2e_diagwarm_small_002": "running",
+      "e2e_diagwarm_small_003": "running"
+    }
+  },
+  {
+    "timestamp": "2026-10-28T19:05:08.996657+00:00",
+    "task_states": {
+      "running": 4
+    },
+    "runs": {
+      "e2e_diagwarm_small_000": "running",
+      "e2e_diagwarm_small_001": "running",
+      "e2e_diagwarm_small_002": "running",
+      "e2e_diagwarm_small_003": "running"
+    }
+  },
+  {
+    "timestamp": "2026-10-28T19:05:10.056045+00:00",
+    "task_states": {
+      "success": 4
+    },
+    "runs": {
+      "e2e_diagwarm_small_000": "running",
+      "e2e_diagwarm_small_001": "running",
+      "e2e_diagwarm_small_002": "running",
+      "e2e_diagwarm_small_003": "running"
+    }
+  },
+  {
+    "timestamp": "2026-10-28T19:05:11.112932+00:00",
+    "task_states": {
+      "success": 4
+    },
+    "runs": {
+      "e2e_diagwarm_small_001": "success",
+      "e2e_diagwarm_small_002": "success",
+      "e2e_diagwarm_small_003": "success",
+      "e2e_diagwarm_small_000": "success"
+    }
+  }
+]

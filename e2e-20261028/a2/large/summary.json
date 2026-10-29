@@ -1,0 +1,329 @@
+{
+  "scenario": "large",
+  "records_per_run": 23000,
+  "submitted_runs": 20,
+  "conf_payload_bytes": 11914793,
+  "admission_seconds": 125.45199317899915,
+  "execution_seconds": 124.2670194329994,
+  "runs_per_minute": 9.65662494743426,
+  "dag_run_duration_p50_seconds": 89.7629835,
+  "dag_run_duration_p95_seconds": 114.49900679999999,
+  "max_observed_running_tasks": 4,
+  "expected_failures": 0,
+  "verified_terminal_runs": 20,
+  "sample_count": 636,
+  "sample_collection_p95_ms": 41.40582905001793,
+  "idle_group_working_set_mib": 2028.88671875,
+  "group_peak_working_set_mib": 4795.546875,
+  "group_peak_timestamp": "2026-10-28T18:47:47.683862+00:00",
+  "components_at_group_peak_mib": {
+    "api": 574.375,
+    "scheduler": 1878.734375,
+    "worker": 1465.04296875,
+    "dag-processor": 222.5390625,
+    "triggerer": 449.51953125,
+    "postgres": 200.078125,
+    "redis": 5.2578125
+  },
+  "cpu_seconds_during_sampled_execution": {
+    "api": 41.715903,
+    "scheduler": 86.994667,
+    "worker": 48.146591,
+    "dag-processor": 5.64261,
+    "triggerer": 2.050044,
+    "postgres": 53.502513,
+    "redis": 0.61376
+  },
+  "component_individual_peaks_mib_not_to_be_summed": {
+    "api": 888.92578125,
+    "scheduler": 2254.65234375,
+    "worker": 1607.07421875,
+    "dag-processor": 250.43359375,
+    "triggerer": 450.890625,
+    "postgres": 483.734375,
+    "redis": 6.9140625
+  },
+  "group_memory_definition": "Maximum over time of the sum of all seven component working sets in each complete sample. Working set = Docker cgroup memory usage minus inactive_file; not process RSS or PSS.",
+  "verified_runs": {
+    "e2e_a2_large_000": {
+      "state": "success",
+      "start": "2026-10-28 18:47:11.681244+00:00",
+      "end": "2026-10-28 18:48:01.052669+00:00",
+      "result": {
+        "case": "success",
+        "sha256": "8d0ad4978cdc03771eeddf52fbf50c4fc24a7ba14c9286888a42ad3334af4482",
+        "conf_type": "dict",
+        "try_number": 1,
+        "params_probe": "run",
+        "record_count": 23000,
+        "mutable_identity": true
+      }
+    },
+    "e2e_a2_large_001": {
+      "state": "success",
+      "start": "2026-10-28 18:47:11.682389+00:00",
+      "end": "2026-10-28 18:48:16.925400+00:00",
+      "result": {
+        "case": "success",
+        "sha256": "8d0ad4978cdc03771eeddf52fbf50c4fc24a7ba14c9286888a42ad3334af4482",
+        "conf_type": "dict",
+        "try_number": 1,
+        "params_probe": "run",
+        "record_count": 23000,
+        "mutable_identity": true
+      }
+    },
+    "e2e_a2_large_002": {
+      "state": "success",
+      "start": "2026-10-28 18:47:11.683391+00:00",
+      "end": "2026-10-28 18:48:02.134553+00:00",
+      "result": {
+        "case": "success",
+        "sha256": "8d0ad4978cdc03771eeddf52fbf50c4fc24a7ba14c9286888a42ad3334af4482",
+        "conf_type": "dict",
+        "try_number": 1,
+        "params_probe": "run",
+        "record_count": 23000,
+        "mutable_identity": true
+      }
+    },
+    "e2e_a2_large_003": {
+      "state": "success",
+      "start": "2026-10-28 18:47:11.684496+00:00",
+      "end": "2026-10-28 18:48:17.276164+00:00",
+      "result": {
+        "case": "success",
+        "sha256": "8d0ad4978cdc03771eeddf52fbf50c4fc24a7ba14c9286888a42ad3334af4482",
+        "conf_type": "dict",
+        "try_number": 1,
+        "params_probe": "run",
+        "record_count": 23000,
+        "mutable_identity": true
+      }
+    },
+    "e2e_a2_large_004": {
+      "state": "success",
+      "start": "2026-10-28 18:47:11.685414+00:00",
+      "end": "2026-10-28 18:48:02.857383+00:00",
+      "result": {
+        "case": "success",
+        "sha256": "8d0ad4978cdc03771eeddf52fbf50c4fc24a7ba14c9286888a42ad3334af4482",
+        "conf_type": "dict",
+        "try_number": 1,
+        "params_probe": "run",
+        "record_count": 23000,
+        "mutable_identity": true
+      }
+    },
+    "e2e_a2_large_005": {
+      "state": "success",
+      "start": "2026-10-28 18:47:11.686528+00:00",
+      "end": "2026-10-28 18:48:03.236138+00:00",
+      "result": {
+        "case": "success",
+        "sha256": "8d0ad4978cdc03771eeddf52fbf50c4fc24a7ba14c9286888a42ad3334af4482",
+        "conf_type": "dict",
+        "try_number": 1,
+        "params_probe": "run",
+        "record_count": 23000,
+        "mutable_identity": true
+      }
+    },
+    "e2e_a2_large_006": {
+      "state": "success",
+      "start": "2026-10-28 18:47:11.687377+00:00",
+      "end": "2026-10-28 18:48:03.618907+00:00",
+      "result": {
+        "case": "success",
+        "sha256": "8d0ad4978cdc03771eeddf52fbf50c4fc24a7ba14c9286888a42ad3334af4482",
+        "conf_type": "dict",
+        "try_number": 1,
+        "params_probe": "run",
+        "record_count": 23000,
+        "mutable_identity": true
+      }
+    },
+    "e2e_a2_large_007": {
+      "state": "success",
+      "start": "2026-10-28 18:47:11.688345+00:00",
+      "end": "2026-10-28 18:48:04.105641+00:00",
+      "result": {
+        "case": "success",
+        "sha256": "8d0ad4978cdc03771eeddf52fbf50c4fc24a7ba14c9286888a42ad3334af4482",
+        "conf_type": "dict",
+        "try_number": 1,
+        "params_probe": "run",
+        "record_count": 23000,
+        "mutable_identity": true
+      }
+    },
+    "e2e_a2_large_008": {
+      "state": "success",
+      "start": "2026-10-28 18:47:11.689332+00:00",
+      "end": "2026-10-28 18:48:46.001195+00:00",
+      "result": {
+        "case": "success",
+        "sha256": "8d0ad4978cdc03771eeddf52fbf50c4fc24a7ba14c9286888a42ad3334af4482",
+        "conf_type": "dict",
+        "try_number": 1,
+        "params_probe": "run",
+        "record_count": 23000,
+        "mutable_identity": true
+      }
+    },
+    "e2e_a2_large_009": {
+      "state": "success",
+      "start": "2026-10-28 18:47:11.690410+00:00",
+      "end": "2026-10-28 18:48:46.361637+00:00",
+      "result": {
+        "case": "success",
+        "sha256": "8d0ad4978cdc03771eeddf52fbf50c4fc24a7ba14c9286888a42ad3334af4482",
+        "conf_type": "dict",
+        "try_number": 1,
+        "params_probe": "run",
+        "record_count": 23000,
+        "mutable_identity": true
+      }
+    },
+    "e2e_a2_large_010": {
+      "state": "success",
+      "start": "2026-10-28 18:47:11.691257+00:00",
+      "end": "2026-10-28 18:48:46.711604+00:00",
+      "result": {
+        "case": "success",
+        "sha256": "8d0ad4978cdc03771eeddf52fbf50c4fc24a7ba14c9286888a42ad3334af4482",
+        "conf_type": "dict",
+        "try_number": 1,
+        "params_probe": "run",
+        "record_count": 23000,
+        "mutable_identity": true
+      }
+    },
+    "e2e_a2_large_011": {
+      "state": "success",
+      "start": "2026-10-28 18:47:11.692211+00:00",
+      "end": "2026-10-28 18:48:47.055616+00:00",
+      "result": {
+        "case": "success",
+        "sha256": "8d0ad4978cdc03771eeddf52fbf50c4fc24a7ba14c9286888a42ad3334af4482",
+        "conf_type": "dict",
+        "try_number": 1,
+        "params_probe": "run",
+        "record_count": 23000,
+        "mutable_identity": true
+      }
+    },
+    "e2e_a2_large_012": {
+      "state": "success",
+      "start": "2026-10-28 18:47:11.693065+00:00",
+      "end": "2026-10-28 18:48:47.407832+00:00",
+      "result": {
+        "case": "success",
+        "sha256": "8d0ad4978cdc03771eeddf52fbf50c4fc24a7ba14c9286888a42ad3334af4482",
+        "conf_type": "dict",
+        "try_number": 1,
+        "params_probe": "run",
+        "record_count": 23000,
+        "mutable_identity": true
+      }
+    },
+    "e2e_a2_large_013": {
+      "state": "success",
+      "start": "2026-10-28 18:47:11.693888+00:00",
+      "end": "2026-10-28 18:48:36.105874+00:00",
+      "result": {
+        "case": "success",
+        "sha256": "8d0ad4978cdc03771eeddf52fbf50c4fc24a7ba14c9286888a42ad3334af4482",
+        "conf_type": "dict",
+        "try_number": 1,
+        "params_probe": "run",
+        "record_count": 23000,
+        "mutable_identity": true
+      }
+    },
+    "e2e_a2_large_014": {
+      "state": "success",
+      "start": "2026-10-28 18:47:11.694725+00:00",
+      "end": "2026-10-28 18:48:47.769350+00:00",
+      "result": {
+        "case": "success",
+        "sha256": "8d0ad4978cdc03771eeddf52fbf50c4fc24a7ba14c9286888a42ad3334af4482",
+        "conf_type": "dict",
+        "try_number": 1,
+        "params_probe": "run",
+        "record_count": 23000,
+        "mutable_identity": true
+      }
+    },
+    "e2e_a2_large_015": {
+      "state": "success",
+      "start": "2026-10-28 18:47:11.695550+00:00",
+      "end": "2026-10-28 18:48:36.909654+00:00",
+      "result": {
+        "case": "success",
+        "sha256": "8d0ad4978cdc03771eeddf52fbf50c4fc24a7ba14c9286888a42ad3334af4482",
+        "conf_type": "dict",
+        "try_number": 1,
+        "params_probe": "run",
+        "record_count": 23000,
+        "mutable_identity": true
+      }
+    },
+    "e2e_a2_large_016": {
+      "state": "success",
+      "start": "2026-10-28 18:47:11.696561+00:00",
+      "end": "2026-10-28 18:49:05.152141+00:00",
+      "result": {
+        "case": "success",
+        "sha256": "8d0ad4978cdc03771eeddf52fbf50c4fc24a7ba14c9286888a42ad3334af4482",
+        "conf_type": "dict",
+        "try_number": 1,
+        "params_probe": "run",
+        "record_count": 23000,
+        "mutable_identity": true
+      }
+    },
+    "e2e_a2_large_017": {
+      "state": "success",
+      "start": "2026-10-28 18:47:11.697403+00:00",
+      "end": "2026-10-28 18:49:05.502888+00:00",
+      "result": {
+        "case": "success",
+        "sha256": "8d0ad4978cdc03771eeddf52fbf50c4fc24a7ba14c9286888a42ad3334af4482",
+        "conf_type": "dict",
+        "try_number": 1,
+        "params_probe": "run",
+        "record_count": 23000,
+        "mutable_identity": true
+      }
+    },
+    "e2e_a2_large_018": {
+      "state": "success",
+      "start": "2026-10-28 18:47:11.698251+00:00",
+      "end": "2026-10-28 18:49:05.859757+00:00",
+      "result": {
+        "case": "success",
+        "sha256": "8d0ad4978cdc03771eeddf52fbf50c4fc24a7ba14c9286888a42ad3334af4482",
+        "conf_type": "dict",
+        "try_number": 1,
+        "params_probe": "run",
+        "record_count": 23000,
+        "mutable_identity": true
+      }
+    },
+    "e2e_a2_large_019": {
+      "state": "success",
+      "start": "2026-10-28 18:47:11.699113+00:00",
+      "end": "2026-10-28 18:49:06.215883+00:00",
+      "result": {
+        "case": "success",
+        "sha256": "8d0ad4978cdc03771eeddf52fbf50c4fc24a7ba14c9286888a42ad3334af4482",
+        "conf_type": "dict",
+        "try_number": 1,
+        "params_probe": "run",
+        "record_count": 23000,
+        "mutable_identity": true
+      }
+    }
+  }
+}

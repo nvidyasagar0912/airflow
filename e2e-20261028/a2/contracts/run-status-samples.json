@@ -1,0 +1,226 @@
+[
+  {
+    "timestamp": "2026-10-28T18:49:41.318202+00:00",
+    "task_states": {
+      "null": 5
+    },
+    "runs": {
+      "e2e_a2_contracts_000": "queued",
+      "e2e_a2_contracts_004": "queued",
+      "e2e_a2_contracts_001": "queued",
+      "e2e_a2_contracts_002": "queued",
+      "e2e_a2_contracts_003": "queued"
+    }
+  },
+  {
+    "timestamp": "2026-10-28T18:49:42.373841+00:00",
+    "task_states": {
+      "queued": 5
+    },
+    "runs": {
+      "e2e_a2_contracts_000": "running",
+      "e2e_a2_contracts_004": "running",
+      "e2e_a2_contracts_002": "running",
+      "e2e_a2_contracts_003": "running",
+      "e2e_a2_contracts_001": "running"
+    }
+  },
+  {
+    "timestamp": "2026-10-28T18:49:43.427184+00:00",
+    "task_states": {
+      "queued": 5
+    },
+    "runs": {
+      "e2e_a2_contracts_000": "running",
+      "e2e_a2_contracts_004": "running",
+      "e2e_a2_contracts_002": "running",
+      "e2e_a2_contracts_003": "running",
+      "e2e_a2_contracts_001": "running"
+    }
+  },
+  {
+    "timestamp": "2026-10-28T18:49:44.496367+00:00",
+    "task_states": {
+      "queued": 5
+    },
+    "runs": {
+      "e2e_a2_contracts_000": "running",
+      "e2e_a2_contracts_004": "running",
+      "e2e_a2_contracts_002": "running",
+      "e2e_a2_contracts_001": "running",
+      "e2e_a2_contracts_003": "running"
+    }
+  },
+  {
+    "timestamp": "2026-10-28T18:49:45.554241+00:00",
+    "task_states": {
+      "queued": 5
+    },
+    "runs": {
+      "e2e_a2_contracts_000": "running",
+      "e2e_a2_contracts_004": "running",
+      "e2e_a2_contracts_002": "running",
+      "e2e_a2_contracts_001": "running",
+      "e2e_a2_contracts_003": "running"
+    }
+  },
+  {
+    "timestamp": "2026-10-28T18:49:46.613330+00:00",
+    "task_states": {
+      "queued": 5
+    },
+    "runs": {
+      "e2e_a2_contracts_000": "running",
+      "e2e_a2_contracts_004": "running",
+      "e2e_a2_contracts_002": "running",
+      "e2e_a2_contracts_001": "running",
+      "e2e_a2_contracts_003": "running"
+    }
+  },
+  {
+    "timestamp": "2026-10-28T18:49:47.666618+00:00",
+    "task_states": {
+      "queued": 5
+    },
+    "runs": {
+      "e2e_a2_contracts_000": "running",
+      "e2e_a2_contracts_003": "running",
+      "e2e_a2_contracts_004": "running",
+      "e2e_a2_contracts_001": "running",
+      "e2e_a2_contracts_002": "running"
+    }
+  },
+  {
+    "timestamp": "2026-10-28T18:49:48.721949+00:00",
+    "task_states": {
+      "queued": 5
+    },
+    "runs": {
+      "e2e_a2_contracts_000": "running",
+      "e2e_a2_contracts_003": "running",
+      "e2e_a2_contracts_004": "running",
+      "e2e_a2_contracts_001": "running",
+      "e2e_a2_contracts_002": "running"
+    }
+  },
+  {
+    "timestamp": "2026-10-28T18:49:49.780368+00:00",
+    "task_states": {
+      "queued": 5
+    },
+    "runs": {
+      "e2e_a2_contracts_000": "running",
+      "e2e_a2_contracts_003": "running",
+      "e2e_a2_contracts_004": "running",
+      "e2e_a2_contracts_001": "running",
+      "e2e_a2_contracts_002": "running"
+    }
+  },
+  {
+    "timestamp": "2026-10-28T18:49:50.835510+00:00",
+    "task_states": {
+      "queued": 1,
+      "running": 4
+    },
+    "runs": {
+      "e2e_a2_contracts_000": "running",
+      "e2e_a2_contracts_003": "running",
+      "e2e_a2_contracts_004": "running",
+      "e2e_a2_contracts_001": "running",
+      "e2e_a2_contracts_002": "running"
+    }
+  },
+  {
+    "timestamp": "2026-10-28T18:49:51.899348+00:00",
+    "task_states": {
+      "running": 1,
+      "up_for_retry": 2,
+      "failed": 2,
+      "deferred": 1,
+      "success": 1
+    },
+    "runs": {
+      "e2e_a2_contracts_000": "running",
+      "e2e_a2_contracts_003": "running",
+      "e2e_a2_contracts_004": "running",
+      "e2e_a2_contracts_001": "running",
+      "e2e_a2_contracts_002": "running"
+    }
+  },
+  {
+    "timestamp": "2026-10-28T18:49:52.963053+00:00",
+    "task_states": {
+      "up_for_retry": 2,
+      "failed": 2,
+      "deferred": 1,
+      "success": 2
+    },
+    "runs": {
+      "e2e_a2_contracts_000": "success",
+      "e2e_a2_contracts_003": "running",
+      "e2e_a2_contracts_004": "running",
+      "e2e_a2_contracts_001": "running",
+      "e2e_a2_contracts_002": "running"
+    }
+  },
+  {
+    "timestamp": "2026-10-28T18:49:54.021016+00:00",
+    "task_states": {
+      "failed": 2,
+      "deferred": 1,
+      "success": 2,
+      "running": 2
+    },
+    "runs": {
+      "e2e_a2_contracts_000": "success",
+      "e2e_a2_contracts_003": "running",
+      "e2e_a2_contracts_004": "running",
+      "e2e_a2_contracts_001": "success",
+      "e2e_a2_contracts_002": "running"
+    }
+  },
+  {
+    "timestamp": "2026-10-28T18:49:55.089990+00:00",
+    "task_states": {
+      "failed": 3,
+      "success": 3,
+      "scheduled": 1
+    },
+    "runs": {
+      "e2e_a2_contracts_000": "success",
+      "e2e_a2_contracts_004": "running",
+      "e2e_a2_contracts_003": "running",
+      "e2e_a2_contracts_001": "success",
+      "e2e_a2_contracts_002": "running"
+    }
+  },
+  {
+    "timestamp": "2026-10-28T18:49:56.145364+00:00",
+    "task_states": {
+      "running": 1,
+      "failed": 3,
+      "success": 3
+    },
+    "runs": {
+      "e2e_a2_contracts_000": "success",
+      "e2e_a2_contracts_004": "failed",
+      "e2e_a2_contracts_003": "running",
+      "e2e_a2_contracts_001": "success",
+      "e2e_a2_contracts_002": "success"
+    }
+  },
+  {
+    "timestamp": "2026-10-28T18:49:57.200556+00:00",
+    "task_states": {
+      "failed": 3,
+      "success": 4
+    },
+    "runs": {
+      "e2e_a2_contracts_000": "success",
+      "e2e_a2_contracts_004": "failed",
+      "e2e_a2_contracts_003": "success",
+      "e2e_a2_contracts_001": "success",
+      "e2e_a2_contracts_002": "success"
+    }
+  }
+]

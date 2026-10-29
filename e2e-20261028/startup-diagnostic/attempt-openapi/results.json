@@ -1,0 +1,21 @@
+{
+  "started": "2026-10-28T18:57:56.149615+00:00",
+  "baseline": "750f849cc2372ee42dc6910541d4b6a866102ac9",
+  "change": "Only add an Execution API schema warm-up before submitting execution work.",
+  "source_change": "None: both variants use the unpatched baseline.",
+  "variants": [
+    {
+      "name": "diagcold",
+      "execution_api_schema_warmed": false,
+      "verified_runs": 4,
+      "start_request_statuses": {
+        "400": 4,
+        "200": 4
+      },
+      "execution_seconds": 13.820834479999576
+    }
+  ],
+  "status": "failed",
+  "error": "IncompleteRead: IncompleteRead(0 bytes read, 115091 more expected)",
+  "finished": "2026-10-28T19:00:00.646900+00:00"
+}

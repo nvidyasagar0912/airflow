@@ -1,0 +1,24 @@
+2026-10-28T18:43:20.494892558Z   ____________       _____________
+2026-10-28T18:43:20.494943961Z  ____    |__( )_________  __/__  /________      __
+2026-10-28T18:43:20.494948761Z ____  /| |_  /__  ___/_  /_ __  /_  __ \_ | /| / /
+2026-10-28T18:43:20.494952262Z ___  ___ |  / _  /   _  __/ _  / / /_/ /_ |/ |/ /
+2026-10-28T18:43:20.494955262Z  _/_/  |_/_/  /_/    /_/    /_/  \____/____/|__/
+2026-10-28T18:43:20.526742018Z 2026-10-28T18:43:20.525134Z [info     ] Starting log server on http://[::]:8794 [airflow.utils.serve_logs.core] loc=core.py:50
+2026-10-28T18:43:21.233876574Z 2026-10-28T18:43:21.233359Z [warning  ] ASGI app factory detected. Using it, but please consider setting the --factory flag explicitly. [uvicorn.error] loc=config.py:521
+2026-10-28T18:43:21.234563720Z 2026-10-28T18:43:21.234213Z [info     ] Started server process [8]     [uvicorn.error] loc=server.py:103
+2026-10-28T18:43:21.234639425Z 2026-10-28T18:43:21.234410Z [info     ] Waiting for application startup. [uvicorn.error] loc=on.py:48
+2026-10-28T18:43:21.285841198Z 2026-10-28T18:43:21.285275Z [info     ] Application startup complete.  [uvicorn.error] loc=on.py:62
+2026-10-28T18:43:21.288224359Z 2026-10-28T18:43:21.287802Z [info     ] Uvicorn running on http://:8794 (Press CTRL+C to quit) [uvicorn.error] loc=server.py:234
+2026-10-28T18:43:23.172786965Z 2026-10-28T18:43:23.172015Z [info     ] Starting the triggerer         [airflow.jobs.triggerer_job_runner.TriggererJobRunner] loc=triggerer_job_runner.py:286
+2026-10-28T18:44:24.157251414Z 2026-10-28T18:44:24.154885Z [info     ] 0 triggers currently running   [airflow.jobs.triggerer_job_runner] loc=triggerer_job_runner.py:1172
+2026-10-28T18:44:24.175587564Z 2026-10-28T18:44:24.155575Z [info     ] 0 watchers currently running   [airflow.jobs.triggerer_job_runner] loc=triggerer_job_runner.py:1172
+2026-10-28T18:45:24.261431581Z 2026-10-28T18:45:24.259797Z [info     ] 0 triggers currently running   [airflow.jobs.triggerer_job_runner] loc=triggerer_job_runner.py:1172
+2026-10-28T18:45:24.273862824Z 2026-10-28T18:45:24.260300Z [info     ] 0 watchers currently running   [airflow.jobs.triggerer_job_runner] loc=triggerer_job_runner.py:1172
+2026-10-28T18:46:24.370047519Z 2026-10-28T18:46:24.364577Z [info     ] 0 triggers currently running   [airflow.jobs.triggerer_job_runner] loc=triggerer_job_runner.py:1172
+2026-10-28T18:46:24.370274838Z 2026-10-28T18:46:24.366053Z [info     ] 0 watchers currently running   [airflow.jobs.triggerer_job_runner] loc=triggerer_job_runner.py:1172
+2026-10-28T18:47:24.481928682Z 2026-10-28T18:47:24.480278Z [info     ] 0 triggers currently running   [airflow.jobs.triggerer_job_runner] loc=triggerer_job_runner.py:1172
+2026-10-28T18:47:24.497886488Z 2026-10-28T18:47:24.480707Z [info     ] 0 watchers currently running   [airflow.jobs.triggerer_job_runner] loc=triggerer_job_runner.py:1172
+2026-10-28T18:48:24.583871486Z 2026-10-28T18:48:24.582086Z [info     ] 0 triggers currently running   [airflow.jobs.triggerer_job_runner] loc=triggerer_job_runner.py:1172
+2026-10-28T18:48:24.598244706Z 2026-10-28T18:48:24.582682Z [info     ] 0 watchers currently running   [airflow.jobs.triggerer_job_runner] loc=triggerer_job_runner.py:1172
+2026-10-28T18:49:24.685200711Z 2026-10-28T18:49:24.683766Z [info     ] 0 triggers currently running   [airflow.jobs.triggerer_job_runner] loc=triggerer_job_runner.py:1172
+2026-10-28T18:49:24.698534997Z 2026-10-28T18:49:24.684162Z [info     ] 0 watchers currently running   [airflow.jobs.triggerer_job_runner] loc=triggerer_job_runner.py:1172

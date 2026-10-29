@@ -1,0 +1,610 @@
+2026-10-28T18:28:16.035189181Z 2026-10-28T18:28:16.034594Z [info     ] Starting the Dag Processor Job [airflow.jobs.dag_processor_job_runner.DagProcessorJobRunner] loc=dag_processor_job_runner.py:59
+2026-10-28T18:28:16.035527311Z 2026-10-28T18:28:16.035177Z [info     ] Processing files using up to 1 processes at a time  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:364
+2026-10-28T18:28:16.035544112Z 2026-10-28T18:28:16.035344Z [info     ] Process each file at most once every 5 seconds [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:365
+2026-10-28T18:28:16.035964249Z 2026-10-28T18:28:16.035662Z [info     ] DAG bundles loaded: dags-folder [airflow.dag_processing.bundles.manager.DagBundlesManager] loc=manager.py:349
+2026-10-28T18:28:16.038869002Z 2026-10-28T18:28:16.038541Z [info     ] Added new DAG bundle dags-folder to the database [airflow.dag_processing.bundles.manager.DagBundlesManager] loc=manager.py:423
+2026-10-28T18:28:16.048589750Z 2026-10-28T18:28:16.048233Z [info     ] DAG bundles loaded: dags-folder [airflow.dag_processing.bundles.manager.DagBundlesManager] loc=manager.py:349
+2026-10-28T18:28:16.048772666Z 2026-10-28T18:28:16.048530Z [info     ] Checking for new files in bundle dags-folder every 5 seconds [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:425
+2026-10-28T18:28:16.054214441Z 2026-10-28T18:28:16.053873Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:28:16.054228242Z 2026-10-28T18:28:16.054026Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:28:16.055358241Z 2026-10-28T18:28:16.055062Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:28:16.066978954Z 2026-10-28T18:28:16.066449Z [info     ] Adding 1 new files to the front of the queue [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1555
+2026-10-28T18:28:16.719818000Z 2026-10-28T18:28:16.717888Z [warning  ] This process (pid=1) is multi-threaded, use of fork() may lead to deadlocks in the child. [py.warnings] category=DeprecationWarning filename=/opt/airflow/task-sdk/src/airflow/sdk/execution_time/supervisor.py lineno=966
+2026-10-28T18:28:16.802463009Z 2026-10-28T18:28:16.801826Z [info     ] checking for stale bundle versions locally [airflow.dag_processing.bundles.base] loc=base.py:223
+2026-10-28T18:28:16.803013857Z 2026-10-28T18:28:16.802538Z [info     ] DAG bundles loaded: dags-folder [airflow.dag_processing.bundles.manager.DagBundlesManager] loc=manager.py:349
+2026-10-28T18:28:16.812070347Z 2026-10-28T18:28:16.811627Z [info     ] 
+2026-10-28T18:28:16.812085849Z ================================================================================
+2026-10-28T18:28:16.812089249Z DAG File Processing Stats
+2026-10-28T18:28:16.812091849Z 
+2026-10-28T18:28:16.812094249Z Bundle       File Path                  PID  Current Duration      # DAGs    # Errors  Last Duration    Last Run At
+2026-10-28T18:28:16.812096650Z -----------  -----------------------  -----  ------------------  --------  ----------  ---------------  -------------
+2026-10-28T18:28:16.812114951Z dags-folder  conf_transport_probe.py      9  0.09s                      0           0
+2026-10-28T18:28:16.812117951Z ================================================================================ [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1224
+2026-10-28T18:28:16.893614860Z 2026-10-28T18:28:16.893057Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:28:16.909112412Z 2026-10-28T18:28:16.908488Z [info     ] Creating ORM DAG for conf_transport_probe [airflow.dag_processing.collection] loc=collection.py:104
+2026-10-28T18:28:16.910471431Z 2026-10-28T18:28:16.910108Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:28:16.910777557Z 2026-10-28T18:28:16.910317Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:28:21.932754650Z 2026-10-28T18:28:21.932211Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:28:21.932875560Z 2026-10-28T18:28:21.932438Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:28:21.934134568Z 2026-10-28T18:28:21.933783Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:28:22.062500866Z 2026-10-28T18:28:22.061921Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:28:22.066567615Z 2026-10-28T18:28:22.066176Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:28:22.066586216Z 2026-10-28T18:28:22.066368Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:28:27.086198079Z 2026-10-28T18:28:27.085717Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:28:27.086236183Z 2026-10-28T18:28:27.085925Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:28:27.087468988Z 2026-10-28T18:28:27.087008Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:28:27.194502159Z 2026-10-28T18:28:27.193918Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:28:27.198409793Z 2026-10-28T18:28:27.198001Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:28:27.198441796Z 2026-10-28T18:28:27.198209Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:28:32.237415998Z 2026-10-28T18:28:32.236891Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:28:32.237538309Z 2026-10-28T18:28:32.237167Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:28:32.239107547Z 2026-10-28T18:28:32.238685Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:28:32.362766236Z 2026-10-28T18:28:32.362266Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:28:32.367187125Z 2026-10-28T18:28:32.366692Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:28:32.367205527Z 2026-10-28T18:28:32.366911Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:28:37.381558808Z 2026-10-28T18:28:37.381121Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:28:37.381631015Z 2026-10-28T18:28:37.381332Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:28:37.382925730Z 2026-10-28T18:28:37.382484Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:28:37.495980415Z 2026-10-28T18:28:37.495370Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:28:37.499455925Z 2026-10-28T18:28:37.499004Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:28:37.499478927Z 2026-10-28T18:28:37.499252Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:28:42.538045677Z 2026-10-28T18:28:42.537526Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:28:42.538071879Z 2026-10-28T18:28:42.537751Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:28:42.539375395Z 2026-10-28T18:28:42.538866Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:28:42.690879910Z 2026-10-28T18:28:42.690121Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:28:42.694657347Z 2026-10-28T18:28:42.694090Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:28:42.694676548Z 2026-10-28T18:28:42.694343Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:28:47.728246458Z 2026-10-28T18:28:47.727752Z [info     ] 
+2026-10-28T18:28:47.728360668Z ================================================================================
+2026-10-28T18:28:47.728364568Z DAG File Processing Stats
+2026-10-28T18:28:47.728367068Z 
+2026-10-28T18:28:47.728369468Z Bundle       File Path                PID    Current Duration      # DAGs    # Errors  Last Duration    Last Run At
+2026-10-28T18:28:47.728372269Z -----------  -----------------------  -----  ------------------  --------  ----------  ---------------  -------------------
+2026-10-28T18:28:47.728374669Z dags-folder  conf_transport_probe.py                                    1           0  0.13s            2026-10-28T18:28:42
+2026-10-28T18:28:47.728377069Z ================================================================================ [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1224
+2026-10-28T18:28:47.731881769Z 2026-10-28T18:28:47.731481Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:28:47.731924573Z 2026-10-28T18:28:47.731700Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:28:47.733463405Z 2026-10-28T18:28:47.733115Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:28:47.830090380Z 2026-10-28T18:28:47.829622Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:28:47.857793252Z 2026-10-28T18:28:47.857406Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:28:47.857875559Z 2026-10-28T18:28:47.857632Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:28:52.878086526Z 2026-10-28T18:28:52.877545Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:28:52.878127930Z 2026-10-28T18:28:52.877816Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:28:52.879460545Z 2026-10-28T18:28:52.879140Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:28:52.991878154Z 2026-10-28T18:28:52.991330Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:28:52.995651680Z 2026-10-28T18:28:52.995252Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:28:52.995730187Z 2026-10-28T18:28:52.995499Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:28:58.035420555Z 2026-10-28T18:28:58.034633Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:28:58.035489961Z 2026-10-28T18:28:58.034960Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:28:58.036710466Z 2026-10-28T18:28:58.036316Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:28:58.165081254Z 2026-10-28T18:28:58.164499Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:28:58.169014893Z 2026-10-28T18:28:58.168571Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:28:58.169042496Z 2026-10-28T18:28:58.168774Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:29:03.207554146Z 2026-10-28T18:29:03.207091Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:29:03.207586049Z 2026-10-28T18:29:03.207306Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:29:03.208742850Z 2026-10-28T18:29:03.208416Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:29:03.299762679Z 2026-10-28T18:29:03.299139Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:29:03.303685321Z 2026-10-28T18:29:03.303240Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:29:03.303704323Z 2026-10-28T18:29:03.303447Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:29:08.339484130Z 2026-10-28T18:29:08.338984Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:29:08.339569938Z 2026-10-28T18:29:08.339223Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:29:08.341051467Z 2026-10-28T18:29:08.340628Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:29:08.481410675Z 2026-10-28T18:29:08.480772Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:29:08.487424296Z 2026-10-28T18:29:08.486897Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:29:08.487582710Z 2026-10-28T18:29:08.487199Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:29:13.527968498Z 2026-10-28T18:29:13.527447Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:29:13.527998900Z 2026-10-28T18:29:13.527669Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:29:13.529398522Z 2026-10-28T18:29:13.529047Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:29:13.670351133Z 2026-10-28T18:29:13.669232Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:29:13.677301736Z 2026-10-28T18:29:13.676651Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:29:13.677330438Z 2026-10-28T18:29:13.677022Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:29:17.768348710Z 2026-10-28T18:29:17.767545Z [info     ] 
+2026-10-28T18:29:17.768433617Z ================================================================================
+2026-10-28T18:29:17.768444018Z DAG File Processing Stats
+2026-10-28T18:29:17.768448818Z 
+2026-10-28T18:29:17.768454718Z Bundle       File Path                PID    Current Duration      # DAGs    # Errors  Last Duration    Last Run At
+2026-10-28T18:29:17.768458619Z -----------  -----------------------  -----  ------------------  --------  ----------  ---------------  -------------------
+2026-10-28T18:29:17.768462719Z dags-folder  conf_transport_probe.py                                    1           0  0.12s            2026-10-28T18:29:13
+2026-10-28T18:29:17.768466619Z ================================================================================ [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1224
+2026-10-28T18:29:18.734357645Z 2026-10-28T18:29:18.733835Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:29:18.734395648Z 2026-10-28T18:29:18.734140Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:29:18.737170576Z 2026-10-28T18:29:18.736797Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:29:19.055625496Z 2026-10-28T18:29:19.054774Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:29:19.071458595Z 2026-10-28T18:29:19.070324Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:29:19.071490498Z 2026-10-28T18:29:19.070696Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:29:24.078553892Z 2026-10-28T18:29:24.077938Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:29:24.078594596Z 2026-10-28T18:29:24.078355Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:29:24.082036478Z 2026-10-28T18:29:24.081124Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:29:24.191316342Z 2026-10-28T18:29:24.190727Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:29:24.195935320Z 2026-10-28T18:29:24.195499Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:29:24.195958622Z 2026-10-28T18:29:24.195715Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:29:29.232200181Z 2026-10-28T18:29:29.231586Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:29:29.232282889Z 2026-10-28T18:29:29.231796Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:29:29.233311181Z 2026-10-28T18:29:29.232882Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:29:29.358523108Z 2026-10-28T18:29:29.357827Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:29:29.363383344Z 2026-10-28T18:29:29.362826Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:29:29.363416246Z 2026-10-28T18:29:29.363064Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:29:34.374388479Z 2026-10-28T18:29:34.373806Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:29:34.374427783Z 2026-10-28T18:29:34.374101Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:29:34.376098852Z 2026-10-28T18:29:34.375699Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:29:34.515438962Z 2026-10-28T18:29:34.514900Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:29:34.519447768Z 2026-10-28T18:29:34.519070Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:29:34.519464469Z 2026-10-28T18:29:34.519260Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:29:39.558610538Z 2026-10-28T18:29:39.558022Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:29:39.558646142Z 2026-10-28T18:29:39.558382Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:29:39.559951374Z 2026-10-28T18:29:39.559621Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:29:39.697492702Z 2026-10-28T18:29:39.696926Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:29:39.701826940Z 2026-10-28T18:29:39.701420Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:29:39.701859244Z 2026-10-28T18:29:39.701629Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:29:44.738337104Z 2026-10-28T18:29:44.737882Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:29:44.738374307Z 2026-10-28T18:29:44.738128Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:29:44.739524118Z 2026-10-28T18:29:44.739230Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:29:44.908120907Z 2026-10-28T18:29:44.907445Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:29:44.912455323Z 2026-10-28T18:29:44.911885Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:29:44.912478125Z 2026-10-28T18:29:44.912124Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:29:47.927341681Z 2026-10-28T18:29:47.926848Z [info     ] 
+2026-10-28T18:29:47.927371884Z ================================================================================
+2026-10-28T18:29:47.927375184Z DAG File Processing Stats
+2026-10-28T18:29:47.927377684Z 
+2026-10-28T18:29:47.927380185Z Bundle       File Path                PID    Current Duration      # DAGs    # Errors  Last Duration    Last Run At
+2026-10-28T18:29:47.927382685Z -----------  -----------------------  -----  ------------------  --------  ----------  ---------------  -------------------
+2026-10-28T18:29:47.927384985Z dags-folder  conf_transport_probe.py                                    1           0  0.15s            2026-10-28T18:29:44
+2026-10-28T18:29:47.927387385Z ================================================================================ [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1224
+2026-10-28T18:29:49.947342154Z 2026-10-28T18:29:49.946824Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:29:49.947377457Z 2026-10-28T18:29:49.947040Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:29:49.948782784Z 2026-10-28T18:29:49.948391Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:29:50.068759339Z 2026-10-28T18:29:50.068243Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:29:50.072641391Z 2026-10-28T18:29:50.072248Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:29:50.072714897Z 2026-10-28T18:29:50.072460Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:29:55.108304201Z 2026-10-28T18:29:55.107814Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:29:55.108357906Z 2026-10-28T18:29:55.108074Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:29:55.109518011Z 2026-10-28T18:29:55.109207Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:29:55.206235461Z 2026-10-28T18:29:55.205685Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:29:55.210121113Z 2026-10-28T18:29:55.209775Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:29:55.210142915Z 2026-10-28T18:29:55.209973Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:30:00.249471092Z 2026-10-28T18:30:00.248964Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:30:00.249537099Z 2026-10-28T18:30:00.249169Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:30:00.250748919Z 2026-10-28T18:30:00.250335Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:30:00.359942374Z 2026-10-28T18:30:00.359382Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:30:00.363981976Z 2026-10-28T18:30:00.363547Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:30:00.364048782Z 2026-10-28T18:30:00.363758Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:30:05.405328113Z 2026-10-28T18:30:05.404865Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:30:05.405362716Z 2026-10-28T18:30:05.405082Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:30:05.406653431Z 2026-10-28T18:30:05.406334Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:30:05.507619181Z 2026-10-28T18:30:05.507084Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:30:05.511781450Z 2026-10-28T18:30:05.511355Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:30:05.511800651Z 2026-10-28T18:30:05.511562Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:30:10.556274311Z 2026-10-28T18:30:10.555752Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:30:10.556310214Z 2026-10-28T18:30:10.556020Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:30:10.557730040Z 2026-10-28T18:30:10.557407Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:30:10.686373244Z 2026-10-28T18:30:10.685858Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:30:10.690021667Z 2026-10-28T18:30:10.689664Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:30:10.690237086Z 2026-10-28T18:30:10.689857Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:30:15.725504232Z 2026-10-28T18:30:15.724804Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:30:15.725584438Z 2026-10-28T18:30:15.725103Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:30:15.726810830Z 2026-10-28T18:30:15.726480Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:30:15.859658454Z 2026-10-28T18:30:15.859092Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:30:15.863682557Z 2026-10-28T18:30:15.863224Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:30:15.863700959Z 2026-10-28T18:30:15.863418Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:30:18.879996764Z 2026-10-28T18:30:18.879496Z [info     ] 
+2026-10-28T18:30:18.880039868Z ================================================================================
+2026-10-28T18:30:18.880043568Z DAG File Processing Stats
+2026-10-28T18:30:18.880046168Z 
+2026-10-28T18:30:18.880048468Z Bundle       File Path                PID    Current Duration      # DAGs    # Errors  Last Duration    Last Run At
+2026-10-28T18:30:18.880050968Z -----------  -----------------------  -----  ------------------  --------  ----------  ---------------  -------------------
+2026-10-28T18:30:18.880092872Z dags-folder  conf_transport_probe.py                                    1           0  0.11s            2026-10-28T18:30:15
+2026-10-28T18:30:18.880099572Z ================================================================================ [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1224
+2026-10-28T18:30:20.910750524Z 2026-10-28T18:30:20.909732Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:30:20.911184861Z 2026-10-28T18:30:20.910426Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:30:20.913001015Z 2026-10-28T18:30:20.912511Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:30:21.154137999Z 2026-10-28T18:30:21.153305Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:30:21.161180294Z 2026-10-28T18:30:21.160558Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:30:21.161946359Z 2026-10-28T18:30:21.160843Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:30:26.178275410Z 2026-10-28T18:30:26.177682Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:30:26.178318014Z 2026-10-28T18:30:26.177912Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:30:26.179665628Z 2026-10-28T18:30:26.179272Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:30:26.275617839Z 2026-10-28T18:30:26.275069Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:30:26.279503467Z 2026-10-28T18:30:26.279094Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:30:26.279523169Z 2026-10-28T18:30:26.279297Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:30:31.325761928Z 2026-10-28T18:30:31.325119Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:30:31.325804532Z 2026-10-28T18:30:31.325406Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:30:31.327170452Z 2026-10-28T18:30:31.326747Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:30:31.479617346Z 2026-10-28T18:30:31.478923Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:30:31.484147044Z 2026-10-28T18:30:31.483652Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:30:31.484228051Z 2026-10-28T18:30:31.483930Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:30:36.526934812Z 2026-10-28T18:30:36.526367Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:30:36.527013819Z 2026-10-28T18:30:36.526650Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:30:36.528700167Z 2026-10-28T18:30:36.528259Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:30:36.696077739Z 2026-10-28T18:30:36.695444Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:30:36.700943769Z 2026-10-28T18:30:36.700447Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:30:36.700967571Z 2026-10-28T18:30:36.700685Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:30:41.740590511Z 2026-10-28T18:30:41.739996Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:30:41.740646916Z 2026-10-28T18:30:41.740245Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:30:41.742028938Z 2026-10-28T18:30:41.741684Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:30:41.865076219Z 2026-10-28T18:30:41.864450Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:30:41.869147079Z 2026-10-28T18:30:41.868738Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:30:41.869169081Z 2026-10-28T18:30:41.868919Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:30:46.906111826Z 2026-10-28T18:30:46.905525Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:30:46.906193433Z 2026-10-28T18:30:46.905759Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:30:46.907498046Z 2026-10-28T18:30:46.907151Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:30:47.067219738Z 2026-10-28T18:30:47.066643Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:30:47.071030169Z 2026-10-28T18:30:47.070654Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:30:47.071054971Z 2026-10-28T18:30:47.070848Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:30:49.077098639Z 2026-10-28T18:30:49.076606Z [info     ] 
+2026-10-28T18:30:49.077138343Z ================================================================================
+2026-10-28T18:30:49.077141943Z DAG File Processing Stats
+2026-10-28T18:30:49.077144543Z 
+2026-10-28T18:30:49.077146944Z Bundle       File Path                PID    Current Duration      # DAGs    # Errors  Last Duration    Last Run At
+2026-10-28T18:30:49.077149244Z -----------  -----------------------  -----  ------------------  --------  ----------  ---------------  -------------------
+2026-10-28T18:30:49.077151544Z dags-folder  conf_transport_probe.py                                    1           0  0.14s            2026-10-28T18:30:47
+2026-10-28T18:30:49.077153944Z ================================================================================ [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1224
+2026-10-28T18:30:52.104531747Z 2026-10-28T18:30:52.104039Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:30:52.104560750Z 2026-10-28T18:30:52.104279Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:30:52.105879064Z 2026-10-28T18:30:52.105520Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:30:52.203715674Z 2026-10-28T18:30:52.203156Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:30:52.207685419Z 2026-10-28T18:30:52.207186Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:30:52.207862834Z 2026-10-28T18:30:52.207470Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:30:57.244983776Z 2026-10-28T18:30:57.244455Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:30:57.245011178Z 2026-10-28T18:30:57.244689Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:30:57.246361896Z 2026-10-28T18:30:57.245897Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:30:57.397048539Z 2026-10-28T18:30:57.396511Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:30:57.401328712Z 2026-10-28T18:30:57.400834Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:30:57.401349414Z 2026-10-28T18:30:57.401081Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:31:02.455332435Z 2026-10-28T18:31:02.454447Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:31:02.455996393Z 2026-10-28T18:31:02.454782Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:31:02.462062925Z 2026-10-28T18:31:02.461478Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:31:02.720811222Z 2026-10-28T18:31:02.719992Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:31:02.727244586Z 2026-10-28T18:31:02.726654Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:31:02.747257742Z 2026-10-28T18:31:02.746466Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:31:07.781516928Z 2026-10-28T18:31:07.780692Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:31:07.781615537Z 2026-10-28T18:31:07.781104Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:31:07.783690219Z 2026-10-28T18:31:07.783147Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:31:08.025161800Z 2026-10-28T18:31:08.024458Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:31:08.034720338Z 2026-10-28T18:31:08.034045Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:31:08.034757242Z 2026-10-28T18:31:08.034359Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:31:13.074864926Z 2026-10-28T18:31:13.074134Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:31:13.075059143Z 2026-10-28T18:31:13.074402Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:31:13.076870602Z 2026-10-28T18:31:13.076387Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:31:13.190572780Z 2026-10-28T18:31:13.190049Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:31:13.195114179Z 2026-10-28T18:31:13.194371Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:31:13.195153882Z 2026-10-28T18:31:13.194625Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:31:18.237118699Z 2026-10-28T18:31:18.236447Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:31:18.237152302Z 2026-10-28T18:31:18.236849Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:31:18.238419112Z 2026-10-28T18:31:18.238076Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:31:18.379963041Z 2026-10-28T18:31:18.379361Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:31:18.384637348Z 2026-10-28T18:31:18.384167Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:31:18.384707454Z 2026-10-28T18:31:18.384379Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:31:19.384142207Z 2026-10-28T18:31:19.383610Z [info     ] 
+2026-10-28T18:31:19.384174210Z ================================================================================
+2026-10-28T18:31:19.384178910Z DAG File Processing Stats
+2026-10-28T18:31:19.384182610Z 
+2026-10-28T18:31:19.384208113Z Bundle       File Path                PID    Current Duration      # DAGs    # Errors  Last Duration    Last Run At
+2026-10-28T18:31:19.384211113Z -----------  -----------------------  -----  ------------------  --------  ----------  ---------------  -------------------
+2026-10-28T18:31:19.384213513Z dags-folder  conf_transport_probe.py                                    1           0  0.12s            2026-10-28T18:31:18
+2026-10-28T18:31:19.384215913Z ================================================================================ [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1224
+2026-10-28T18:31:23.428534081Z 2026-10-28T18:31:23.427964Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:31:23.428646790Z 2026-10-28T18:31:23.428273Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:31:23.430285933Z 2026-10-28T18:31:23.429858Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:31:23.577359543Z 2026-10-28T18:31:23.576485Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:31:23.582167262Z 2026-10-28T18:31:23.581718Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:31:23.582243069Z 2026-10-28T18:31:23.581930Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:31:28.629331582Z 2026-10-28T18:31:28.628781Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:31:28.629371386Z 2026-10-28T18:31:28.629066Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:31:28.631340859Z 2026-10-28T18:31:28.630921Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:31:28.854720773Z 2026-10-28T18:31:28.854154Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:31:28.861501769Z 2026-10-28T18:31:28.861020Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:31:28.861522570Z 2026-10-28T18:31:28.861229Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:31:33.901930298Z 2026-10-28T18:31:33.901321Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:31:33.902037007Z 2026-10-28T18:31:33.901602Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:31:33.903286618Z 2026-10-28T18:31:33.902920Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:31:34.001834522Z 2026-10-28T18:31:34.001110Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:31:34.005671061Z 2026-10-28T18:31:34.005161Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:31:34.005695063Z 2026-10-28T18:31:34.005368Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:31:39.060105811Z 2026-10-28T18:31:39.059575Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:31:39.060147114Z 2026-10-28T18:31:39.059800Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:31:39.061399425Z 2026-10-28T18:31:39.061064Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:31:39.180807172Z 2026-10-28T18:31:39.180007Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:31:39.185036245Z 2026-10-28T18:31:39.184320Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:31:39.185065148Z 2026-10-28T18:31:39.184653Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:31:44.222940991Z 2026-10-28T18:31:44.222473Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:31:44.222974194Z 2026-10-28T18:31:44.222702Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:31:44.224194001Z 2026-10-28T18:31:44.223865Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:31:44.352162949Z 2026-10-28T18:31:44.351597Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:31:44.356388120Z 2026-10-28T18:31:44.355972Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:31:44.356432824Z 2026-10-28T18:31:44.356178Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:31:49.394972870Z 2026-10-28T18:31:49.394216Z [info     ] 
+2026-10-28T18:31:49.395021974Z ================================================================================
+2026-10-28T18:31:49.395025775Z DAG File Processing Stats
+2026-10-28T18:31:49.395028275Z 
+2026-10-28T18:31:49.395030675Z Bundle       File Path                PID    Current Duration      # DAGs    # Errors  Last Duration    Last Run At
+2026-10-28T18:31:49.395032975Z -----------  -----------------------  -----  ------------------  --------  ----------  ---------------  -------------------
+2026-10-28T18:31:49.395035475Z dags-folder  conf_transport_probe.py                                    1           0  0.11s            2026-10-28T18:31:44
+2026-10-28T18:31:49.395037876Z ================================================================================ [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1224
+2026-10-28T18:31:49.398654585Z 2026-10-28T18:31:49.398174Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:31:49.398708189Z 2026-10-28T18:31:49.398434Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:31:49.400093107Z 2026-10-28T18:31:49.399718Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:31:49.509637564Z 2026-10-28T18:31:49.509055Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:31:49.513659207Z 2026-10-28T18:31:49.513208Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:31:49.513677209Z 2026-10-28T18:31:49.513420Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:31:54.554460942Z 2026-10-28T18:31:54.553989Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:31:54.554500145Z 2026-10-28T18:31:54.554208Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:31:54.555839359Z 2026-10-28T18:31:54.555415Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:31:54.662232847Z 2026-10-28T18:31:54.661671Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:31:54.666180084Z 2026-10-28T18:31:54.665816Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:31:54.666338597Z 2026-10-28T18:31:54.666011Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:31:59.707697822Z 2026-10-28T18:31:59.707140Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:31:59.707911441Z 2026-10-28T18:31:59.707520Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:31:59.709139249Z 2026-10-28T18:31:59.708791Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:31:59.888492755Z 2026-10-28T18:31:59.887924Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:31:59.892624319Z 2026-10-28T18:31:59.892212Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:31:59.892656622Z 2026-10-28T18:31:59.892420Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:32:04.934664296Z 2026-10-28T18:32:04.934134Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:32:04.934717801Z 2026-10-28T18:32:04.934355Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:32:04.936020915Z 2026-10-28T18:32:04.935684Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:32:05.065616906Z 2026-10-28T18:32:05.065077Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:32:05.069473645Z 2026-10-28T18:32:05.069030Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:32:05.069500147Z 2026-10-28T18:32:05.069229Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:32:10.112683795Z 2026-10-28T18:32:10.112098Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:32:10.112717798Z 2026-10-28T18:32:10.112348Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:32:10.114062416Z 2026-10-28T18:32:10.113650Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:32:10.244516982Z 2026-10-28T18:32:10.243840Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:32:10.250686124Z 2026-10-28T18:32:10.250162Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:32:10.251103261Z 2026-10-28T18:32:10.250483Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:32:15.291374082Z 2026-10-28T18:32:15.290815Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:32:15.291415585Z 2026-10-28T18:32:15.291054Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:32:15.292811794Z 2026-10-28T18:32:15.292452Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:32:15.393179716Z 2026-10-28T18:32:15.392655Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:32:15.397128524Z 2026-10-28T18:32:15.396658Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:32:15.397147626Z 2026-10-28T18:32:15.396865Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:32:19.430551609Z 2026-10-28T18:32:19.429974Z [info     ] 
+2026-10-28T18:32:19.430586411Z ================================================================================
+2026-10-28T18:32:19.430590512Z DAG File Processing Stats
+2026-10-28T18:32:19.430593012Z 
+2026-10-28T18:32:19.430595612Z Bundle       File Path                PID    Current Duration      # DAGs    # Errors  Last Duration    Last Run At
+2026-10-28T18:32:19.430598112Z -----------  -----------------------  -----  ------------------  --------  ----------  ---------------  -------------------
+2026-10-28T18:32:19.430600613Z dags-folder  conf_transport_probe.py                                    1           0  0.08s            2026-10-28T18:32:15
+2026-10-28T18:32:19.430603013Z ================================================================================ [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1224
+2026-10-28T18:32:20.444047096Z 2026-10-28T18:32:20.443544Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:32:20.444089399Z 2026-10-28T18:32:20.443771Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:32:20.445340497Z 2026-10-28T18:32:20.444974Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:32:20.578181950Z 2026-10-28T18:32:20.577657Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:32:20.582030350Z 2026-10-28T18:32:20.581649Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:32:20.582249367Z 2026-10-28T18:32:20.581897Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:32:25.619247043Z 2026-10-28T18:32:25.618732Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:32:25.619277046Z 2026-10-28T18:32:25.619005Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:32:25.620644260Z 2026-10-28T18:32:25.620280Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:32:25.761078015Z 2026-10-28T18:32:25.760567Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:32:25.765220662Z 2026-10-28T18:32:25.764847Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:32:25.765419478Z 2026-10-28T18:32:25.765056Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:32:30.799734688Z 2026-10-28T18:32:30.799303Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:32:30.799769691Z 2026-10-28T18:32:30.799517Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:32:30.800921692Z 2026-10-28T18:32:30.800594Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:32:30.941317994Z 2026-10-28T18:32:30.940733Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:32:30.946760871Z 2026-10-28T18:32:30.946078Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:32:30.946802775Z 2026-10-28T18:32:30.946359Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:32:35.953731023Z 2026-10-28T18:32:35.953132Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:32:35.953773326Z 2026-10-28T18:32:35.953418Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:32:35.955535981Z 2026-10-28T18:32:35.955104Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:32:36.094374447Z 2026-10-28T18:32:36.093216Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:32:36.100633595Z 2026-10-28T18:32:36.099964Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:32:36.100673799Z 2026-10-28T18:32:36.100403Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:32:41.131133067Z 2026-10-28T18:32:41.130669Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:32:41.131161370Z 2026-10-28T18:32:41.130926Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:32:41.132632900Z 2026-10-28T18:32:41.132298Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:32:41.249375793Z 2026-10-28T18:32:41.248813Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:32:41.253454252Z 2026-10-28T18:32:41.253072Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:32:41.253472854Z 2026-10-28T18:32:41.253262Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:32:46.302066509Z 2026-10-28T18:32:46.301502Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:32:46.302162417Z 2026-10-28T18:32:46.301752Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:32:46.303743752Z 2026-10-28T18:32:46.303290Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:32:46.458712080Z 2026-10-28T18:32:46.458166Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:32:46.462787228Z 2026-10-28T18:32:46.462399Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:32:46.463009847Z 2026-10-28T18:32:46.462616Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:32:49.479248044Z 2026-10-28T18:32:49.478581Z [info     ] 
+2026-10-28T18:32:49.479305149Z ================================================================================
+2026-10-28T18:32:49.479314550Z DAG File Processing Stats
+2026-10-28T18:32:49.479319550Z 
+2026-10-28T18:32:49.479323151Z Bundle       File Path                PID    Current Duration      # DAGs    # Errors  Last Duration    Last Run At
+2026-10-28T18:32:49.479327051Z -----------  -----------------------  -----  ------------------  --------  ----------  ---------------  -------------------
+2026-10-28T18:32:49.479330851Z dags-folder  conf_transport_probe.py                                    1           0  0.13s            2026-10-28T18:32:46
+2026-10-28T18:32:49.479334251Z ================================================================================ [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1224
+2026-10-28T18:32:51.550537948Z 2026-10-28T18:32:51.549890Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:32:51.550582951Z 2026-10-28T18:32:51.550211Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:32:51.552149385Z 2026-10-28T18:32:51.551692Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:32:51.747004518Z 2026-10-28T18:32:51.746461Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:32:51.751457598Z 2026-10-28T18:32:51.751004Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:32:51.751476200Z 2026-10-28T18:32:51.751212Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:32:56.789166449Z 2026-10-28T18:32:56.788550Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:32:56.789216654Z 2026-10-28T18:32:56.788872Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:32:56.790828893Z 2026-10-28T18:32:56.790428Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:32:56.965688887Z 2026-10-28T18:32:56.965170Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:32:56.970303985Z 2026-10-28T18:32:56.969871Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:32:56.970374591Z 2026-10-28T18:32:56.970131Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:33:02.010840708Z 2026-10-28T18:33:02.010161Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:33:02.010885312Z 2026-10-28T18:33:02.010538Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:33:02.012130921Z 2026-10-28T18:33:02.011696Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:33:02.246535554Z 2026-10-28T18:33:02.245736Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:33:02.253348448Z 2026-10-28T18:33:02.252653Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:33:02.253389752Z 2026-10-28T18:33:02.252968Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:33:07.449250283Z 2026-10-28T18:33:07.448682Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:33:07.449300487Z 2026-10-28T18:33:07.448956Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:33:07.451104345Z 2026-10-28T18:33:07.450449Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:33:07.592696488Z 2026-10-28T18:33:07.592106Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:33:07.597045767Z 2026-10-28T18:33:07.596638Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:33:07.597293488Z 2026-10-28T18:33:07.596880Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:33:12.682199125Z 2026-10-28T18:33:12.681594Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:33:12.682232128Z 2026-10-28T18:33:12.681911Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:33:12.683463135Z 2026-10-28T18:33:12.683127Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:33:12.846541429Z 2026-10-28T18:33:12.845905Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:33:12.853511935Z 2026-10-28T18:33:12.852914Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:33:12.853547038Z 2026-10-28T18:33:12.853179Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:33:17.957068739Z 2026-10-28T18:33:17.956501Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:33:17.957104642Z 2026-10-28T18:33:17.956732Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:33:17.958225837Z 2026-10-28T18:33:17.957897Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:33:18.243471189Z 2026-10-28T18:33:18.242731Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:33:18.248429808Z 2026-10-28T18:33:18.247932Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:33:18.248457011Z 2026-10-28T18:33:18.248163Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:33:20.180464796Z 2026-10-28T18:33:20.179978Z [info     ] 
+2026-10-28T18:33:20.180494898Z ================================================================================
+2026-10-28T18:33:20.180498599Z DAG File Processing Stats
+2026-10-28T18:33:20.180501199Z 
+2026-10-28T18:33:20.180503699Z Bundle       File Path                PID    Current Duration      # DAGs    # Errors  Last Duration    Last Run At
+2026-10-28T18:33:20.180506099Z -----------  -----------------------  -----  ------------------  --------  ----------  ---------------  -------------------
+2026-10-28T18:33:20.180508600Z dags-folder  conf_transport_probe.py                                    1           0  0.18s            2026-10-28T18:33:18
+2026-10-28T18:33:20.180511000Z ================================================================================ [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1224
+2026-10-28T18:33:23.212947759Z 2026-10-28T18:33:23.212416Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:33:23.213021566Z 2026-10-28T18:33:23.212641Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:33:23.214431985Z 2026-10-28T18:33:23.214013Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:33:23.497310137Z 2026-10-28T18:33:23.496784Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:33:23.501327677Z 2026-10-28T18:33:23.500957Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:33:23.501364780Z 2026-10-28T18:33:23.501152Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:33:28.563432793Z 2026-10-28T18:33:28.562894Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:33:28.563479897Z 2026-10-28T18:33:28.563121Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:33:28.564837016Z 2026-10-28T18:33:28.564478Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:33:28.665050562Z 2026-10-28T18:33:28.664365Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:33:28.669937689Z 2026-10-28T18:33:28.669381Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:33:28.669965691Z 2026-10-28T18:33:28.669638Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:33:33.710366669Z 2026-10-28T18:33:33.709870Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:33:33.710404673Z 2026-10-28T18:33:33.710103Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:33:33.711766592Z 2026-10-28T18:33:33.711239Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:33:33.836953443Z 2026-10-28T18:33:33.836366Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:33:33.841751463Z 2026-10-28T18:33:33.841248Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:33:33.841823969Z 2026-10-28T18:33:33.841492Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:33:38.854393760Z 2026-10-28T18:33:38.853839Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:33:38.854429963Z 2026-10-28T18:33:38.854101Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:33:38.856501845Z 2026-10-28T18:33:38.856157Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:33:39.041973769Z 2026-10-28T18:33:39.041350Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:33:39.046754288Z 2026-10-28T18:33:39.046261Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:33:39.046971207Z 2026-10-28T18:33:39.046557Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:33:44.082807268Z 2026-10-28T18:33:44.082357Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:33:44.082849472Z 2026-10-28T18:33:44.082577Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:33:44.084133484Z 2026-10-28T18:33:44.083802Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:33:44.244453571Z 2026-10-28T18:33:44.243800Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:33:44.249075874Z 2026-10-28T18:33:44.248665Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:33:44.249096576Z 2026-10-28T18:33:44.248871Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:33:49.285720973Z 2026-10-28T18:33:49.285146Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:33:49.285794879Z 2026-10-28T18:33:49.285425Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:33:49.286883274Z 2026-10-28T18:33:49.286572Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:33:49.386813757Z 2026-10-28T18:33:49.386244Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:33:49.390570683Z 2026-10-28T18:33:49.390172Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:33:49.390591585Z 2026-10-28T18:33:49.390367Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:33:50.439127792Z 2026-10-28T18:33:50.438446Z [info     ] 
+2026-10-28T18:33:50.439165495Z ================================================================================
+2026-10-28T18:33:50.439169996Z DAG File Processing Stats
+2026-10-28T18:33:50.439173396Z 
+2026-10-28T18:33:50.439177096Z Bundle       File Path                PID    Current Duration      # DAGs    # Errors  Last Duration    Last Run At
+2026-10-28T18:33:50.439180797Z -----------  -----------------------  -----  ------------------  --------  ----------  ---------------  -------------------
+2026-10-28T18:33:50.439184297Z dags-folder  conf_transport_probe.py                                    1           0  0.08s            2026-10-28T18:33:49
+2026-10-28T18:33:50.439187797Z ================================================================================ [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1224
+2026-10-28T18:33:54.556263229Z 2026-10-28T18:33:54.555746Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:33:54.556313133Z 2026-10-28T18:33:54.556015Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:33:54.558522525Z 2026-10-28T18:33:54.558002Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:33:54.670635766Z 2026-10-28T18:33:54.670079Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:33:54.674825931Z 2026-10-28T18:33:54.674424Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:33:54.674844232Z 2026-10-28T18:33:54.674644Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:33:59.717857306Z 2026-10-28T18:33:59.717369Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:33:59.717891109Z 2026-10-28T18:33:59.717598Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:33:59.719110115Z 2026-10-28T18:33:59.718778Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:33:59.848100391Z 2026-10-28T18:33:59.847521Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:33:59.851898723Z 2026-10-28T18:33:59.851504Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:33:59.851917625Z 2026-10-28T18:33:59.851711Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:34:04.975271084Z 2026-10-28T18:34:04.974837Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:34:04.975361192Z 2026-10-28T18:34:04.975119Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:34:04.976757914Z 2026-10-28T18:34:04.976375Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:34:05.072233162Z 2026-10-28T18:34:05.071662Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:34:05.076042495Z 2026-10-28T18:34:05.075637Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:34:05.076060397Z 2026-10-28T18:34:05.075839Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:34:10.117263306Z 2026-10-28T18:34:10.116739Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:34:10.117294809Z 2026-10-28T18:34:10.116966Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:34:10.118446010Z 2026-10-28T18:34:10.118123Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:34:10.256912017Z 2026-10-28T18:34:10.256386Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:34:10.262598414Z 2026-10-28T18:34:10.262021Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:34:10.262621116Z 2026-10-28T18:34:10.262284Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:34:15.304942243Z 2026-10-28T18:34:15.304379Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:34:15.304973345Z 2026-10-28T18:34:15.304614Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:34:15.306287258Z 2026-10-28T18:34:15.305845Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:34:15.467440641Z 2026-10-28T18:34:15.466813Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:34:15.471894722Z 2026-10-28T18:34:15.471435Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:34:15.472108841Z 2026-10-28T18:34:15.471661Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:34:20.557082581Z 2026-10-28T18:34:20.556558Z [info     ] 
+2026-10-28T18:34:20.557116384Z ================================================================================
+2026-10-28T18:34:20.557122184Z DAG File Processing Stats
+2026-10-28T18:34:20.557126684Z 
+2026-10-28T18:34:20.557131485Z Bundle       File Path                PID    Current Duration      # DAGs    # Errors  Last Duration    Last Run At
+2026-10-28T18:34:20.557136085Z -----------  -----------------------  -----  ------------------  --------  ----------  ---------------  -------------------
+2026-10-28T18:34:20.557140586Z dags-folder  conf_transport_probe.py                                    1           0  0.14s            2026-10-28T18:34:15
+2026-10-28T18:34:20.557145086Z ================================================================================ [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1224
+2026-10-28T18:34:20.561735579Z 2026-10-28T18:34:20.561287Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:34:20.561762481Z 2026-10-28T18:34:20.561504Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:34:20.563877562Z 2026-10-28T18:34:20.563345Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:34:20.672854883Z 2026-10-28T18:34:20.672259Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:34:20.676888328Z 2026-10-28T18:34:20.676462Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:34:20.676910130Z 2026-10-28T18:34:20.676692Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:34:25.725918933Z 2026-10-28T18:34:25.725273Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:34:25.726036743Z 2026-10-28T18:34:25.725657Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:34:25.727564767Z 2026-10-28T18:34:25.727240Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:34:25.876103183Z 2026-10-28T18:34:25.875579Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:34:25.879991300Z 2026-10-28T18:34:25.879622Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:34:25.880006402Z 2026-10-28T18:34:25.879817Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:34:30.921503754Z 2026-10-28T18:34:30.920971Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:34:30.921535257Z 2026-10-28T18:34:30.921228Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:34:30.922991984Z 2026-10-28T18:34:30.922598Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:34:31.068111647Z 2026-10-28T18:34:31.067602Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:34:31.072223806Z 2026-10-28T18:34:31.071830Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:34:31.072241307Z 2026-10-28T18:34:31.072030Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:34:36.112842451Z 2026-10-28T18:34:36.112207Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:34:36.112882455Z 2026-10-28T18:34:36.112519Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:34:36.114032755Z 2026-10-28T18:34:36.113685Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:34:36.245523329Z 2026-10-28T18:34:36.244942Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:34:36.250034623Z 2026-10-28T18:34:36.249515Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:34:36.250053924Z 2026-10-28T18:34:36.249791Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:34:41.290469205Z 2026-10-28T18:34:41.289684Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:34:41.290566114Z 2026-10-28T18:34:41.290179Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:34:41.292050544Z 2026-10-28T18:34:41.291707Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:34:41.391128713Z 2026-10-28T18:34:41.390582Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:34:41.395737816Z 2026-10-28T18:34:41.395246Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:34:41.395826924Z 2026-10-28T18:34:41.395484Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:34:46.451128525Z 2026-10-28T18:34:46.450592Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:34:46.451437348Z 2026-10-28T18:34:46.450827Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:34:46.452679744Z 2026-10-28T18:34:46.452330Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:34:46.554105944Z 2026-10-28T18:34:46.553575Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:34:46.558261063Z 2026-10-28T18:34:46.557929Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:34:46.558293866Z 2026-10-28T18:34:46.558105Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:34:50.582366285Z 2026-10-28T18:34:50.581840Z [info     ] 
+2026-10-28T18:34:50.582399388Z ================================================================================
+2026-10-28T18:34:50.582402888Z DAG File Processing Stats
+2026-10-28T18:34:50.582420390Z 
+2026-10-28T18:34:50.582423090Z Bundle       File Path                PID    Current Duration      # DAGs    # Errors  Last Duration    Last Run At
+2026-10-28T18:34:50.582425690Z -----------  -----------------------  -----  ------------------  --------  ----------  ---------------  -------------------
+2026-10-28T18:34:50.582428090Z dags-folder  conf_transport_probe.py                                    1           0  0.08s            2026-10-28T18:34:46
+2026-10-28T18:34:50.582430590Z ================================================================================ [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1224
+2026-10-28T18:34:51.594871249Z 2026-10-28T18:34:51.594339Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:34:51.594903251Z 2026-10-28T18:34:51.594595Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:34:51.596206252Z 2026-10-28T18:34:51.595817Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:34:51.692012319Z 2026-10-28T18:34:51.691493Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:34:51.696139037Z 2026-10-28T18:34:51.695764Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:34:51.696167439Z 2026-10-28T18:34:51.695958Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:34:56.746037342Z 2026-10-28T18:34:56.745428Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:34:56.746080946Z 2026-10-28T18:34:56.745820Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:34:56.747350453Z 2026-10-28T18:34:56.746977Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:34:56.860233287Z 2026-10-28T18:34:56.859703Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:34:56.864602456Z 2026-10-28T18:34:56.864170Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:34:56.864632058Z 2026-10-28T18:34:56.864403Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:35:01.910060835Z 2026-10-28T18:35:01.909637Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:35:01.910136241Z 2026-10-28T18:35:01.909854Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:35:01.911365947Z 2026-10-28T18:35:01.911054Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:35:02.036892757Z 2026-10-28T18:35:02.036174Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:35:02.041267433Z 2026-10-28T18:35:02.040841Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:35:02.041294536Z 2026-10-28T18:35:02.041051Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:35:07.083047297Z 2026-10-28T18:35:07.082607Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:35:07.083090901Z 2026-10-28T18:35:07.082822Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:35:07.084560527Z 2026-10-28T18:35:07.084089Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:35:07.234480237Z 2026-10-28T18:35:07.233886Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:35:07.238858514Z 2026-10-28T18:35:07.238263Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:35:07.238890417Z 2026-10-28T18:35:07.238510Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None
+2026-10-28T18:35:12.280550953Z 2026-10-28T18:35:12.280003Z [info     ] Refreshing bundle dags-folder  [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:938
+2026-10-28T18:35:12.280588156Z 2026-10-28T18:35:12.280348Z [info     ] Searching for Dag definitions in dags-folder at /var/airflow/dags [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1012
+2026-10-28T18:35:12.281772257Z 2026-10-28T18:35:12.281401Z [info     ] Found 1 files for bundle dags-folder (dag_discovery_safe_mode=True) [airflow.dag_processing.manager.DagFileProcessorManager] loc=manager.py:1033
+2026-10-28T18:35:12.376457156Z 2026-10-28T18:35:12.375776Z [info     ] Bulk-writing dags to db        [airflow.serialization.definitions.dag] count=1 loc=dag.py:222
+2026-10-28T18:35:12.380194175Z 2026-10-28T18:35:12.379781Z [info     ] get next_dagrun_info_v2        [airflow.serialization.definitions.dag] last_automated_run_info=None loc=dag.py:466 next_info=None
+2026-10-28T18:35:12.380224878Z 2026-10-28T18:35:12.379980Z [info     ] setting next dagrun info       [airflow.models.dag] loc=dag.py:882 next_dagrun=None next_dagrun_create_after=None next_dagrun_data_interval_end=None next_dagrun_data_interval_start=None next_dagrun_partition_date=None next_dagrun_partition_key=None

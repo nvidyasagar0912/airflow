@@ -1,0 +1,31 @@
+{
+  "started": "2026-10-28T19:02:20.945676+00:00",
+  "baseline": "750f849cc2372ee42dc6910541d4b6a866102ac9",
+  "change": "Only add an Execution API health warm-up before submitting execution work.",
+  "source_change": "None: both variants use the unpatched baseline.",
+  "variants": [
+    {
+      "name": "diagcold",
+      "execution_api_health_warmed": false,
+      "verified_runs": 4,
+      "start_request_statuses": {
+        "400": 4,
+        "200": 4
+      },
+      "execution_seconds": 13.846736660000715
+    },
+    {
+      "name": "diagwarm",
+      "execution_api_health_warmed": true,
+      "verified_runs": 4,
+      "start_request_statuses": {
+        "200": 4
+      },
+      "execution_seconds": 9.581245365000541
+    }
+  ],
+  "warmup_removed_observed_http400": true,
+  "status": "completed",
+  "interpretation": "This controls readiness only, not the memory patch. It does not replace the original A/B/A data or establish the exact transport failure mechanism.",
+  "finished": "2026-10-28T19:05:19.129863+00:00"
+}

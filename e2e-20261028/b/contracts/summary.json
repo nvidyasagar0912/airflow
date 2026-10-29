@@ -1,0 +1,111 @@
+{
+  "scenario": "contracts",
+  "records_per_run": 5,
+  "submitted_runs": 5,
+  "conf_payload_bytes": 2568,
+  "admission_seconds": 0.22827551500085974,
+  "execution_seconds": 17.023439096000402,
+  "runs_per_minute": 17.622761083010776,
+  "dag_run_duration_p50_seconds": 12.046424,
+  "dag_run_duration_p95_seconds": 17.583156199999998,
+  "max_observed_running_tasks": 4,
+  "expected_failures": 1,
+  "verified_terminal_runs": 5,
+  "sample_count": 100,
+  "sample_collection_p95_ms": 45.9871945505256,
+  "idle_group_working_set_mib": 2478.4921875,
+  "group_peak_working_set_mib": 2936.5625,
+  "group_peak_timestamp": "2026-10-28T18:42:19.408332+00:00",
+  "components_at_group_peak_mib": {
+    "api": 319.19921875,
+    "scheduler": 781.23046875,
+    "worker": 959.375,
+    "dag-processor": 222.5625,
+    "triggerer": 450.125,
+    "postgres": 198.3515625,
+    "redis": 5.71875
+  },
+  "cpu_seconds_during_sampled_execution": {
+    "api": 7.597528,
+    "scheduler": 4.478074,
+    "worker": 9.484838,
+    "dag-processor": 0.97481,
+    "triggerer": 0.54911,
+    "postgres": 1.485926,
+    "redis": 0.108077
+  },
+  "component_individual_peaks_mib_not_to_be_summed": {
+    "api": 320.41796875,
+    "scheduler": 945.7265625,
+    "worker": 959.375,
+    "dag-processor": 232.3046875,
+    "triggerer": 453.66796875,
+    "postgres": 201.52734375,
+    "redis": 5.92578125
+  },
+  "group_memory_definition": "Maximum over time of the sum of all seven component working sets in each complete sample. Working set = Docker cgroup memory usage minus inactive_file; not process RSS or PSS.",
+  "verified_runs": {
+    "e2e_b_contracts_000": {
+      "state": "success",
+      "start": "2026-10-28 18:42:10.572565+00:00",
+      "end": "2026-10-28 18:42:20.933696+00:00",
+      "result": {
+        "case": "success",
+        "sha256": "1b8b4c0b6f6ad1d32565952720bc004eeb1f188f62045e4d5525ae2af8c78432",
+        "conf_type": "dict",
+        "try_number": 1,
+        "params_probe": "default",
+        "record_count": 0,
+        "mutable_identity": true
+      }
+    },
+    "e2e_b_contracts_001": {
+      "state": "success",
+      "start": "2026-10-28 18:42:10.573612+00:00",
+      "end": "2026-10-28 18:42:19.829132+00:00",
+      "result": {
+        "case": "false-param",
+        "sha256": "d768b6a0d3742e987bebadc9032750092f5a2a0f2a9bf7f601f582f5f399d909",
+        "conf_type": "dict",
+        "try_number": 1,
+        "params_probe": false,
+        "record_count": 5,
+        "mutable_identity": true
+      }
+    },
+    "e2e_b_contracts_002": {
+      "state": "success",
+      "start": "2026-10-28 18:42:10.574585+00:00",
+      "end": "2026-10-28 18:42:22.621009+00:00",
+      "result": {
+        "case": "retry",
+        "sha256": "d768b6a0d3742e987bebadc9032750092f5a2a0f2a9bf7f601f582f5f399d909",
+        "conf_type": "dict",
+        "try_number": 2,
+        "params_probe": "run",
+        "record_count": 5,
+        "mutable_identity": true
+      }
+    },
+    "e2e_b_contracts_003": {
+      "state": "success",
+      "start": "2026-10-28 18:42:10.575692+00:00",
+      "end": "2026-10-28 18:42:25.884488+00:00",
+      "result": {
+        "case": "defer",
+        "sha256": "d768b6a0d3742e987bebadc9032750092f5a2a0f2a9bf7f601f582f5f399d909",
+        "conf_type": "dict",
+        "try_number": 1,
+        "params_probe": "run",
+        "record_count": 5,
+        "mutable_identity": true
+      }
+    },
+    "e2e_b_contracts_004": {
+      "expected_failure": true,
+      "state": "failed",
+      "start": "2026-10-28 18:42:10.576536+00:00",
+      "end": "2026-10-28 18:42:22.636246+00:00"
+    }
+  }
+}

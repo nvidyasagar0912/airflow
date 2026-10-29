@@ -1,0 +1,16 @@
+{
+  "task_owned_running_containers": 0,
+  "per_arm_containers_and_private_databases_removed": true,
+  "per_arm_runtime_volumes_removed": true,
+  "baseline_source_volume_removed": "api-conf-e2e-base-19e673db",
+  "patched_source_volume_removed": "api-conf-e2e-patch-19e673db",
+  "private_network_removed": "api-conf-e2e-net-19e673db",
+  "source_worktree_preserved": true,
+  "source_patch_sha256_verified_unchanged": "1b953037b828adcd32fef174c2e3da3d1f45910488c5e9c25f8b79bb2b4f65c4",
+  "raw_evidence_preserved": true,
+  "docker_desktop_left_running": true,
+  "adme_or_other_cluster_changed": false,
+  "pull_request_created": false,
+  "pushed": false,
+  "implementation_commit_created": false
+}

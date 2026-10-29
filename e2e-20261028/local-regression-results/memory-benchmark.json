@@ -1,0 +1,130 @@
+{
+  "scope": "Isolated phases using actual PostgreSQL JSONB driver, Airflow models and MessagePack IPC.",
+  "limitations": "Not HTTP-server, multi-pod, Celery or live ADME load; retained starts simulate overlap. RSS is sampled per process; Python allocation peaks use tracemalloc.",
+  "baseline": "Dictionary JSONB retrieval and dictionary model/IPC pipeline.",
+  "patched": "Text JSONB retrieval, opaque model/IPC pipeline, task-side materialization.",
+  "records": 23000,
+  "serialized_conf_bytes": 11915127,
+  "results": [
+    {
+      "phase": "api",
+      "mode": "baseline",
+      "retained_starts": 1,
+      "python_peak_mib": 79.83,
+      "starting_rss_mib": 121.66,
+      "sampled_process_peak_rss_mib": 309.98,
+      "elapsed_seconds": 1.267,
+      "task_conf_sha256": null
+    },
+    {
+      "phase": "api",
+      "mode": "patched",
+      "retained_starts": 1,
+      "python_peak_mib": 43.39,
+      "starting_rss_mib": 130.07,
+      "sampled_process_peak_rss_mib": 179.0,
+      "elapsed_seconds": 0.365,
+      "task_conf_sha256": null
+    },
+    {
+      "phase": "supervisor",
+      "mode": "baseline",
+      "retained_starts": 1,
+      "python_peak_mib": 121.62,
+      "starting_rss_mib": 117.78,
+      "sampled_process_peak_rss_mib": 455.19,
+      "elapsed_seconds": 1.897,
+      "task_conf_sha256": null
+    },
+    {
+      "phase": "supervisor",
+      "mode": "patched",
+      "retained_starts": 1,
+      "python_peak_mib": 31.96,
+      "starting_rss_mib": 126.09,
+      "sampled_process_peak_rss_mib": 152.23,
+      "elapsed_seconds": 0.062,
+      "task_conf_sha256": null
+    },
+    {
+      "phase": "task",
+      "mode": "baseline",
+      "retained_starts": 1,
+      "python_peak_mib": 65.07,
+      "starting_rss_mib": 117.94,
+      "sampled_process_peak_rss_mib": 267.66,
+      "elapsed_seconds": 1.897,
+      "task_conf_sha256": "8d0ad4978cdc03771eeddf52fbf50c4fc24a7ba14c9286888a42ad3334af4482"
+    },
+    {
+      "phase": "task",
+      "mode": "patched",
+      "retained_starts": 1,
+      "python_peak_mib": 69.51,
+      "starting_rss_mib": 125.83,
+      "sampled_process_peak_rss_mib": 288.85,
+      "elapsed_seconds": 0.671,
+      "task_conf_sha256": "8d0ad4978cdc03771eeddf52fbf50c4fc24a7ba14c9286888a42ad3334af4482"
+    },
+    {
+      "phase": "api",
+      "mode": "baseline",
+      "retained_starts": 4,
+      "python_peak_mib": 285.23,
+      "starting_rss_mib": 121.81,
+      "sampled_process_peak_rss_mib": 794.44,
+      "elapsed_seconds": 5.293,
+      "task_conf_sha256": null
+    },
+    {
+      "phase": "api",
+      "mode": "patched",
+      "retained_starts": 4,
+      "python_peak_mib": 127.64,
+      "starting_rss_mib": 130.06,
+      "sampled_process_peak_rss_mib": 301.16,
+      "elapsed_seconds": 1.402,
+      "task_conf_sha256": null
+    },
+    {
+      "phase": "supervisor",
+      "mode": "baseline",
+      "retained_starts": 4,
+      "python_peak_mib": 486.37,
+      "starting_rss_mib": 117.78,
+      "sampled_process_peak_rss_mib": 1362.77,
+      "elapsed_seconds": 7.304,
+      "task_conf_sha256": null
+    },
+    {
+      "phase": "supervisor",
+      "mode": "patched",
+      "retained_starts": 4,
+      "python_peak_mib": 127.69,
+      "starting_rss_mib": 125.9,
+      "sampled_process_peak_rss_mib": 244.72,
+      "elapsed_seconds": 0.226,
+      "task_conf_sha256": null
+    },
+    {
+      "phase": "task",
+      "mode": "baseline",
+      "retained_starts": 4,
+      "python_peak_mib": 234.79,
+      "starting_rss_mib": 117.51,
+      "sampled_process_peak_rss_mib": 724.86,
+      "elapsed_seconds": 7.216,
+      "task_conf_sha256": "8d0ad4978cdc03771eeddf52fbf50c4fc24a7ba14c9286888a42ad3334af4482"
+    },
+    {
+      "phase": "task",
+      "mode": "patched",
+      "retained_starts": 4,
+      "python_peak_mib": 239.75,
+      "starting_rss_mib": 125.75,
+      "sampled_process_peak_rss_mib": 737.92,
+      "elapsed_seconds": 2.858,
+      "task_conf_sha256": "8d0ad4978cdc03771eeddf52fbf50c4fc24a7ba14c9286888a42ad3334af4482"
+    }
+  ]
+}

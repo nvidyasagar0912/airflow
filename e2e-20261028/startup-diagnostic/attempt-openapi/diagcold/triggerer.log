@@ -1,0 +1,12 @@
+2026-10-28T18:58:40.197918247Z   ____________       _____________
+2026-10-28T18:58:40.197969751Z  ____    |__( )_________  __/__  /________      __
+2026-10-28T18:58:40.197974051Z ____  /| |_  /__  ___/_  /_ __  /_  __ \_ | /| / /
+2026-10-28T18:58:40.197976752Z ___  ___ |  / _  /   _  __/ _  / / /_/ /_ |/ |/ /
+2026-10-28T18:58:40.197979152Z  _/_/  |_/_/  /_/    /_/    /_/  \____/____/|__/
+2026-10-28T18:58:40.218111996Z 2026-10-28T18:58:40.217177Z [info     ] Starting log server on http://[::]:8794 [airflow.utils.serve_logs.core] loc=core.py:50
+2026-10-28T18:58:40.995549297Z 2026-10-28T18:58:40.995026Z [warning  ] ASGI app factory detected. Using it, but please consider setting the --factory flag explicitly. [uvicorn.error] loc=config.py:521
+2026-10-28T18:58:40.996363164Z 2026-10-28T18:58:40.996032Z [info     ] Started server process [8]     [uvicorn.error] loc=server.py:103
+2026-10-28T18:58:40.996377165Z 2026-10-28T18:58:40.996223Z [info     ] Waiting for application startup. [uvicorn.error] loc=on.py:48
+2026-10-28T18:58:40.999358808Z 2026-10-28T18:58:40.999040Z [info     ] Application startup complete.  [uvicorn.error] loc=on.py:62
+2026-10-28T18:58:41.001710200Z 2026-10-28T18:58:41.001279Z [info     ] Uvicorn running on http://:8794 (Press CTRL+C to quit) [uvicorn.error] loc=server.py:234
+2026-10-28T18:58:43.018192306Z 2026-10-28T18:58:43.017646Z [info     ] Starting the triggerer         [airflow.jobs.triggerer_job_runner.TriggererJobRunner] loc=triggerer_job_runner.py:286

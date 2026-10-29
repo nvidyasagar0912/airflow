@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/evidence/harness/run_local_e2e.py", line 748, in main
+    print(f"Starting arm {label}", flush=True)
+                                      ^^^^^^^^^
+  File "/evidence/harness/run_local_e2e.py", line 414, in prepare_arm
+    extra=volume_args,
+  File "/evidence/harness/run_local_e2e.py", line 226, in wait_api
+    raise RuntimeError(f"API readiness timed out for {path}: {last_error}")
+RuntimeError: API readiness timed out for /api/v2/version: <urlopen error [Errno -2] Name or service not known>

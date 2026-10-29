@@ -1,0 +1,53 @@
+2026-10-28T18:59:51.402614978Z   ____________       _____________
+2026-10-28T18:59:51.402663982Z  ____    |__( )_________  __/__  /________      __
+2026-10-28T18:59:51.402668082Z ____  /| |_  /__  ___/_  /_ __  /_  __ \_ | /| / /
+2026-10-28T18:59:51.402670882Z ___  ___ |  / _  /   _  __/ _  / / /_/ /_ |/ |/ /
+2026-10-28T18:59:51.402673182Z  _/_/  |_/_/  /_/    /_/    /_/  \____/____/|__/
+2026-10-28T18:59:51.402675583Z Running the API server with uvicorn:
+2026-10-28T18:59:51.402679783Z Apps: all
+2026-10-28T18:59:51.402682083Z Workers: 1
+2026-10-28T18:59:51.402684283Z Host: 0.0.0.0:8080
+2026-10-28T18:59:51.402686484Z Timeout: 120
+2026-10-28T18:59:51.402688784Z Logfiles: -
+2026-10-28T18:59:51.402690984Z =================================================================
+2026-10-28T18:59:51.402693284Z 2026-10-28T18:59:51.402022Z [info     ] Started server process [1]     [uvicorn.error] loc=server.py:103
+2026-10-28T18:59:51.402695584Z 2026-10-28T18:59:51.402323Z [info     ] Waiting for application startup. [uvicorn.error] loc=on.py:48
+2026-10-28T18:59:51.406724006Z 2026-10-28T18:59:51.406348Z [info     ] Application startup complete.  [uvicorn.error] loc=on.py:62
+2026-10-28T18:59:51.408242827Z 2026-10-28T18:59:51.407901Z [info     ] Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit) [uvicorn.error] loc=server.py:234
+2026-10-28T18:59:52.239809195Z 2026-10-28T18:59:52.239376Z [info     ] request finished               [http.access] client_addr=172.18.0.2:60996 duration_us=777278 loc=http_access_log.py:130 method=GET path=/api/v2/version query= status_code=200
+2026-10-28T18:59:58.461334738Z 2026-10-28T18:59:58.460686Z [info     ] request finished               [http.access] client_addr=172.18.0.2:47480 duration_us=6219275 loc=http_access_log.py:130 method=GET path=/execution/openapi.json query='version=2027-02-28' status_code=200
+2026-10-28T18:59:58.463914644Z 2026-10-28T18:59:58.461209Z [error    ] Exception in ASGI application
+2026-10-28T18:59:58.463930945Z  [uvicorn.error] loc=httptools_impl.py:427
+2026-10-28T18:59:58.463935545Z Traceback (most recent call last):
+2026-10-28T18:59:58.463939246Z   File "/usr/python/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 422, in run_asgi
+2026-10-28T18:59:58.463943046Z     result = await app(  # type: ignore[func-returns-value]
+2026-10-28T18:59:58.463946746Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-28T18:59:58.463950546Z   File "/usr/python/lib/python3.12/site-packages/fastapi/applications.py", line 1194, in __call__
+2026-10-28T18:59:58.463954347Z     await super().__call__(scope, receive, send)
+2026-10-28T18:59:58.463957747Z   File "/usr/python/lib/python3.12/site-packages/starlette/applications.py", line 96, in __call__
+2026-10-28T18:59:58.463961447Z     await self.middleware_stack(scope, receive, send)
+2026-10-28T18:59:58.463964848Z   File "/usr/python/lib/python3.12/site-packages/starlette/middleware/errors.py", line 186, in __call__
+2026-10-28T18:59:58.463981549Z     raise exc
+2026-10-28T18:59:58.463984049Z   File "/usr/python/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+2026-10-28T18:59:58.463986449Z     await self.app(scope, receive, _send)
+2026-10-28T18:59:58.463988649Z   File "/usr/python/lib/python3.12/site-packages/fastapi/telemetry/_asgi.py", line 151, in __call__
+2026-10-28T18:59:58.463991050Z     await self.app(scope, receive, send)
+2026-10-28T18:59:58.463993250Z   File "/opt/airflow/airflow-core/src/airflow/api_fastapi/common/http_access_log.py", line 109, in __call__
+2026-10-28T18:59:58.463995550Z     await self.app(scope, receive, capture_send)
+2026-10-28T18:59:58.463997850Z   File "/usr/python/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 79, in __call__
+2026-10-28T18:59:58.464000250Z     await responder(scope, receive, send)
+2026-10-28T18:59:58.464002451Z   File "/usr/python/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 104, in __call__
+2026-10-28T18:59:58.464004751Z     await self.app(scope, receive, self.send_with_compression)
+2026-10-28T18:59:58.464007151Z   File "/usr/python/lib/python3.12/site-packages/starlette/middleware/base.py", line 204, in __call__
+2026-10-28T18:59:58.464009551Z     await response(scope, wrapped_receive, send)
+2026-10-28T18:59:58.464011851Z   File "/usr/python/lib/python3.12/site-packages/starlette/middleware/base.py", line 248, in __call__
+2026-10-28T18:59:58.464014151Z     await send({"type": "http.response.body", "body": chunk, "more_body": True})
+2026-10-28T18:59:58.464016852Z   File "/usr/python/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 162, in send_with_compression
+2026-10-28T18:59:58.464019252Z     await self.send(message)
+2026-10-28T18:59:58.464023152Z   File "/opt/airflow/airflow-core/src/airflow/api_fastapi/common/http_access_log.py", line 93, in capture_send
+2026-10-28T18:59:58.464025552Z     await send(message)
+2026-10-28T18:59:58.464027753Z   File "/usr/python/lib/python3.12/site-packages/starlette/middleware/errors.py", line 161, in _send
+2026-10-28T18:59:58.464030153Z     await send(message)
+2026-10-28T18:59:58.464032353Z   File "/usr/python/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 548, in send
+2026-10-28T18:59:58.464034753Z     raise RuntimeError("Response content longer than Content-Length")
+2026-10-28T18:59:58.464037153Z RuntimeError: Response content longer than Content-Length

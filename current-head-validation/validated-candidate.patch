@@ -1,0 +1,941 @@
+diff --git a/airflow-core/src/airflow/api_fastapi/execution_api/datamodels/taskinstance.py b/airflow-core/src/airflow/api_fastapi/execution_api/datamodels/taskinstance.py
+index c90d64d..75e6cc9 100644
+--- a/airflow-core/src/airflow/api_fastapi/execution_api/datamodels/taskinstance.py
++++ b/airflow-core/src/airflow/api_fastapi/execution_api/datamodels/taskinstance.py
+@@ -498,6 +498,9 @@ class TIRunContext(BaseModel):
+     dag_run: DagRun
+     """DAG run information for the task instance."""
+ 
++    serialized_dag_run_conf: str | None = Field(default=None, repr=False)
++    """Persisted JSON decoded in the task process, not in the server or supervisor."""
++
+     loop: LoopContext | None = None
+ 
+     expanded_ti_count: Annotated[
+diff --git a/airflow-core/src/airflow/api_fastapi/execution_api/routes/task_instances.py b/airflow-core/src/airflow/api_fastapi/execution_api/routes/task_instances.py
+index e305a61..28a19c0 100644
+--- a/airflow-core/src/airflow/api_fastapi/execution_api/routes/task_instances.py
++++ b/airflow-core/src/airflow/api_fastapi/execution_api/routes/task_instances.py
+@@ -36,10 +36,10 @@ from opentelemetry import trace
+ from opentelemetry.trace import StatusCode
+ from opentelemetry.trace.propagation.tracecontext import TraceContextTextMapPropagator
+ from pydantic import JsonValue, ValidationError
+-from sqlalchemy import and_, exists, func, or_, tuple_, union, update
++from sqlalchemy import Text, and_, cast as sql_cast, exists, func, or_, tuple_, union, update
+ from sqlalchemy.engine import CursorResult
+ from sqlalchemy.exc import DataError, NoResultFound, SQLAlchemyError
+-from sqlalchemy.orm import Session, contains_eager, joinedload
++from sqlalchemy.orm import Session, contains_eager, defer, joinedload, selectinload
+ from sqlalchemy.sql import select
+ from sqlalchemy.sql.dml import Update
+ from structlog.contextvars import bind_contextvars
+@@ -57,6 +57,7 @@ from airflow.api_fastapi.core_api.openapi.exceptions import create_openapi_http_
+ from airflow.api_fastapi.core_api.services.public.dag_run import patch_dag_run_note
+ from airflow.api_fastapi.execution_api.datamodels.task_arg_binding import get_arg_bindings_adapter
+ from airflow.api_fastapi.execution_api.datamodels.taskinstance import (
++    DagRun as DagRunResponse,
+     DagRunNoteUpdatePayload,
+     InactiveAssetsResponse,
+     PreviousTIResponse,
+@@ -318,12 +319,19 @@ def ti_run(
+             else ()
+         )
+ 
+-        dr = (
+-            session.scalars(
+-                select(DR)
++        conf_type = (
++            func.jsonb_typeof(DR.conf)
++            if get_dialect_name(session) == "postgresql"
++            else func.json_type(DR.conf)
++        )
++        run_row = (
++            session.execute(
++                select(DR, sql_cast(DR.conf, Text).label("serialized_conf"), conf_type.label("conf_type"))
+                 .filter_by(dag_id=ti.dag_id, run_id=ti.run_id)
+                 .options(
+-                    joinedload(DR.consumed_asset_events),
++                    defer(DR.conf),
++                    # A separate collection SELECT avoids repeating the JSON text once per event row.
++                    selectinload(DR.consumed_asset_events),
+                     *eager_load_teams(DR.dag_model),
+                     *dag_tag_options,
+                 )
+@@ -332,7 +340,7 @@ def ti_run(
+             .one_or_none()
+         )
+ 
+-        if not dr:
++        if run_row is None:
+             log.error("DagRun not found", dag_id=ti.dag_id, run_id=ti.run_id)
+             raise HTTPException(
+                 status_code=status.HTTP_404_NOT_FOUND,
+@@ -342,6 +350,20 @@ def ti_run(
+                 },
+             )
+ 
++        dr, serialized_conf, stored_conf_type = run_row
++        # Reject invalid roots before SessionDep commits RUNNING, without decoding the object in Python.
++        if stored_conf_type not in (None, "object", "OBJECT", "null", "NULL"):
++            raise HTTPException(
++                status_code=HTTP_422_UNPROCESSABLE_CONTENT,
++                detail={
++                    "reason": "invalid_dag_run_conf",
++                    "message": "Dag run configuration must be a JSON object or null.",
++                },
++            )
++        dag_run_response = DagRunResponse.safe_extract_from_orm(dr)  # type: ignore[operator]
++        # Do not change the attached ORM object: other request consumers may still need its conf.
++        dag_run_response["conf"] = None
++
+         # Send the keys to the worker, which deletes those XComs. The server cannot delete them itself,
+         # because for a Python task the task runner also purges them from a custom XCom backend, and only
+         # workers can reach that backend. For a language SDK task (Java, Go, TypeScript), the supervisor
+@@ -363,7 +385,7 @@ def ti_run(
+         ).one()
+ 
+         context = TIRunContext(
+-            dag_run=dr,
++            dag_run=dag_run_response,
+             task_reschedule_count=task_reschedule_count,
+             max_tries=ti.max_tries,
+             # TODO: Add variables and connections that are needed (and has perms) for the task
+@@ -373,6 +395,8 @@ def ti_run(
+             should_retry=_is_eligible_to_retry(previous_state, ti.try_number, ti.max_tries),
+             multi_team=conf.getboolean("core", "multi_team"),
+         )
++        if serialized_conf is not None and serialized_conf != "null":
++            context.serialized_dag_run_conf = serialized_conf
+         if ti.region_id != SENTINEL_REGION_ID:
+             resolver = TaskCoordinateResolver(dag_bag, session)
+             task = resolver.get_task(ti.dag_id, ti.run_id, ti.task_id, dag_version_id=ti.dag_version_id)
+diff --git a/airflow-core/src/airflow/api_fastapi/execution_api/versions/__init__.py b/airflow-core/src/airflow/api_fastapi/execution_api/versions/__init__.py
+index d66d483..f63a4ac 100644
+--- a/airflow-core/src/airflow/api_fastapi/execution_api/versions/__init__.py
++++ b/airflow-core/src/airflow/api_fastapi/execution_api/versions/__init__.py
+@@ -70,11 +70,14 @@ from airflow.api_fastapi.execution_api.versions.v2026_10_30 import (
+ from airflow.api_fastapi.execution_api.versions.v2026_10_30_xcom_params import (
+     AddPreviousIterationToXComFilterParams,
+ )
+-from airflow.api_fastapi.execution_api.versions.v2027_02_28 import AddDagProcessorJobEndpoints
++from airflow.api_fastapi.execution_api.versions.v2027_02_28 import (
++    AddDagProcessorJobEndpoints,
++    SerializeTaskStartDagRunConf,
++)
+ 
+ bundle = VersionBundle(
+     HeadVersion(),
+-    Version("2027-02-28", AddDagProcessorJobEndpoints),
++    Version("2027-02-28", AddDagProcessorJobEndpoints, SerializeTaskStartDagRunConf),
+     Version(
+         "2026-10-30",
+         AddArgBindingsToTIRunContext,
+diff --git a/airflow-core/src/airflow/api_fastapi/execution_api/versions/v2027_02_28.py b/airflow-core/src/airflow/api_fastapi/execution_api/versions/v2027_02_28.py
+index b54a502..3f61445 100644
+--- a/airflow-core/src/airflow/api_fastapi/execution_api/versions/v2027_02_28.py
++++ b/airflow-core/src/airflow/api_fastapi/execution_api/versions/v2027_02_28.py
+@@ -17,7 +17,14 @@
+ 
+ from __future__ import annotations
+ 
+-from cadwyn import VersionChange, endpoint
++from typing import Any
++
++from cadwyn import ResponseInfo, VersionChange, convert_response_to_previous_version_for, endpoint, schema
++from pydantic import ConfigDict, TypeAdapter, ValidationError
++
++from airflow.api_fastapi.execution_api.datamodels.taskinstance import TIRunContext
++
++_CONF_ADAPTER = TypeAdapter(dict[str, Any] | None, config=ConfigDict(hide_input_in_errors=True))
+ 
+ 
+ class AddDagProcessorJobEndpoints(VersionChange):
+@@ -31,3 +38,22 @@ class AddDagProcessorJobEndpoints(VersionChange):
+         endpoint("/jobs/{job_id}/complete", ["POST"]).didnt_exist,
+         endpoint("/jobs/{job_id}/parse-token", ["POST"]).didnt_exist,
+     )
++
++
++class SerializeTaskStartDagRunConf(VersionChange):
++    """Keep task-start configuration serialized until the executing task needs it."""
++
++    description = __doc__
++
++    instructions_to_migrate_to_previous_version = (
++        schema(TIRunContext).field("serialized_dag_run_conf").didnt_exist,
++    )
++
++    @convert_response_to_previous_version_for(TIRunContext)  # type: ignore[arg-type]
++    def restore_conf_for_older_clients(response: ResponseInfo) -> None:
++        serialized = response.body.pop("serialized_dag_run_conf", None)
++        if serialized is not None:
++            try:
++                response.body["dag_run"]["conf"] = _CONF_ADAPTER.validate_json(serialized)
++            except ValidationError:
++                raise ValueError("Serialized Dag run configuration must be a JSON object or null") from None
+diff --git a/airflow-core/tests/unit/api_fastapi/execution_api/versions/head/test_task_instances.py b/airflow-core/tests/unit/api_fastapi/execution_api/versions/head/test_task_instances.py
+index c40f69f..f228ffa 100644
+--- a/airflow-core/tests/unit/api_fastapi/execution_api/versions/head/test_task_instances.py
++++ b/airflow-core/tests/unit/api_fastapi/execution_api/versions/head/test_task_instances.py
+@@ -17,6 +17,7 @@
+ 
+ from __future__ import annotations
+ 
++import json
+ import re
+ from concurrent.futures import ThreadPoolExecutor
+ from contextlib import nullcontext
+@@ -37,7 +38,8 @@ from opentelemetry.sdk.trace.export.in_memory_span_exporter import InMemorySpanE
+ from opentelemetry.trace import StatusCode
+ from opentelemetry.trace.propagation.tracecontext import TraceContextTextMapPropagator
+ from pydantic import ValidationError
+-from sqlalchemy import delete, select, update
++from sqlalchemy import delete, null, select, update
++from sqlalchemy.engine import Result
+ from sqlalchemy.exc import OperationalError, SQLAlchemyError
+ from sqlalchemy.ext.asyncio import AsyncSession
+ from sqlalchemy.orm import Session
+@@ -791,7 +793,10 @@ class TestTIRunState:
+         clear_db_dags()
+         clear_db_assets()
+ 
+-    def test_ti_run_context_exposes_consumed_event_partition_key(self, client, session, create_task_instance):
++    @pytest.mark.parametrize("event_count", [0, 1, 4])
++    def test_ti_run_context_exposes_consumed_event_partition_key(
++        self, client, session, create_task_instance, event_count
++    ):
+         """The partition key of each consumed asset event is returned in the run context."""
+         ti = create_task_instance(
+             task_id="test_consumed_event_partition_key",
+@@ -801,25 +806,36 @@ class TestTIRunState:
+         asset = AssetModel(name="upstream", uri="s3://bucket/upstream", group="asset", extra={})
+         session.add_all([asset, AssetActive.for_asset(asset)])
+         session.flush()
+-        ti.dag_run.consumed_asset_events.append(
+-            AssetEvent(asset_id=asset.id, source_dag_id="src", source_run_id="r1", partition_key="2024-01-15")
+-        )
++        for index in range(event_count):
++            ti.dag_run.consumed_asset_events.append(
++                AssetEvent(
++                    asset_id=asset.id,
++                    source_dag_id="src",
++                    source_run_id=f"r{index}",
++                    partition_key="2024-01-15",
++                )
++            )
+         session.commit()
+ 
+-        response = client.patch(
+-            f"/execution/task-instances/{ti.id}/run",
+-            json={
+-                "state": "running",
+-                "hostname": "h",
+-                "unixname": "u",
+-                "pid": 1,
+-                "start_date": "2024-09-30T12:00:00Z",
+-            },
+-        )
++        with capture_orm_selects("dag_run") as run_queries:
++            response = client.patch(
++                f"/execution/task-instances/{ti.id}/run",
++                json={
++                    "state": "running",
++                    "hostname": "h",
++                    "unixname": "u",
++                    "pid": 1,
++                    "start_date": "2024-09-30T12:00:00Z",
++                },
++            )
+ 
+         assert response.status_code == 200
+         events = response.json()["dag_run"]["consumed_asset_events"]
+-        assert [e["partition_key"] for e in events] == ["2024-01-15"]
++        assert [e["partition_key"] for e in events] == ["2024-01-15"] * event_count
++        # The TI lock and legacy XCom lookup also join the run, besides metadata and event reads.
++        assert len(run_queries) == 4
++        assert sum("CAST(dag_run.conf" in query for query in run_queries) == 1
++        assert sum("dagrun_asset_event" in query for query in run_queries) == 1
+ 
+     def test_ti_run_missing_dagrun_returns_404(self, client, session, create_task_instance):
+         """A missing DagRun must surface as a clean 404, not an internal 500."""
+@@ -830,10 +846,16 @@ class TestTIRunState:
+         )
+         session.commit()
+ 
+-        # Patch only around the request so fixture setup above is untouched; force the DagRun
+-        # lookup (the only scalars() call before the guard) to return None.
+-        with mock.patch("sqlalchemy.orm.Session.scalars", autospec=True) as mock_scalars:
+-            mock_scalars.return_value.unique.return_value.one_or_none.return_value = None
++        execute = Session.execute
++
++        def missing_run_lookup(request_session, statement, *args, **kwargs):
++            if isinstance(statement, Select) and statement.column_descriptions[0].get("expr") is DagRun:
++                result = mock.MagicMock(spec=Result)
++                result.unique.return_value.one_or_none.return_value = None
++                return result
++            return execute(request_session, statement, *args, **kwargs)
++
++        with mock.patch("sqlalchemy.orm.Session.execute", autospec=True, side_effect=missing_run_lookup):
+             response = client.patch(
+                 f"/execution/task-instances/{ti.id}/run",
+                 json=self.RUN_PAYLOAD,
+@@ -906,7 +928,7 @@ class TestTIRunState:
+                 "state": "running",
+                 "end_date": None,
+                 "run_type": "manual",
+-                "conf": {},
++                "conf": None,
+                 "triggering_user_name": None,
+                 "consumed_asset_events": [],
+                 "partition_key": None,
+@@ -921,6 +943,7 @@ class TestTIRunState:
+             "connections": [],
+             "xcom_keys_to_clear": [],
+             "multi_team": False,
++            "serialized_dag_run_conf": "{}",
+         }
+         # upstream_map_indexes is now computed by Task SDK, not returned by the server in HEAD version
+         assert "upstream_map_indexes" not in result
+@@ -1586,6 +1609,7 @@ class TestTIRunState:
+             "next_method": "execute_complete",
+             "next_kwargs": expected_next_kwargs,
+             "start_date": None,
++            "serialized_dag_run_conf": "{}",
+         }
+ 
+     @pytest.mark.parametrize("resume", [True, False])
+@@ -1661,6 +1685,7 @@ class TestTIRunState:
+             "multi_team": False,
+             "next_method": "execute_complete",
+             "next_kwargs": expected_next_kwargs,
++            "serialized_dag_run_conf": "{}",
+         }
+         session.expunge_all()
+         ti = session.get(TaskInstance, ti.id)
+@@ -6926,6 +6951,87 @@ class TestInvactiveInletsAndOutlets:
+         assert context["dag_run"]["conf"] is None
+ 
+ 
++class TestSerializedTaskStartConf:
++    @pytest.mark.parametrize("version", ["2027-02-28", "2026-10-30", "2026-06-30", "2025-09-23"])
++    @pytest.mark.parametrize(
++        ("conf_value", "sql_null"),
++        [
++            pytest.param(None, False, id="json-null"),
++            pytest.param(None, True, id="sql-null"),
++            pytest.param({}, False, id="empty"),
++            pytest.param({"records": [{"value": False, "name": "\u03bb"}]}, False, id="nested"),
++        ],
++    )
++    def test_conf_transport_and_legacy_response(
++        self, client, session, create_task_instance, version, conf_value, sql_null
++    ):
++        ti = create_task_instance(state=State.QUEUED, dagrun_state=DagRunState.RUNNING, session=session)
++        ti.dag_run.conf = conf_value
++        session.commit()
++        if sql_null:
++            session.execute(update(DagRun).where(DagRun.id == ti.dag_run.id).values(conf=null()))
++            session.commit()
++        client.headers["Airflow-API-Version"] = version
++
++        with capture_orm_selects("dag_run") as statements:
++            response = client.patch(
++                f"/execution/task-instances/{ti.id}/run",
++                json={
++                    "state": "running",
++                    "pid": 100,
++                    "hostname": "test-hostname",
++                    "unixname": "test-user",
++                    "start_date": timezone.utcnow().isoformat(),
++                },
++            )
++
++        assert response.status_code == 200, response.text
++        context = response.json()
++        if version == "2027-02-28":
++            assert context["dag_run"]["conf"] is None
++            if conf_value is None:
++                assert "serialized_dag_run_conf" not in context
++            else:
++                assert json.loads(context["serialized_dag_run_conf"]) == conf_value
++        else:
++            assert "serialized_dag_run_conf" not in context
++            expected = {} if conf_value is None and version == "2025-09-23" else conf_value
++            assert context["dag_run"]["conf"] == expected
++        conf_selects = [statement for statement in statements if "dag_run.conf" in statement]
++        assert len(conf_selects) == 1
++        assert "CAST(dag_run.conf AS TEXT)" in conf_selects[0]
++        assert conf_selects[0].count("dag_run.conf") == 2
++        session.refresh(ti.dag_run)
++        assert ti.dag_run.conf == conf_value
++
++    @pytest.mark.parametrize("version", ["2027-02-28", "2026-06-30"])
++    @pytest.mark.parametrize("invalid_conf", [[], 42, "secret-canary", True])
++    def test_invalid_conf_does_not_commit_running(
++        self, client, session, create_task_instance, version, invalid_conf
++    ):
++        ti = create_task_instance(state=State.QUEUED, dagrun_state=DagRunState.RUNNING, session=session)
++        ti.dag_run.conf = invalid_conf
++        session.commit()
++        client.headers["Airflow-API-Version"] = version
++
++        response = client.patch(
++            f"/execution/task-instances/{ti.id}/run",
++            json={
++                "state": "running",
++                "pid": 100,
++                "hostname": "test-hostname",
++                "unixname": "test-user",
++                "start_date": timezone.utcnow().isoformat(),
++            },
++        )
++
++        assert response.status_code == 422
++        assert response.json()["detail"]["reason"] == "invalid_dag_run_conf"
++        assert "secret-canary" not in response.text
++        session.refresh(ti)
++        assert ti.state == State.QUEUED
++
++
+ class TestTIPatchRenderedMapIndex:
+     def setup_method(self):
+         clear_db_runs()
+diff --git a/contributing-docs/19_execution_api_versioning.rst b/contributing-docs/19_execution_api_versioning.rst
+index c9d4590..b146755 100644
+--- a/contributing-docs/19_execution_api_versioning.rst
++++ b/contributing-docs/19_execution_api_versioning.rst
+@@ -42,6 +42,34 @@ Versioning Principles
+ 3. Migrations encapsulate all schema changes.
+ 4. Core code logic remains version-agnostic.
+ 
++Task-start configuration transport
++----------------------------------
++
++The task-start response can carry persisted Dag run configuration as
++``serialized_dag_run_conf``. The server selects JSON text instead of decoding
++the configuration into nested Python objects. Python supervisors forward that
++text, and the task runner restores ``dag_run.conf`` before constructing task
++context and parameters. Empty objects and null configuration retain their
++runtime meanings; repeated context construction reuses the same dictionary.
++The database checks the JSON root type during retrieval, so non-object
++configuration is rejected before the task's running-state transaction commits.
++Such persisted invalid configurations return HTTP 422 instead of the previous
++HTTP 500, including for older negotiated API versions. The existing rollback
++behavior is preserved: the task remains queued.
++
++Older Execution API clients receive the dictionary through the response
++converter. Foreign-language runtimes also retain the dictionary startup
++contract, including runtimes pinned to the in-progress supervisor version.
++Those compatibility paths still materialize the configuration and do not
++receive the Python runtime's memory optimization. Unrelated Dag run endpoints
++and the database column type are unchanged.
++
++The field is accumulated in the in-progress API version, following the normal
++version cadence. Development snapshots sharing that unreleased version are not
++a supported mixed-build compatibility boundary; use matching core and Task SDK
++sources when testing head. Released clients retain their versioned dictionary
++responses.
++
+ Version Changes
+ ---------------
+ 
+diff --git a/task-sdk/src/airflow/sdk/api/datamodels/_generated.py b/task-sdk/src/airflow/sdk/api/datamodels/_generated.py
+index 6bef126..0161b22 100644
+--- a/task-sdk/src/airflow/sdk/api/datamodels/_generated.py
++++ b/task-sdk/src/airflow/sdk/api/datamodels/_generated.py
+@@ -1002,6 +1002,7 @@ class TIRunContext(BaseModel):
+     """
+ 
+     dag_run: DagRun
++    serialized_dag_run_conf: Annotated[str | None, Field(title="Serialized Dag Run Conf")] = None
+     loop: LoopContext | None = None
+     expanded_ti_count: Annotated[int | None, Field(title="Expanded Ti Count")] = None
+     task_reschedule_count: Annotated[int | None, Field(title="Task Reschedule Count")] = 0
+diff --git a/task-sdk/src/airflow/sdk/execution_time/dag_run_conf.py b/task-sdk/src/airflow/sdk/execution_time/dag_run_conf.py
+new file mode 100644
+index 0000000..9d2d3d9
+--- /dev/null
++++ b/task-sdk/src/airflow/sdk/execution_time/dag_run_conf.py
+@@ -0,0 +1,48 @@
++# Licensed to the Apache Software Foundation (ASF) under one
++# or more contributor license agreements.  See the NOTICE file
++# distributed with this work for additional information
++# regarding copyright ownership.  The ASF licenses this file
++# to you under the Apache License, Version 2.0 (the
++# "License"); you may not use this file except in compliance
++# with the License.  You may obtain a copy of the License at
++#
++#   http://www.apache.org/licenses/LICENSE-2.0
++#
++# Unless required by applicable law or agreed to in writing,
++# software distributed under the License is distributed on an
++# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
++# KIND, either express or implied.  See the License for the
++# specific language governing permissions and limitations
++# under the License.
++
++from __future__ import annotations
++
++from typing import TYPE_CHECKING, Any
++
++from pydantic import ConfigDict, TypeAdapter
++from pydantic_core import from_json
++
++if TYPE_CHECKING:
++    from airflow.sdk.api.datamodels._generated import TIRunContext
++
++_CONF_ADAPTER = TypeAdapter(dict[str, Any] | None, config=ConfigDict(hide_input_in_errors=True))
++
++
++def decode_dag_run_conf(serialized: str) -> dict[str, Any] | None:
++    """Validate configuration without including its contents in validation errors."""
++    try:
++        # Cache repeated object keys without filling the cache with unique manifest values.
++        return _CONF_ADAPTER.validate_python(from_json(serialized, cache_strings="keys"))
++    except ValueError:
++        raise ValueError("Serialized Dag run configuration must be a JSON object or null") from None
++
++
++def materialize_dag_run_conf(context: TIRunContext) -> None:
++    """Restore conf once; when serialized conf is absent, the mutable dictionary is authoritative."""
++    serialized = context.serialized_dag_run_conf
++    if serialized is None:
++        return
++    if context.dag_run.conf is not None:
++        raise ValueError("Task startup contains both decoded and serialized Dag run configuration")
++    context.dag_run.conf = decode_dag_run_conf(serialized)
++    context.serialized_dag_run_conf = None
+diff --git a/task-sdk/src/airflow/sdk/execution_time/schema/schema.json b/task-sdk/src/airflow/sdk/execution_time/schema/schema.json
+index ebe8c2a..a8fc03e 100644
+--- a/task-sdk/src/airflow/sdk/execution_time/schema/schema.json
++++ b/task-sdk/src/airflow/sdk/execution_time/schema/schema.json
+@@ -5272,6 +5272,18 @@
+         "dag_run": {
+           "$ref": "#/$defs/DagRun"
+         },
++        "serialized_dag_run_conf": {
++          "anyOf": [
++            {
++              "type": "string"
++            },
++            {
++              "type": "null"
++            }
++          ],
++          "default": null,
++          "title": "Serialized Dag Run Conf"
++        },
+         "loop": {
+           "anyOf": [
+             {
+diff --git a/task-sdk/src/airflow/sdk/execution_time/schema/versions/__init__.py b/task-sdk/src/airflow/sdk/execution_time/schema/versions/__init__.py
+index 27ff074..4911c34 100644
+--- a/task-sdk/src/airflow/sdk/execution_time/schema/versions/__init__.py
++++ b/task-sdk/src/airflow/sdk/execution_time/schema/versions/__init__.py
+@@ -46,6 +46,7 @@ def get_bundle() -> VersionBundle:
+         AddLoopRuntime,
+         AddRegionCoordinatesToSupervisorTaskInstance,
+         AddRetryReasonToTaskState,
++        SerializeSupervisorDagRunConf,
+     )
+ 
+     return VersionBundle(
+@@ -60,6 +61,7 @@ def get_bundle() -> VersionBundle:
+             AddFirstTaskRescheduleStartDateToSupervisorTIRunContext,
+             AddExpandedTICountToSupervisorTIRunContext,
+             AddExecutionTimeoutToSupervisorTIRunContext,
++            SerializeSupervisorDagRunConf,
+         ),
+         Version("2026-06-16"),
+     )
+diff --git a/task-sdk/src/airflow/sdk/execution_time/schema/versions/v2026_10_30.py b/task-sdk/src/airflow/sdk/execution_time/schema/versions/v2026_10_30.py
+index ddc99b2..bb87a0b 100644
+--- a/task-sdk/src/airflow/sdk/execution_time/schema/versions/v2026_10_30.py
++++ b/task-sdk/src/airflow/sdk/execution_time/schema/versions/v2026_10_30.py
+@@ -26,7 +26,7 @@ require a ``VersionChange`` entry below.
+ 
+ from __future__ import annotations
+ 
+-from cadwyn import VersionChange, schema
++from cadwyn import ResponseInfo, VersionChange, convert_response_to_previous_version_for, schema
+ 
+ from airflow.dag_processing.processor import DagFileParsingResult  # noqa: SDK002
+ from airflow.sdk.api.datamodels._generated import (
+@@ -40,8 +40,31 @@ from airflow.sdk.execution_time.comms import (
+     GetXComCount,
+     GetXComSequenceItem,
+     GetXComSequenceSlice,
++    StartupDetails,
+     TaskState,
+ )
++from airflow.sdk.execution_time.dag_run_conf import decode_dag_run_conf
++
++
++class SerializeSupervisorDagRunConf(VersionChange):
++    """
++    Restore configuration for direct migrations to older supervisor schemas.
++
++    Live foreign-runtime serialization also restores it for clients at the in-progress version.
++    """
++
++    description = __doc__
++
++    instructions_to_migrate_to_previous_version = (
++        schema(TIRunContext).field("serialized_dag_run_conf").didnt_exist,
++    )
++
++    @convert_response_to_previous_version_for(StartupDetails)  # type: ignore[arg-type]
++    def restore_startup_conf(response: ResponseInfo) -> None:
++        context = response.body["ti_context"]
++        serialized = context.pop("serialized_dag_run_conf", None)
++        if serialized is not None:
++            context["dag_run"]["conf"] = decode_dag_run_conf(serialized)
+ 
+ 
+ class AddLoopRuntime(VersionChange):
+diff --git a/task-sdk/src/airflow/sdk/execution_time/supervisor.py b/task-sdk/src/airflow/sdk/execution_time/supervisor.py
+index 05810f0..4cc9aaa 100644
+--- a/task-sdk/src/airflow/sdk/execution_time/supervisor.py
++++ b/task-sdk/src/airflow/sdk/execution_time/supervisor.py
+@@ -149,6 +149,7 @@ from airflow.sdk.execution_time.comms import (
+     _ResponseFrame,
+ )
+ from airflow.sdk.execution_time.coordinator import TaskLaunchError, get_coordinator_manager
++from airflow.sdk.execution_time.dag_run_conf import materialize_dag_run_conf
+ from airflow.sdk.execution_time.request_handlers import (
+     handle_delete_variable,
+     handle_delete_xcom,
+@@ -1135,10 +1136,20 @@ class WatchedSubprocess:
+             del self._open_sockets[sock]
+ 
+     def _serialize_response(self, msg: BaseModel | ErrorResponse, **dump_opts) -> dict[str, Any]:
++        foreign_startup = False
++        if self._subprocess_schema_version is not None and isinstance(msg, StartupDetails):
++            foreign_startup = True
++            # Foreign runtimes, including the current in-progress schema, still expect a dictionary.
++            context = msg.ti_context.model_copy(update={"dag_run": msg.ti_context.dag_run.model_copy()})
++            materialize_dag_run_conf(context)
++            msg = msg.model_copy(update={"ti_context": context})
+         if self._subprocess_schema_version is not None:
+             migrator = get_schema_version_migrator()
+             msg = migrator.downgrade(msg, self._subprocess_schema_version, **dump_opts)
+-        return msg.model_dump(**dump_opts)
++        body = msg.model_dump(**dump_opts)
++        if foreign_startup:
++            body["ti_context"].pop("serialized_dag_run_conf", None)
++        return body
+ 
+     def send_msg(
+         self,
+@@ -1775,7 +1786,7 @@ class ActivitySubprocess(WatchedSubprocess):
+         )
+ 
+         # Send the message to tell the process what it needs to execute
+-        log.debug("Sending", msg=msg)
++        log.debug("Sending task startup", ti_id=ti.id)
+ 
+         try:
+             self.send_msg(msg, request_id=0)
+diff --git a/task-sdk/src/airflow/sdk/execution_time/task_runner.py b/task-sdk/src/airflow/sdk/execution_time/task_runner.py
+index 3160f2d..8ebcd71 100644
+--- a/task-sdk/src/airflow/sdk/execution_time/task_runner.py
++++ b/task-sdk/src/airflow/sdk/execution_time/task_runner.py
+@@ -151,6 +151,7 @@ from airflow.sdk.execution_time.context import (
+     get_previous_dagrun_success,
+     set_current_context,
+ )
++from airflow.sdk.execution_time.dag_run_conf import materialize_dag_run_conf
+ from airflow.sdk.execution_time.email_backend import (
+     _DEFAULT_EMAIL_BACKEND,
+     _ErrorEmailNotifier,
+@@ -329,6 +330,7 @@ class RuntimeTaskInstance(TaskInstance):
+         dag_run_conf: dict[str, Any] | None = None
+         macros_accessor = MacrosAccessor()
+         if from_server := self._ti_context_from_server:
++            materialize_dag_run_conf(from_server)
+             dag_run_conf = from_server.dag_run.conf or dag_run_conf
+             macros_accessor = MacrosAccessor(
+                 team_name=from_server.dag_run.team_name, multi_team=bool(from_server.multi_team)
+@@ -1259,7 +1261,7 @@ def get_startup_details() -> StartupDetails:
+ 
+         # We delay this message until _after_ we've got the logging re-configured, otherwise it will show up
+         # on stdout
+-        log.debug("Using serialized startup message from environment", msg=msg)
++        log.debug("Using serialized startup message from environment", ti_id=msg.ti.id)
+     else:
+         # normal entry point
+         msg = SUPERVISOR_COMMS._get_response()  # type: ignore[assignment]
+@@ -1305,10 +1307,14 @@ def startup(msg: StartupDetails) -> tuple[RuntimeTaskInstance, Context, Logger]:
+     )
+ 
+     if os.environ.get("_AIRFLOW__REEXECUTED_PROCESS") != "1" and run_as_user and run_as_user != getuser():
++        # Preserve the compact legacy environment envelope rather than escaping JSON inside JSON.
++        materialize_dag_run_conf(msg.ti_context)
+         # enters here for re-exec process
+         os.environ["_AIRFLOW__REEXECUTED_PROCESS"] = "1"
+         # store startup message in environment for re-exec process
+-        os.environ["_AIRFLOW__STARTUP_MSG"] = msg.model_dump_json()
++        os.environ["_AIRFLOW__STARTUP_MSG"] = msg.model_dump_json(
++            exclude={"ti_context": {"serialized_dag_run_conf"}}
++        )
+         os.set_inheritable(SUPERVISOR_COMMS.socket.fileno(), True)
+ 
+         # Import main directly from the module instead of re-executing the file.
+diff --git a/task-sdk/tests/task_sdk/execution_time/schema/test_migrator.py b/task-sdk/tests/task_sdk/execution_time/schema/test_migrator.py
+index f89e6b8..3ec6274 100644
+--- a/task-sdk/tests/task_sdk/execution_time/schema/test_migrator.py
++++ b/task-sdk/tests/task_sdk/execution_time/schema/test_migrator.py
+@@ -35,7 +35,10 @@ import uuid
+ from typing import Literal
+ from uuid import UUID
+ 
++import msgspec
++import psutil
+ import pytest
++import structlog
+ from cadwyn import (
+     HeadVersion,
+     Version,
+@@ -70,12 +73,14 @@ from airflow.sdk.execution_time.comms import (
+     PreviousTIResult,
+     StartupDetails,
+     TaskState,
++    _ResponseFrame,
+ )
+ from airflow.sdk.execution_time.schema import (
+     SchemaVersionMigrator,
+     get_schema_version_migrator,
+     resolve_body_class,
+ )
++from airflow.sdk.execution_time.supervisor import WatchedSubprocess
+ 
+ 
+ class _MockBody(BaseModel):
+@@ -518,6 +523,46 @@ class TestRealBundleArgBindingsDowngrade:
+         out = real_migrator.downgrade(startup_details, "2026-06-16").model_dump()
+         assert "arg_bindings" not in out["ti_context"]
+ 
++    def test_downgrade_restores_serialized_conf(self, real_migrator, startup_details):
++        startup_details.ti_context.serialized_dag_run_conf = '{"nested": [{"enabled": false}]}'
++
++        out = real_migrator.downgrade(startup_details, "2026-06-16").model_dump()
++
++        assert out["ti_context"]["dag_run"]["conf"] == {"nested": [{"enabled": False}]}
++        assert "serialized_dag_run_conf" not in out["ti_context"]
++        assert startup_details.ti_context.dag_run.conf is None
++        assert startup_details.ti_context.serialized_dag_run_conf is not None
++
++    @pytest.mark.parametrize("version", [None, "2026-06-16", "2026-10-30"])
++    def test_startup_conf_wire_shape_for_python_and_foreign_runtimes(self, startup_details, mocker, version):
++        raw = '{"nested": [{"enabled": false}]}'
++        startup_details.ti_context.serialized_dag_run_conf = raw
++        process = WatchedSubprocess(
++            id=startup_details.ti.id,
++            pid=1,
++            stdin=mocker.Mock(),
++            process=mocker.Mock(spec=psutil.Process),
++            process_log=structlog.get_logger(),
++        )
++        process._subprocess_schema_version = version
++        try:
++            process.send_msg(startup_details, request_id=0)
++            frame = process.stdin.sendall.call_args.args[0]
++            decoded = msgspec.msgpack.decode(frame[4:], type=_ResponseFrame)
++            assert decoded.body is not None
++            body = decoded.body["ti_context"]
++        finally:
++            process.selector.close()
++
++        if version is None:
++            assert body["serialized_dag_run_conf"] == raw
++            assert body["dag_run"]["conf"] is None
++        else:
++            assert "serialized_dag_run_conf" not in body
++            assert body["dag_run"]["conf"] == {"nested": [{"enabled": False}]}
++        assert startup_details.ti_context.serialized_dag_run_conf == raw
++        assert startup_details.ti_context.dag_run.conf is None
++
+     @pytest.mark.parametrize("version", ["2026-06-16", "2026-10-30"])
+     def test_loop_context_follows_supervisor_version(self, real_migrator, startup_details, version):
+         startup_details.ti_context.loop = LoopContext(
+diff --git a/task-sdk/tests/task_sdk/execution_time/test_dag_run_conf.py b/task-sdk/tests/task_sdk/execution_time/test_dag_run_conf.py
+new file mode 100644
+index 0000000..5b4a61b
+--- /dev/null
++++ b/task-sdk/tests/task_sdk/execution_time/test_dag_run_conf.py
+@@ -0,0 +1,84 @@
++# Licensed to the Apache Software Foundation (ASF) under one
++# or more contributor license agreements.  See the NOTICE file
++# distributed with this work for additional information
++# regarding copyright ownership.  The ASF licenses this file
++# to you under the Apache License, Version 2.0 (the
++# "License"); you may not use this file except in compliance
++# with the License.  You may obtain a copy of the License at
++#
++#   http://www.apache.org/licenses/LICENSE-2.0
++#
++# Unless required by applicable law or agreed to in writing,
++# software distributed under the License is distributed on an
++# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
++# KIND, either express or implied.  See the License for the
++# specific language governing permissions and limitations
++# under the License.
++
++from __future__ import annotations
++
++import pytest
++
++from airflow.sdk.execution_time import dag_run_conf
++
++
++@pytest.mark.parametrize(
++    ("serialized", "expected"),
++    [
++        ("null", None),
++        ("{}", {}),
++        ('{"nested": [{"flag": false, "text": "\\u03bb"}]}', {"nested": [{"flag": False, "text": "\u03bb"}]}),
++        ('{"number": 18446744073709551616}', {"number": 18446744073709551616}),
++        ('{"number": -9223372036854775809}', {"number": -9223372036854775809}),
++        ('{"number": 1.7e308}', {"number": 1.7e308}),
++    ],
++)
++def test_materialize_conf_once(make_ti_context, mocker, serialized, expected):
++    context = make_ti_context()
++    context.serialized_dag_run_conf = serialized
++    decode = mocker.spy(dag_run_conf, "decode_dag_run_conf")
++    parse = mocker.spy(dag_run_conf, "from_json")
++
++    dag_run_conf.materialize_dag_run_conf(context)
++    decoded = context.dag_run.conf
++    assert decoded == expected
++    if expected is not None and "number" in expected:
++        assert type(decoded["number"]) is type(expected["number"])
++    if decoded is not None:
++        decoded["added_by_task"] = True
++    dag_run_conf.materialize_dag_run_conf(context)
++
++    assert context.dag_run.conf is decoded
++    assert context.serialized_dag_run_conf is None
++    decode.assert_called_once_with(serialized)
++    parse.assert_called_once_with(serialized, cache_strings="keys")
++
++
++def test_preserve_legacy_decoded_conf(make_ti_context):
++    context = make_ti_context(conf={"value": False})
++    original = context.dag_run.conf
++
++    dag_run_conf.materialize_dag_run_conf(context)
++
++    assert context.dag_run.conf is original
++
++
++@pytest.mark.parametrize("serialized", ['{"secret-canary":', "[]", "false", "42", '"secret-canary"'])
++def test_reject_invalid_conf_without_exposing_payload(make_ti_context, serialized):
++    context = make_ti_context()
++    context.serialized_dag_run_conf = serialized
++
++    with pytest.raises(ValueError, match="JSON object or null") as error:
++        dag_run_conf.materialize_dag_run_conf(context)
++
++    assert "secret-canary" not in str(error.value)
++    assert context.dag_run.conf is None
++    assert context.serialized_dag_run_conf == serialized
++
++
++def test_reject_ambiguous_conf(make_ti_context):
++    context = make_ti_context(conf={})
++    context.serialized_dag_run_conf = '{"value": 1}'
++
++    with pytest.raises(ValueError, match="both decoded and serialized"):
++        dag_run_conf.materialize_dag_run_conf(context)
+diff --git a/task-sdk/tests/task_sdk/execution_time/test_task_runner.py b/task-sdk/tests/task_sdk/execution_time/test_task_runner.py
+index 387543a..988e708 100644
+--- a/task-sdk/tests/task_sdk/execution_time/test_task_runner.py
++++ b/task-sdk/tests/task_sdk/execution_time/test_task_runner.py
+@@ -108,7 +108,7 @@ from airflow.sdk.exceptions import (
+     ErrorType,
+     TaskDeferred,
+ )
+-from airflow.sdk.execution_time import task_runner
++from airflow.sdk.execution_time import dag_run_conf, task_runner
+ from airflow.sdk.execution_time.comms import (
+     AssetEventResult,
+     AssetEventsResult,
+@@ -2281,8 +2281,16 @@ def test_startup_and_run_dag_with_rtif(
+ 
+ @patch("os.execvp")
+ @patch("os.set_inheritable")
++@pytest.mark.parametrize("conf_value", [None, {}, {"value": 'quotes " and \\ slashes', "enabled": False}])
+ def test_task_run_with_user_impersonation(
+-    mock_set_inheritable, mock_execvp, mocked_parse, make_ti_context, time_machine, mock_supervisor_comms
++    mock_set_inheritable,
++    mock_execvp,
++    mocked_parse,
++    make_ti_context,
++    time_machine,
++    mock_supervisor_comms,
++    mocker,
++    conf_value,
+ ):
+     class CustomOperator(BaseOperator):
+         def execute(self, context):
+@@ -2307,6 +2315,8 @@ def test_task_run_with_user_impersonation(
+         start_date=timezone.utcnow(),
+         sentry_integration="",
+     )
++    what.ti_context.serialized_dag_run_conf = json.dumps(conf_value)
++    decode = mocker.spy(dag_run_conf, "decode_dag_run_conf")
+ 
+     mocked_parse(what, "basic_dag", task)
+     time_machine.move_to(instant, tick=False)
+@@ -2319,6 +2329,13 @@ def test_task_run_with_user_impersonation(
+ 
+         assert os.environ["_AIRFLOW__REEXECUTED_PROCESS"] == "1"
+         assert "_AIRFLOW__STARTUP_MSG" in os.environ
++        envelope = json.loads(os.environ["_AIRFLOW__STARTUP_MSG"])
++        assert "serialized_dag_run_conf" not in envelope["ti_context"]
++        assert envelope["ti_context"]["dag_run"]["conf"] == conf_value
++        reexecuted = StartupDetails.model_validate_json(os.environ["_AIRFLOW__STARTUP_MSG"])
++        dag_run_conf.materialize_dag_run_conf(reexecuted.ti_context)
++        assert reexecuted.ti_context.dag_run.conf == conf_value
++        decode.assert_called_once()
+ 
+         mock_set_inheritable.assert_called_once_with(42, True)
+         actual_cmd = mock_execvp.call_args.args[1]
+@@ -2890,6 +2907,36 @@ class TestSerializeOutletEvents:
+ 
+ 
+ class TestRuntimeTaskInstance:
++    @pytest.mark.parametrize("override", [True, False])
++    @pytest.mark.parametrize("conf_value", [None, {}, {"value": "run", "enabled": False}])
++    def test_serialized_conf_preserves_context_and_params(
++        self, create_runtime_ti, mock_supervisor_comms, override, conf_value
++    ):
++        task = BaseOperator(task_id="hello", params={"value": "default"})
++        runtime_ti = create_runtime_ti(task=task, dag_id="serialized_conf")
++        from_server = runtime_ti._ti_context_from_server
++        from_server.dag_run.conf = None
++        from_server.serialized_dag_run_conf = json.dumps(conf_value)
++        dr = from_server.dag_run
++        mock_supervisor_comms.send.return_value = PrevSuccessfulDagRunResult(
++            data_interval_end=dr.logical_date - timedelta(hours=1),
++            data_interval_start=dr.logical_date - timedelta(hours=2),
++            start_date=dr.start_date - timedelta(hours=1),
++            end_date=dr.start_date,
++        )
++
++        with conf_vars({("core", "dag_run_conf_overrides_params"): str(override)}):
++            context = runtime_ti.get_template_context()
++            decoded = context["dag_run"].conf
++            assert decoded == conf_value
++            expected_value = "run" if override and conf_value else "default"
++            assert context["params"]["value"] == expected_value
++            if decoded is not None:
++                decoded["task_mutation"] = 1
++            assert runtime_ti.get_template_context()["dag_run"].conf is decoded
++
++        assert from_server.serialized_dag_run_conf is None
++
+     def test_get_context_without_ti_context_from_server(self, mocked_parse, make_ti_context):
+         """Test get_template_context without ti_context_from_server."""
+ 

@@ -1,0 +1,71 @@
+{
+  "api": {
+    "state": {
+      "Status": "running",
+      "Running": true,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 32004,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-10-28T18:59:37.229107074Z",
+      "FinishedAt": "0001-01-01T00:00:00Z"
+    },
+    "restart_count": 0,
+    "image": "sha256:42cd6b3d711b3a67bf3047d7c93dcefb4bd997b6bd059ac6a28acac11c99eab7",
+    "memory_limit": 3221225472,
+    "nano_cpus": 2000000000
+  },
+  "scheduler": {
+    "inspection_error": "Docker stats returned HTTP 404: b'{\"message\":\"No such container: api-conf-e2e-diagwarm-scheduler\"}\\n'"
+  },
+  "worker": {
+    "inspection_error": "Docker stats returned HTTP 404: b'{\"message\":\"No such container: api-conf-e2e-diagwarm-worker\"}\\n'"
+  },
+  "dag-processor": {
+    "inspection_error": "Docker stats returned HTTP 404: b'{\"message\":\"No such container: api-conf-e2e-diagwarm-dag-processor\"}\\n'"
+  },
+  "triggerer": {
+    "inspection_error": "Docker stats returned HTTP 404: b'{\"message\":\"No such container: api-conf-e2e-diagwarm-triggerer\"}\\n'"
+  },
+  "postgres": {
+    "state": {
+      "Status": "running",
+      "Running": true,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 31611,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-10-28T18:59:21.352032083Z",
+      "FinishedAt": "0001-01-01T00:00:00Z"
+    },
+    "restart_count": 0,
+    "image": "sha256:1beaa3084eee2676f20a9cd9928f0bf2c5bf674f8e49f81017912183d377c61c",
+    "memory_limit": 1073741824,
+    "nano_cpus": 1000000000
+  },
+  "redis": {
+    "state": {
+      "Status": "running",
+      "Running": true,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 31712,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-10-28T18:59:21.763900032Z",
+      "FinishedAt": "0001-01-01T00:00:00Z"
+    },
+    "restart_count": 0,
+    "image": "sha256:6ba19c50b56777f5c11c58eff8ddb69d0d5f27ba131cffb63f180ccfd43c66af",
+    "memory_limit": 268435456,
+    "nano_cpus": 500000000
+  }
+}

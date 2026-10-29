@@ -1,0 +1,11 @@
+{
+  "started": "2026-10-28T18:21:10.889728+00:00",
+  "baseline": "750f849cc2372ee42dc6910541d4b6a866102ac9",
+  "source_patch": "source.diff",
+  "design": "A1 baseline -> B patched -> A2 baseline rollback; fresh database/processes each arm.",
+  "scope": "Real local API, scheduler, Dag processor, Celery worker/task, triggerer, PostgreSQL and Redis.",
+  "arms": [],
+  "status": "failed",
+  "error": "RuntimeError: API readiness timed out for /api/v2/version: <urlopen error [Errno -2] Name or service not known>",
+  "finished": "2026-10-28T18:24:53.961585+00:00"
+}

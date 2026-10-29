@@ -1,0 +1,146 @@
+{
+  "date": "2026-10-28",
+  "repository": "/workspace/airflow",
+  "branch": "perf/opaque-task-start-conf-20261027",
+  "baseline_commit": "750f849cc2372ee42dc6910541d4b6a866102ac9",
+  "scope": "Local Apache Airflow Execution API and Task SDK opaque configuration transport. No scheduler patch or ADME deployment.",
+  "environment": {
+    "image": "ghcr.io/apache/airflow/main/ci/python3.12",
+    "image_digest": "sha256:42cd6b3d711b3a67bf3047d7c93dcefb4bd997b6bd059ac6a28acac11c99eab7",
+    "python": "3.12.15",
+    "airflow_core_source_version": "3.4.0",
+    "task_sdk_source_version": "1.4.0",
+    "pydantic": "2.14.1",
+    "cadwyn": "8.1.0",
+    "datamodel_code_generator": "0.83.0",
+    "pytest": "9.1.1",
+    "sqlalchemy": "2.0.54",
+    "note": "Tests ran inside the official Linux Breeze CI image using the pinned baseline source plus the local patch, not on Windows."
+  },
+  "generation": {
+    "task_sdk_models": "passed; generated with the repository-locked generator",
+    "supervisor_schema": "passed; generated with the official snapshot script",
+    "artifacts_persisted_to_worktree": true,
+    "generated_files_hand_edited": false
+  },
+  "tests": {
+    "total_final_cases": 736,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "suites": [
+      {
+        "name": "SDK conf, migration, IPC, context and impersonation regression",
+        "cases": 441,
+        "report": "api-conf-sdk-regression-results.xml",
+        "selectors": [
+          "task-sdk/tests/task_sdk/execution_time/test_dag_run_conf.py",
+          "task-sdk/tests/task_sdk/execution_time/schema/test_migrator.py",
+          "task-sdk/tests/task_sdk/execution_time/test_comms.py",
+          "task-sdk/tests/task_sdk/execution_time/test_task_runner.py::TestRuntimeTaskInstance",
+          "task-sdk/tests/task_sdk/execution_time/test_task_runner.py::test_task_run_with_user_impersonation"
+        ]
+      },
+      {
+        "name": "Execution API startup and transport, SQLite",
+        "cases": 90,
+        "report": "api-conf-api-results.xml"
+      },
+      {
+        "name": "Execution API startup and transport, PostgreSQL 16 JSONB",
+        "cases": 90,
+        "report": "api-conf-postgres-results.xml"
+      },
+      {
+        "name": "Older Execution API versions, PostgreSQL 16",
+        "cases": 25,
+        "report": "api-conf-legacy-postgres-results.xml",
+        "selectors": [
+          "airflow-core/tests/unit/api_fastapi/execution_api/versions/v2025_09_23/test_task_instances.py",
+          "airflow-core/tests/unit/api_fastapi/execution_api/versions/v2026_04_06/test_task_instances.py"
+        ]
+      },
+      {
+        "name": "Execution API startup and transport, MySQL 8.4 JSON",
+        "cases": 90,
+        "report": "api-conf-mysql-results.xml"
+      }
+    ],
+    "startup_selectors_for_all_three_backends": [
+      "airflow-core/tests/unit/api_fastapi/execution_api/versions/head/test_task_instances.py::TestSerializedTaskStartConf",
+      "airflow-core/tests/unit/api_fastapi/execution_api/versions/head/test_task_instances.py::TestTIRunState"
+    ],
+    "runner": "bash scripts/in_container/run_ci_tests.sh <selectors> -q --disable-warnings --junitxml=<report>",
+    "counting_note": "Only final successful runs are counted. The initial 26-test SDK run is a subset of the 441-case suite and is not added again."
+  },
+  "static_checks": {
+    "ruff_lint": "passed",
+    "ruff_format": "passed",
+    "git_diff_check": "passed",
+    "mypy": {
+      "status": "passed",
+      "source_files": 7,
+      "command": "mypy --follow-imports=silent <seven changed production modules>",
+      "scope_note": "Targeted checking, not the complete repository type-check suite."
+    }
+  },
+  "test_driven_fixes": [
+    "Updated the event-query budget to include the unchanged legacy XCom join: four DagRun-related queries.",
+    "Updated the missing-DagRun regression mock to target the new execute-based query, preserving the real 404 assertion.",
+    "Avoided a measured task-decoder allocation increase by using key-cached Pydantic-core parsing followed by typed root validation.",
+    "Added a narrowly scoped annotation for Pydantic's callable validator descriptor after targeted mypy reported its static type."
+  ],
+  "memory_benchmark": {
+    "report": "memory-benchmark.json",
+    "reproduction_script": "benchmark_conf_transport_local.py",
+    "records_per_configuration": 23000,
+    "baseline_serialized_startup_bytes": 11915127,
+    "method": "Fresh processes measure actual PostgreSQL JSONB driver retrieval, Airflow model serialization, SDK parsing and MessagePack IPC. One and four retained starts simulate overlap within each isolated phase.",
+    "four_retained_starts_python_allocation_peak_mib": {
+      "api": {
+        "baseline": 285.23,
+        "patched": 127.64
+      },
+      "supervisor": {
+        "baseline": 486.37,
+        "patched": 127.69
+      },
+      "task": {
+        "baseline": 234.79,
+        "patched": 239.75
+      }
+    },
+    "task_configuration_equality": "Identical canonical SHA256 for baseline and patched task configurations in all measured cases.",
+    "tradeoffs": [
+      "The collection loader intentionally adds one database query to avoid repeating the large JSON text for every consumed asset event.",
+      "The isolated task phase retains a small allocation increase, about two percent in the four-start case.",
+      "Native JSON-root type checking adds database work; its invalid-input rollback tests passed on all three backends."
+    ],
+    "limitations": [
+      "This is an isolated phase benchmark, not a live HTTP-server, Celery or pod-RSS load test.",
+      "Four retained starts are not the planned 20-concurrent-DagRun ADME test.",
+      "Do not sum independently measured phase peaks as a production pod peak.",
+      "No guarantee of regression-free behavior is inferred from these targeted tests."
+    ]
+  },
+  "remaining_validation": [
+    "Same-instance Helm baseline/patched/baseline ingestion test with 20 concurrent DagRuns and 23000 records per run.",
+    "Full production-image and live pod memory/startup-latency validation.",
+    "Explicit supported rolling-deployment and rollback behavior for the actual ADME chart.",
+    "SQLite non-finite numeric handling remains outside the demonstrated normal-JSON parity cases."
+  ],
+  "cleanup": {
+    "test_containers_removed": true,
+    "private_test_databases_removed_with_containers": true,
+    "test_volume_and_network_removed": true,
+    "temporary_source_archives_removed": true,
+    "benchmark_scratch_script_removed_from_source_worktree": true,
+    "docker_desktop_left_running": true
+  },
+  "publication": {
+    "pushed": false,
+    "pull_request_created": false,
+    "adme_deployed": false,
+    "implementation_commit_created": false
+  }
+}

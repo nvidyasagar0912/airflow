@@ -1,0 +1,80 @@
+2026-10-28T18:22:01.990829214Z   ____________       _____________
+2026-10-28T18:22:01.990931623Z  ____    |__( )_________  __/__  /________      __
+2026-10-28T18:22:01.990941924Z ____  /| |_  /__  ___/_  /_ __  /_  __ \_ | /| / /
+2026-10-28T18:22:01.990944624Z ___  ___ |  / _  /   _  __/ _  / / /_/ /_ |/ |/ /
+2026-10-28T18:22:01.990946925Z  _/_/  |_/_/  /_/    /_/    /_/  \____/____/|__/
+2026-10-28T18:22:01.990954325Z Running the API server with uvicorn:
+2026-10-28T18:22:01.990958626Z Apps: all
+2026-10-28T18:22:01.990962626Z Workers: 1
+2026-10-28T18:22:01.990966126Z Host: 0.0.0.0:8080
+2026-10-28T18:22:01.990970327Z Timeout: 120
+2026-10-28T18:22:01.990973927Z Logfiles: -
+2026-10-28T18:22:01.990977628Z =================================================================
+2026-10-28T18:22:01.990861117Z Traceback (most recent call last):
+2026-10-28T18:22:01.991047134Z   File "/usr/python/bin/airflow", line 10, in <module>
+2026-10-28T18:22:01.991058035Z     sys.exit(main())
+2026-10-28T18:22:01.991062135Z              ^^^^^^
+2026-10-28T18:22:01.991065336Z   File "/opt/airflow/airflow-core/src/airflow/__main__.py", line 61, in main
+2026-10-28T18:22:01.991068836Z     args.func(args)
+2026-10-28T18:22:01.991071836Z   File "/opt/airflow/airflow-core/src/airflow/cli/cli_config.py", line 49, in command
+2026-10-28T18:22:01.991075037Z     return func(*args, **kwargs)
+2026-10-28T18:22:01.991078137Z            ^^^^^^^^^^^^^^^^^^^^^
+2026-10-28T18:22:01.991081137Z   File "/opt/airflow/airflow-core/src/airflow/utils/cli.py", line 119, in wrapper
+2026-10-28T18:22:01.991084338Z     return f(*args, **kwargs)
+2026-10-28T18:22:01.991090538Z            ^^^^^^^^^^^^^^^^^^
+2026-10-28T18:22:01.991094138Z   File "/opt/airflow/airflow-core/src/airflow/utils/providers_configuration_loader.py", line 54, in wrapped_function
+2026-10-28T18:22:01.991240052Z     return func(*args, **kwargs)
+2026-10-28T18:22:01.991249453Z            ^^^^^^^^^^^^^^^^^^^^^
+2026-10-28T18:22:01.991252153Z   File "/opt/airflow/airflow-core/src/airflow/cli/commands/api_server_command.py", line 207, in wrapper
+2026-10-28T18:22:01.991393667Z     return func(args)
+2026-10-28T18:22:01.991407668Z            ^^^^^^^^^^
+2026-10-28T18:22:01.991410968Z   File "/opt/airflow/airflow-core/src/airflow/cli/commands/api_server_command.py", line 251, in api_server
+2026-10-28T18:22:01.991626588Z     run_command_with_daemon_option(
+2026-10-28T18:22:01.991632789Z   File "/opt/airflow/airflow-core/src/airflow/cli/commands/daemon_utils.py", line 82, in run_command_with_daemon_option
+2026-10-28T18:22:01.991635589Z     callback()
+2026-10-28T18:22:01.991637989Z   File "/opt/airflow/airflow-core/src/airflow/cli/commands/api_server_command.py", line 254, in <lambda>
+2026-10-28T18:22:01.991912415Z     callback=lambda: _run_api_server(
+2026-10-28T18:22:01.991958119Z                      ^^^^^^^^^^^^^^^^
+2026-10-28T18:22:01.991961320Z   File "/opt/airflow/airflow-core/src/airflow/utils/memray_utils.py", line 63, in wrapper
+2026-10-28T18:22:01.991963920Z     return func(*args, **kwargs)
+2026-10-28T18:22:01.991966220Z            ^^^^^^^^^^^^^^^^^^^^^
+2026-10-28T18:22:01.991968420Z   File "/opt/airflow/airflow-core/src/airflow/cli/commands/api_server_command.py", line 188, in _run_api_server
+2026-10-28T18:22:01.992005724Z     run(
+2026-10-28T18:22:01.992013425Z   File "/opt/airflow/airflow-core/src/airflow/cli/commands/api_server_command.py", line 140, in _run_api_server_with_uvicorn
+2026-10-28T18:22:01.992194742Z     uvicorn.run(
+2026-10-28T18:22:01.992202542Z   File "/usr/python/lib/python3.12/site-packages/uvicorn/main.py", line 620, in run
+2026-10-28T18:22:01.992444665Z     config.load_app()
+2026-10-28T18:22:01.992450966Z   File "/usr/python/lib/python3.12/site-packages/uvicorn/config.py", line 434, in load_app
+2026-10-28T18:22:01.992705589Z     return import_from_string(self.app)
+2026-10-28T18:22:01.992712890Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-28T18:22:01.992715790Z   File "/usr/python/lib/python3.12/site-packages/uvicorn/importer.py", line 19, in import_from_string
+2026-10-28T18:22:01.992718391Z     module = importlib.import_module(module_str)
+2026-10-28T18:22:01.992844802Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-28T18:22:01.992853103Z   File "/usr/python/lib/python3.12/importlib/__init__.py", line 90, in import_module
+2026-10-28T18:22:01.993042121Z     return _bootstrap._gcd_import(name[level:], package, level)
+2026-10-28T18:22:01.993049822Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-28T18:22:01.993052522Z   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+2026-10-28T18:22:01.993055522Z   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+2026-10-28T18:22:01.993058022Z   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+2026-10-28T18:22:01.993060423Z   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+2026-10-28T18:22:01.993062823Z   File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+2026-10-28T18:22:01.993065223Z   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2026-10-28T18:22:01.993067623Z   File "/opt/airflow/airflow-core/src/airflow/api_fastapi/main.py", line 46, in <module>
+2026-10-28T18:22:01.993279143Z     app = cached_app(apps=os.environ.get("AIRFLOW_API_APPS", "all"))
+2026-10-28T18:22:01.993286544Z           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-28T18:22:01.993289144Z   File "/opt/airflow/airflow-core/src/airflow/api_fastapi/app.py", line 190, in cached_app
+2026-10-28T18:22:01.993312746Z     return create_app(apps=apps)
+2026-10-28T18:22:01.993321347Z            ^^^^^^^^^^^^^^^^^^^^^
+2026-10-28T18:22:01.993325147Z   File "/opt/airflow/airflow-core/src/airflow/utils/providers_configuration_loader.py", line 54, in wrapped_function
+2026-10-28T18:22:01.993489363Z     return func(*args, **kwargs)
+2026-10-28T18:22:01.993497564Z            ^^^^^^^^^^^^^^^^^^^^^
+2026-10-28T18:22:01.993500064Z   File "/opt/airflow/airflow-core/src/airflow/api_fastapi/app.py", line 173, in create_app
+2026-10-28T18:22:01.993604574Z     init_auth_manager(app)
+2026-10-28T18:22:01.993609974Z   File "/opt/airflow/airflow-core/src/airflow/api_fastapi/app.py", line 233, in init_auth_manager
+2026-10-28T18:22:01.993734686Z     if app and (auth_manager_fastapi_app := am.get_fastapi_app()):
+2026-10-28T18:22:01.993739986Z                                             ^^^^^^^^^^^^^^^^^^^^
+2026-10-28T18:22:01.993742387Z   File "/opt/airflow/airflow-core/src/airflow/api_fastapi/auth/managers/simple/simple_auth_manager.py", line 442, in get_fastapi_app
+2026-10-28T18:22:01.994036514Z     directory.mkdir(exist_ok=True)
+2026-10-28T18:22:01.994042115Z   File "/usr/python/lib/python3.12/pathlib.py", line 1311, in mkdir
+2026-10-28T18:22:01.995573058Z     os.mkdir(self, mode)
+2026-10-28T18:22:01.995595560Z OSError: [Errno 30] Read-only file system: '/opt/airflow/airflow-core/src/airflow/api_fastapi/auth/managers/simple/ui/dist'

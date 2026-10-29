@@ -1,0 +1,467 @@
+{
+  "baseline": "750f849cc2372ee42dc6910541d4b6a866102ac9",
+  "patch_sha256": "1b953037b828adcd32fef174c2e3da3d1f45910488c5e9c25f8b79bb2b4f65c4",
+  "verified_dag_runs": 111,
+  "expected_negative_runs": 3,
+  "performance_comparisons": {
+    "small": {
+      "baseline_a1_peak_mib": 2353.66796875,
+      "patched_peak_mib": 2334.10546875,
+      "baseline_a2_peak_mib": 2333.0625,
+      "baseline_mean_peak_mib": 2343.365234375,
+      "patched_peak_reduction_percent_vs_mean": 0.39514820349674074,
+      "baseline_spread_percent": 0.8793110202258204,
+      "baseline_a1_seconds": 13.762399552000716,
+      "patched_seconds": 12.735337379999692,
+      "baseline_a2_seconds": 13.813844658000562,
+      "patched_duration_reduction_percent_vs_mean": 7.635446777912752
+    },
+    "medium": {
+      "baseline_a1_peak_mib": 2928.8046875,
+      "patched_peak_mib": 2944.81640625,
+      "baseline_a2_peak_mib": 2938.01953125,
+      "baseline_mean_peak_mib": 2933.412109375,
+      "patched_peak_reduction_percent_vs_mean": -0.3887724073461273,
+      "baseline_spread_percent": 0.3141339643533188,
+      "baseline_a1_seconds": 23.75791287499942,
+      "patched_seconds": 20.297146081000392,
+      "baseline_a2_seconds": 20.167340101999798,
+      "patched_duration_reduction_percent_vs_mean": 7.583247879625509
+    },
+    "large": {
+      "baseline_a1_peak_mib": 5091.703125,
+      "patched_peak_mib": 5031.2578125,
+      "baseline_a2_peak_mib": 4795.546875,
+      "baseline_mean_peak_mib": 4943.625,
+      "patched_peak_reduction_percent_vs_mean": -1.7726427975422894,
+      "baseline_spread_percent": 5.9906698020177505,
+      "baseline_a1_seconds": 126.58576838800036,
+      "patched_seconds": 105.20731208899997,
+      "baseline_a2_seconds": 124.2670194329994,
+      "patched_duration_reduction_percent_vs_mean": 16.120276754450565
+    }
+  },
+  "component_health": {
+    "a1": {
+      "api": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "running_at_end": true
+      },
+      "scheduler": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "running_at_end": true
+      },
+      "worker": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "running_at_end": true
+      },
+      "dag-processor": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "running_at_end": true
+      },
+      "triggerer": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "running_at_end": true
+      },
+      "postgres": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "running_at_end": true
+      },
+      "redis": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "running_at_end": true
+      }
+    },
+    "b": {
+      "api": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "running_at_end": true
+      },
+      "scheduler": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "running_at_end": true
+      },
+      "worker": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "running_at_end": true
+      },
+      "dag-processor": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "running_at_end": true
+      },
+      "triggerer": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "running_at_end": true
+      },
+      "postgres": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "running_at_end": true
+      },
+      "redis": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "running_at_end": true
+      }
+    },
+    "a2": {
+      "api": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "running_at_end": true
+      },
+      "scheduler": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "running_at_end": true
+      },
+      "worker": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "running_at_end": true
+      },
+      "dag-processor": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "running_at_end": true
+      },
+      "triggerer": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "running_at_end": true
+      },
+      "postgres": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "running_at_end": true
+      },
+      "redis": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "running_at_end": true
+      }
+    }
+  },
+  "contract_cases": {
+    "a1": {
+      "deferred_state_observed": true,
+      "runs": {
+        "e2e_a1_contracts_000": {
+          "state": "success",
+          "start": "2026-10-28 18:34:58.630931+00:00",
+          "end": "2026-10-28 18:35:09.513652+00:00",
+          "result": {
+            "case": "success",
+            "sha256": "1b8b4c0b6f6ad1d32565952720bc004eeb1f188f62045e4d5525ae2af8c78432",
+            "conf_type": "dict",
+            "try_number": 1,
+            "params_probe": "default",
+            "record_count": 0,
+            "mutable_identity": true
+          }
+        },
+        "e2e_a1_contracts_001": {
+          "state": "success",
+          "start": "2026-10-28 18:34:58.632048+00:00",
+          "end": "2026-10-28 18:35:08.307849+00:00",
+          "result": {
+            "case": "false-param",
+            "sha256": "d768b6a0d3742e987bebadc9032750092f5a2a0f2a9bf7f601f582f5f399d909",
+            "conf_type": "dict",
+            "try_number": 1,
+            "params_probe": false,
+            "record_count": 5,
+            "mutable_identity": true
+          }
+        },
+        "e2e_a1_contracts_002": {
+          "state": "success",
+          "start": "2026-10-28 18:34:58.632996+00:00",
+          "end": "2026-10-28 18:35:11.704939+00:00",
+          "result": {
+            "case": "retry",
+            "sha256": "d768b6a0d3742e987bebadc9032750092f5a2a0f2a9bf7f601f582f5f399d909",
+            "conf_type": "dict",
+            "try_number": 2,
+            "params_probe": "run",
+            "record_count": 5,
+            "mutable_identity": true
+          }
+        },
+        "e2e_a1_contracts_003": {
+          "state": "success",
+          "start": "2026-10-28 18:34:58.633829+00:00",
+          "end": "2026-10-28 18:35:12.632219+00:00",
+          "result": {
+            "case": "defer",
+            "sha256": "d768b6a0d3742e987bebadc9032750092f5a2a0f2a9bf7f601f582f5f399d909",
+            "conf_type": "dict",
+            "try_number": 1,
+            "params_probe": "run",
+            "record_count": 5,
+            "mutable_identity": true
+          }
+        },
+        "e2e_a1_contracts_004": {
+          "expected_failure": true,
+          "state": "failed",
+          "start": "2026-10-28 18:34:58.634642+00:00",
+          "end": "2026-10-28 18:35:11.718560+00:00"
+        }
+      }
+    },
+    "b": {
+      "deferred_state_observed": true,
+      "runs": {
+        "e2e_b_contracts_000": {
+          "state": "success",
+          "start": "2026-10-28 18:42:10.572565+00:00",
+          "end": "2026-10-28 18:42:20.933696+00:00",
+          "result": {
+            "case": "success",
+            "sha256": "1b8b4c0b6f6ad1d32565952720bc004eeb1f188f62045e4d5525ae2af8c78432",
+            "conf_type": "dict",
+            "try_number": 1,
+            "params_probe": "default",
+            "record_count": 0,
+            "mutable_identity": true
+          }
+        },
+        "e2e_b_contracts_001": {
+          "state": "success",
+          "start": "2026-10-28 18:42:10.573612+00:00",
+          "end": "2026-10-28 18:42:19.829132+00:00",
+          "result": {
+            "case": "false-param",
+            "sha256": "d768b6a0d3742e987bebadc9032750092f5a2a0f2a9bf7f601f582f5f399d909",
+            "conf_type": "dict",
+            "try_number": 1,
+            "params_probe": false,
+            "record_count": 5,
+            "mutable_identity": true
+          }
+        },
+        "e2e_b_contracts_002": {
+          "state": "success",
+          "start": "2026-10-28 18:42:10.574585+00:00",
+          "end": "2026-10-28 18:42:22.621009+00:00",
+          "result": {
+            "case": "retry",
+            "sha256": "d768b6a0d3742e987bebadc9032750092f5a2a0f2a9bf7f601f582f5f399d909",
+            "conf_type": "dict",
+            "try_number": 2,
+            "params_probe": "run",
+            "record_count": 5,
+            "mutable_identity": true
+          }
+        },
+        "e2e_b_contracts_003": {
+          "state": "success",
+          "start": "2026-10-28 18:42:10.575692+00:00",
+          "end": "2026-10-28 18:42:25.884488+00:00",
+          "result": {
+            "case": "defer",
+            "sha256": "d768b6a0d3742e987bebadc9032750092f5a2a0f2a9bf7f601f582f5f399d909",
+            "conf_type": "dict",
+            "try_number": 1,
+            "params_probe": "run",
+            "record_count": 5,
+            "mutable_identity": true
+          }
+        },
+        "e2e_b_contracts_004": {
+          "expected_failure": true,
+          "state": "failed",
+          "start": "2026-10-28 18:42:10.576536+00:00",
+          "end": "2026-10-28 18:42:22.636246+00:00"
+        }
+      }
+    },
+    "a2": {
+      "deferred_state_observed": true,
+      "runs": {
+        "e2e_a2_contracts_000": {
+          "state": "success",
+          "start": "2026-10-28 18:49:41.921005+00:00",
+          "end": "2026-10-28 18:49:52.302664+00:00",
+          "result": {
+            "case": "success",
+            "sha256": "1b8b4c0b6f6ad1d32565952720bc004eeb1f188f62045e4d5525ae2af8c78432",
+            "conf_type": "dict",
+            "try_number": 1,
+            "params_probe": "default",
+            "record_count": 0,
+            "mutable_identity": true
+          }
+        },
+        "e2e_a2_contracts_001": {
+          "state": "success",
+          "start": "2026-10-28 18:49:41.922206+00:00",
+          "end": "2026-10-28 18:49:53.508937+00:00",
+          "result": {
+            "case": "false-param",
+            "sha256": "d768b6a0d3742e987bebadc9032750092f5a2a0f2a9bf7f601f582f5f399d909",
+            "conf_type": "dict",
+            "try_number": 1,
+            "params_probe": false,
+            "record_count": 5,
+            "mutable_identity": true
+          }
+        },
+        "e2e_a2_contracts_002": {
+          "state": "success",
+          "start": "2026-10-28 18:49:41.923381+00:00",
+          "end": "2026-10-28 18:49:55.131168+00:00",
+          "result": {
+            "case": "retry",
+            "sha256": "d768b6a0d3742e987bebadc9032750092f5a2a0f2a9bf7f601f582f5f399d909",
+            "conf_type": "dict",
+            "try_number": 2,
+            "params_probe": "run",
+            "record_count": 5,
+            "mutable_identity": true
+          }
+        },
+        "e2e_a2_contracts_003": {
+          "state": "success",
+          "start": "2026-10-28 18:49:41.924433+00:00",
+          "end": "2026-10-28 18:49:56.523152+00:00",
+          "result": {
+            "case": "defer",
+            "sha256": "d768b6a0d3742e987bebadc9032750092f5a2a0f2a9bf7f601f582f5f399d909",
+            "conf_type": "dict",
+            "try_number": 1,
+            "params_probe": "run",
+            "record_count": 5,
+            "mutable_identity": true
+          }
+        },
+        "e2e_a2_contracts_004": {
+          "expected_failure": true,
+          "state": "failed",
+          "start": "2026-10-28 18:49:41.925383+00:00",
+          "end": "2026-10-28 18:49:55.146076+00:00"
+        }
+      }
+    }
+  },
+  "execution_api_access_log_durations": {
+    "a1": {
+      "note": "All scenarios combined; server access-log duration, not client end-to-end startup latency.",
+      "requests": 60,
+      "statuses": {
+        "400": 16,
+        "200": 44
+      },
+      "p50_ms": 1434.212,
+      "p95_ms": 6323.80765,
+      "successful_response_p50_ms": 3482.218,
+      "successful_response_p95_ms": 4878.50225
+    },
+    "b": {
+      "note": "All scenarios combined; server access-log duration, not client end-to-end startup latency.",
+      "requests": 56,
+      "statuses": {
+        "400": 16,
+        "200": 40
+      },
+      "p50_ms": 518.3135,
+      "p95_ms": 6392.146849999999,
+      "successful_response_p50_ms": 1124.5545,
+      "successful_response_p95_ms": 1990.5963500000003
+    },
+    "a2": {
+      "note": "All scenarios combined; server access-log duration, not client end-to-end startup latency.",
+      "requests": 60,
+      "statuses": {
+        "400": 16,
+        "200": 44
+      },
+      "p50_ms": 1305.3110000000001,
+      "p95_ms": 6263.77105,
+      "successful_response_p50_ms": 1595.783,
+      "successful_response_p95_ms": 5034.88275
+    }
+  },
+  "qualification": "Functional run outcomes passed. Recovered HTTP400 startup responses occurred in every arm; their root cause is not conclusively established. Performance/production conclusions remain qualified.",
+  "individual_component_peaks_not_application_total": {
+    "api": {
+      "baseline_mean_individual_peak_mib": 915.23828125,
+      "patched_individual_peak_mib": 694.4140625,
+      "reduction_percent": 24.127511192867296
+    },
+    "scheduler": {
+      "baseline_mean_individual_peak_mib": 2247.140625,
+      "patched_individual_peak_mib": 2248.73046875,
+      "reduction_percent": -0.07074963321443223
+    },
+    "worker": {
+      "baseline_mean_individual_peak_mib": 1610.869140625,
+      "patched_individual_peak_mib": 1453.2109375,
+      "reduction_percent": 9.787151491637012
+    },
+    "dag-processor": {
+      "baseline_mean_individual_peak_mib": 250.884765625,
+      "patched_individual_peak_mib": 250.55859375,
+      "reduction_percent": 0.13000864129292425
+    },
+    "triggerer": {
+      "baseline_mean_individual_peak_mib": 451.8203125,
+      "patched_individual_peak_mib": 450.73046875,
+      "reduction_percent": 0.24121176490930785
+    },
+    "postgres": {
+      "baseline_mean_individual_peak_mib": 513.75,
+      "patched_individual_peak_mib": 695.734375,
+      "reduction_percent": -35.42274939172749
+    },
+    "redis": {
+      "baseline_mean_individual_peak_mib": 7.462890625,
+      "patched_individual_peak_mib": 6.9140625,
+      "reduction_percent": 7.35409578644334
+    }
+  },
+  "separate_startup_diagnostic": {
+    "started": "2026-10-28T19:02:20.945676+00:00",
+    "baseline": "750f849cc2372ee42dc6910541d4b6a866102ac9",
+    "change": "Only add an Execution API health warm-up before submitting execution work.",
+    "source_change": "None: both variants use the unpatched baseline.",
+    "variants": [
+      {
+        "name": "diagcold",
+        "execution_api_health_warmed": false,
+        "verified_runs": 4,
+        "start_request_statuses": {
+          "400": 4,
+          "200": 4
+        },
+        "execution_seconds": 13.846736660000715
+      },
+      {
+        "name": "diagwarm",
+        "execution_api_health_warmed": true,
+        "verified_runs": 4,
+        "start_request_statuses": {
+          "200": 4
+        },
+        "execution_seconds": 9.581245365000541
+      }
+    ],
+    "warmup_removed_observed_http400": true,
+    "status": "completed",
+    "interpretation": "This controls readiness only, not the memory patch. It does not replace the original A/B/A data or establish the exact transport failure mechanism.",
+    "finished": "2026-10-28T19:05:19.129863+00:00"
+  }
+}

@@ -1,0 +1,6 @@
+* text=auto eol=lf
+*.diff -text -diff
+*.patch -text -diff
+*.log -text -diff
+*.jsonl -text -diff
+*.xml -text -diff

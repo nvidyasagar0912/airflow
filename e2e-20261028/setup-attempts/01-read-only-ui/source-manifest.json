@@ -1,0 +1,36 @@
+{
+  "baseline": "750f849cc2372ee42dc6910541d4b6a866102ac9",
+  "patch_sha256": "1b953037b828adcd32fef174c2e3da3d1f45910488c5e9c25f8b79bb2b4f65c4",
+  "image": "ghcr.io/apache/airflow/main/ci/python3.12@sha256:42cd6b3d711b3a67bf3047d7c93dcefb4bd997b6bd059ac6a28acac11c99eab7",
+  "resources": {
+    "api": [
+      "3g",
+      "2"
+    ],
+    "scheduler": [
+      "4g",
+      "2"
+    ],
+    "worker": [
+      "4g",
+      "4"
+    ],
+    "dag-processor": [
+      "1536m",
+      "1"
+    ],
+    "triggerer": [
+      "768m",
+      "1"
+    ],
+    "postgres": [
+      "1g",
+      "1"
+    ],
+    "redis": [
+      "256m",
+      "0.5"
+    ]
+  },
+  "source_mode": "Read-only Linux source volume; same pinned dependencies/image for every component."
+}

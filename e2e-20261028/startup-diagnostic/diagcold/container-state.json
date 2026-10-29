@@ -1,0 +1,135 @@
+{
+  "api": {
+    "state": {
+      "Status": "running",
+      "Running": true,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 33208,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-10-28T19:03:09.936571949Z",
+      "FinishedAt": "2026-10-28T19:03:09.719067524Z"
+    },
+    "restart_count": 0,
+    "image": "sha256:42cd6b3d711b3a67bf3047d7c93dcefb4bd997b6bd059ac6a28acac11c99eab7",
+    "memory_limit": 3221225472,
+    "nano_cpus": 2000000000
+  },
+  "scheduler": {
+    "state": {
+      "Status": "running",
+      "Running": true,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 32935,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-10-28T19:02:54.844910158Z",
+      "FinishedAt": "0001-01-01T00:00:00Z"
+    },
+    "restart_count": 0,
+    "image": "sha256:42cd6b3d711b3a67bf3047d7c93dcefb4bd997b6bd059ac6a28acac11c99eab7",
+    "memory_limit": 4294967296,
+    "nano_cpus": 2000000000
+  },
+  "worker": {
+    "state": {
+      "Status": "running",
+      "Running": true,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 33004,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-10-28T19:02:55.32571884Z",
+      "FinishedAt": "0001-01-01T00:00:00Z"
+    },
+    "restart_count": 0,
+    "image": "sha256:42cd6b3d711b3a67bf3047d7c93dcefb4bd997b6bd059ac6a28acac11c99eab7",
+    "memory_limit": 4294967296,
+    "nano_cpus": 4000000000
+  },
+  "dag-processor": {
+    "state": {
+      "Status": "running",
+      "Running": true,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 32866,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-10-28T19:02:54.410798284Z",
+      "FinishedAt": "0001-01-01T00:00:00Z"
+    },
+    "restart_count": 0,
+    "image": "sha256:42cd6b3d711b3a67bf3047d7c93dcefb4bd997b6bd059ac6a28acac11c99eab7",
+    "memory_limit": 1610612736,
+    "nano_cpus": 1000000000
+  },
+  "triggerer": {
+    "state": {
+      "Status": "running",
+      "Running": true,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 33071,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-10-28T19:02:55.850395953Z",
+      "FinishedAt": "0001-01-01T00:00:00Z"
+    },
+    "restart_count": 0,
+    "image": "sha256:42cd6b3d711b3a67bf3047d7c93dcefb4bd997b6bd059ac6a28acac11c99eab7",
+    "memory_limit": 805306368,
+    "nano_cpus": 1000000000
+  },
+  "postgres": {
+    "state": {
+      "Status": "running",
+      "Running": true,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 32400,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-10-28T19:02:21.203313822Z",
+      "FinishedAt": "0001-01-01T00:00:00Z"
+    },
+    "restart_count": 0,
+    "image": "sha256:1beaa3084eee2676f20a9cd9928f0bf2c5bf674f8e49f81017912183d377c61c",
+    "memory_limit": 1073741824,
+    "nano_cpus": 1000000000
+  },
+  "redis": {
+    "state": {
+      "Status": "running",
+      "Running": true,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 32500,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-10-28T19:02:21.624841796Z",
+      "FinishedAt": "0001-01-01T00:00:00Z"
+    },
+    "restart_count": 0,
+    "image": "sha256:6ba19c50b56777f5c11c58eff8ddb69d0d5f27ba131cffb63f180ccfd43c66af",
+    "memory_limit": 268435456,
+    "nano_cpus": 500000000
+  }
+}
