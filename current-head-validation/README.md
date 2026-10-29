@@ -16,6 +16,27 @@ These results are separate from the historical performance comparison.
 This includes explicit SQL NULL separately from JSON null at four negotiated
 API versions, in addition to empty and nested configuration.
 
+## Final publication-base rerun
+
+The final source commit is
+`8b8ef50a7914183f766690b83d5bc92146ad00ca`, rebased onto
+`ddb89d5e006ebabea298dd22396b73ee0a0e463c`.
+The 16 candidate file blobs in the tested CI checkout were independently
+verified to match that committed head. Neither the candidate files nor
+application production code changed across the final rebase; upstream test
+infrastructure and unrelated tests did change.
+
+| Repeated suite | Passing cases | JUnit report |
+| --- | ---: | --- |
+| Same Task SDK selection | 442 | [final-sdk.xml](final-sdk.xml) |
+| Same SQLite API selection | 96 | [final-api-sqlite.xml](final-api-sqlite.xml) |
+| **Final-base rerun total** | **538** | **0 failures, 0 errors** |
+
+These are repeat executions of cases already counted in the 780-case table,
+not additional distinct coverage. PostgreSQL/MySQL were not rerun on this
+last base; their 121/121 results above remain tied to the earlier base.
+`git diff --check` also passed on the final-base test checkout.
+
 ## Other checks actually executed
 
 - Official Task SDK model generation: passed.

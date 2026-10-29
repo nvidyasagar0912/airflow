@@ -3,6 +3,10 @@
 This is **fork-only supporting evidence**, not additional files proposed for
 the Apache Airflow source tree.
 
+Source proposal: [Apache Airflow draft PR #75935](https://github.com/apache/airflow/pull/75935).
+Historical reports retain their time-of-test status notes; they do not
+describe the current publication state.
+
 The change keeps large `DagRun.conf` values serialized through the Execution
 API and Python supervisor, then restores the task-visible dictionary in the
 Python task process. It does not change the scheduler or database schema.
@@ -43,6 +47,7 @@ speedup.
 | Historical real local pipeline | A1 / candidate / A2 on that exact baseline | 111 declared DagRun outcomes verified: 108 successes and 3 intentional negative failures |
 | Startup-readiness control | Unpatched baseline only, cold versus health-warmed API | 8 completed runs; warming `/execution/health` removed the observed HTTP 400s in the small control |
 | Current publication regression suites | `6056deb572e1e8fd5a51654ad0a22c963e5a6a69` plus minor review corrections and genuine SQL-NULL coverage | 780 passing cases; see [current-head validation](current-head-validation/) |
+| Final publication-base rerun | Publication head `8b8ef50a7914183f766690b83d5bc92146ad00ca` on `ddb89d5e006ebabea298dd22396b73ee0a0e463c` | 538 previously selected SDK/SQLite cases passed again; this is a rerun, not additional distinct coverage |
 
 The performance measurements were **not rerun on the rebased publication
 head**. They are explicitly historical measurements of the pinned candidate,
@@ -51,6 +56,9 @@ not a claim that the current head has identical measured memory or timing.
 The current-head changes reuse the existing dialect helper, specify a test
 mock, move new test imports, clarify the preserved rollback behavior and the
 500-to-422 status change, and test actual SQL NULL separately from JSON null.
+All 16 candidate file blobs in the final-base test checkout were verified
+against the committed publication head. The last rebase changed no candidate
+files or application production code; PostgreSQL/MySQL were not rerun after it.
 
 ## Start here
 
