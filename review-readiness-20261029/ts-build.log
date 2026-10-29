@@ -1,0 +1,8 @@
+
+> apache-airflow-ts-sdk@1.0.0-beta1 build /opt/airflow/ts-sdk
+> pnpm run clean && tsc -p tsconfig.build.json
+
+
+> apache-airflow-ts-sdk@1.0.0-beta1 clean /opt/airflow/ts-sdk
+> node -e "require('node:fs').rmSync('dist', { recursive: true, force: true })"
+

@@ -1,0 +1,6 @@
+
+> apache-airflow-ts-sdk@1.0.0-beta1 generate:supervisor /opt/airflow/ts-sdk
+> node scripts/generate-supervisor.mjs
+
+wrote /opt/airflow/ts-sdk/src/generated/supervisor.ts
+  api_version=2026-10-30, schemas=120

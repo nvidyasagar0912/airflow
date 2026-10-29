@@ -1,0 +1,4 @@
+
+> apache-airflow-ts-sdk@1.0.0-beta1 typecheck /opt/airflow/ts-sdk
+> tsc --noEmit
+

@@ -1,0 +1,202 @@
+{
+  "source_commit": "24f3370758227ce1bb13e5df251d26a9271ceeee",
+  "mode": "base",
+  "scope": "Isolated PostgreSQL JSONB projection, actual model/IPC codecs and task restoration.",
+  "limitations": [
+    "Not the real HTTP route, its ORM joins, middleware, concurrent servers or a full-stack peak.",
+    "One projection query per measured API operation; excludes the added asset-collection query.",
+    "JSON and gzip sizes are model serialization diagnostics, not negotiated HTTP transfers.",
+    "Python peak is traced allocations for four retained starts; RSS delta is not an RSS peak.",
+    "One warm-up and three untraced timing samples per phase; memory measured separately."
+  ],
+  "profiles": [
+    {
+      "profile": "sql-null",
+      "retained_starts": 4,
+      "persisted_json_text_bytes": 0,
+      "api_model_json_bytes": 353,
+      "api_model_gzip6_bytes_not_actual_http_transfer": 208,
+      "messagepack_frame_bytes": 933,
+      "task_conf_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+      "unaffected_sha256_control_ms_samples": [
+        0.7742984218737092,
+        0.7722810234440658,
+        0.7826672734267959
+      ],
+      "unaffected_sha256_control_ms_median": 0.7742984218737092,
+      "phases": {
+        "api-projection": {
+          "milliseconds_per_start_samples": [
+            0.4454967502169893,
+            0.41159325064654695,
+            0.3958664992751437
+          ],
+          "milliseconds_per_start_median": 0.41159325064654695,
+          "four_retained_starts_python_peak_bytes": 43779,
+          "four_retained_starts_rss_delta_bytes": 4096
+        },
+        "supervisor": {
+          "milliseconds_per_start_samples": [
+            0.06745700011379085,
+            0.06928224956936901,
+            0.07388275025732582
+          ],
+          "milliseconds_per_start_median": 0.06928224956936901,
+          "four_retained_starts_python_peak_bytes": 43763,
+          "four_retained_starts_rss_delta_bytes": 16384
+        },
+        "task": {
+          "milliseconds_per_start_samples": [
+            0.04777999947691569,
+            0.04250450001563877,
+            0.05848100045113824
+          ],
+          "milliseconds_per_start_median": 0.04777999947691569,
+          "four_retained_starts_python_peak_bytes": 43747,
+          "four_retained_starts_rss_delta_bytes": 0
+        }
+      }
+    },
+    {
+      "profile": "empty",
+      "retained_starts": 4,
+      "persisted_json_text_bytes": 2,
+      "api_model_json_bytes": 351,
+      "api_model_gzip6_bytes_not_actual_http_transfer": 208,
+      "messagepack_frame_bytes": 933,
+      "task_conf_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "unaffected_sha256_control_ms_samples": [
+        0.7629472343637644,
+        0.7616135000034774,
+        0.7618291484448036
+      ],
+      "unaffected_sha256_control_ms_median": 0.7618291484448036,
+      "phases": {
+        "api-projection": {
+          "milliseconds_per_start_samples": [
+            0.38936575037951116,
+            0.4311952498028404,
+            0.375939500372624
+          ],
+          "milliseconds_per_start_median": 0.38936575037951116,
+          "four_retained_starts_python_peak_bytes": 43731,
+          "four_retained_starts_rss_delta_bytes": 4096
+        },
+        "supervisor": {
+          "milliseconds_per_start_samples": [
+            0.08080850057012867,
+            0.05950625018158462,
+            0.06610699983866652
+          ],
+          "milliseconds_per_start_median": 0.06610699983866652,
+          "four_retained_starts_python_peak_bytes": 43707,
+          "four_retained_starts_rss_delta_bytes": 0
+        },
+        "task": {
+          "milliseconds_per_start_samples": [
+            0.04110450026928447,
+            0.042029500036733225,
+            0.03907925020030234
+          ],
+          "milliseconds_per_start_median": 0.04110450026928447,
+          "four_retained_starts_python_peak_bytes": 43691,
+          "four_retained_starts_rss_delta_bytes": 0
+        }
+      }
+    },
+    {
+      "profile": "small",
+      "retained_starts": 4,
+      "persisted_json_text_bytes": 76,
+      "api_model_json_bytes": 417,
+      "api_model_gzip6_bytes_not_actual_http_transfer": 247,
+      "messagepack_frame_bytes": 983,
+      "task_conf_sha256": "5924d7a3b2f67ca2e58a5b26dd34fd98880aa6074ed7343cc90c47e50e1c38fe",
+      "unaffected_sha256_control_ms_samples": [
+        0.7628030390662843,
+        0.7648165312446054,
+        0.7707929375158074
+      ],
+      "unaffected_sha256_control_ms_median": 0.7648165312446054,
+      "phases": {
+        "api-projection": {
+          "milliseconds_per_start_samples": [
+            0.410018250477151,
+            0.44819699996878626,
+            0.4311952498028404
+          ],
+          "milliseconds_per_start_median": 0.4311952498028404,
+          "four_retained_starts_python_peak_bytes": 43675,
+          "four_retained_starts_rss_delta_bytes": 0
+        },
+        "supervisor": {
+          "milliseconds_per_start_samples": [
+            0.07110749993444188,
+            0.06473175017163157,
+            0.06605700036743656
+          ],
+          "milliseconds_per_start_median": 0.06605700036743656,
+          "four_retained_starts_python_peak_bytes": 43659,
+          "four_retained_starts_rss_delta_bytes": 4096
+        },
+        "task": {
+          "milliseconds_per_start_samples": [
+            0.04397950033308007,
+            0.0443797498519416,
+            0.040404249375569634
+          ],
+          "milliseconds_per_start_median": 0.04397950033308007,
+          "four_retained_starts_python_peak_bytes": 43659,
+          "four_retained_starts_rss_delta_bytes": 0
+        }
+      }
+    },
+    {
+      "profile": "large",
+      "retained_starts": 4,
+      "persisted_json_text_bytes": 13386793,
+      "api_model_json_bytes": 11915142,
+      "api_model_gzip6_bytes_not_actual_http_transfer": 1590760,
+      "messagepack_frame_bytes": 8878176,
+      "task_conf_sha256": "8d0ad4978cdc03771eeddf52fbf50c4fc24a7ba14c9286888a42ad3334af4482",
+      "unaffected_sha256_control_ms_samples": [
+        0.7619753359335846,
+        0.7603759531207288,
+        0.7633028125155761
+      ],
+      "unaffected_sha256_control_ms_median": 0.7619753359335846,
+      "phases": {
+        "api-projection": {
+          "milliseconds_per_start_samples": [
+            372.68634125030076,
+            368.369940750199,
+            377.61769799999456
+          ],
+          "milliseconds_per_start_median": 372.68634125030076,
+          "four_retained_starts_python_peak_bytes": 299056595,
+          "four_retained_starts_rss_delta_bytes": 523538432
+        },
+        "supervisor": {
+          "milliseconds_per_start_samples": [
+            279.4384810003976,
+            310.4515557506602,
+            315.1252702500642
+          ],
+          "milliseconds_per_start_median": 310.4515557506602,
+          "four_retained_starts_python_peak_bytes": 512206684,
+          "four_retained_starts_rss_delta_bytes": 853037056
+        },
+        "task": {
+          "milliseconds_per_start_samples": [
+            94.47403300055157,
+            89.95355899969582,
+            91.70386749974568
+          ],
+          "milliseconds_per_start_median": 91.70386749974568,
+          "four_retained_starts_python_peak_bytes": 246162697,
+          "four_retained_starts_rss_delta_bytes": 158957568
+        }
+      }
+    }
+  ]
+}

@@ -3,7 +3,7 @@
 This is **fork-only supporting evidence**, not additional files proposed for
 the Apache Airflow source tree.
 
-Source proposal: [Apache Airflow draft PR #75935](https://github.com/apache/airflow/pull/75935).
+Source proposal: [Apache Airflow PR #75935](https://github.com/apache/airflow/pull/75935).
 Historical reports retain their time-of-test status notes; they do not
 describe the current publication state.
 
@@ -48,6 +48,8 @@ speedup.
 | Startup-readiness control | Unpatched baseline only, cold versus health-warmed API | 8 completed runs; warming `/execution/health` removed the observed HTTP 400s in the small control |
 | Current publication regression suites | `6056deb572e1e8fd5a51654ad0a22c963e5a6a69` plus minor review corrections and genuine SQL-NULL coverage | 780 passing cases; see [current-head validation](current-head-validation/) |
 | Final publication-base rerun | Publication head `8b8ef50a7914183f766690b83d5bc92146ad00ca` on `ddb89d5e006ebabea298dd22396b73ee0a0e463c` | 538 previously selected SDK/SQLite cases passed again; this is a rerun, not additional distinct coverage |
+| Latest review-readiness verification | Final source `448ca150662cb9c5f8da0ee1655227de20186073` on `24f3370758227ce1bb13e5df251d26a9271ceeee` | 2,213 non-overlapping Python/backend cases passed, 7 expected skips; 935 TypeScript tests and 3 Go test packages passed; applicable fast/manual hooks passed |
+| Current-base isolated performance protocol | Three actual base/head pairs at `24f3370` / `81fe003`; final commit only synchronizes Go/TypeScript generated exports | All unchanged controls within 10%; null/empty/small/large phases and byte counts recorded in [readiness results](review-readiness-20261029/) |
 
 The performance measurements were **not rerun on the rebased publication
 head**. They are explicitly historical measurements of the pinned candidate,
@@ -59,6 +61,25 @@ mock, move new test imports, clarify the preserved rollback behavior and the
 All 16 candidate file blobs in the final-base test checkout were verified
 against the committed publication head. The last rebase changed no candidate
 files or application production code; PostgreSQL/MySQL were not rerun after it.
+That statement describes the earlier rebase. The latest readiness run repeated
+both native-backend selections on the newer base and broadened SDK/SQLite
+coverage. All 20 final changed file blobs were verified against the tested
+Linux checkout; see [source verification](review-readiness-20261029/source-verification.json).
+
+## Latest isolated findings and trade-offs
+
+These are not a repeat of the live full-stack memory experiment.
+Current-base isolated Python allocation peaks for four retained starts were
+285.20 to 127.64 MiB in the JSONB/API-model phase and 488.48 to 127.69 MiB in
+the supervisor phase. Task allocation peak increased from 234.76 to 239.71 MiB.
+Task startup decode time increased 38.7%; API-model JSON grew 34.7% and actual
+MessagePack frames grew 50.8%. Simulated gzip level-6 model size grew 5.7%;
+it is not a measurement of negotiated HTTP transfer.
+
+The direct JSONB projection excludes the full route's ORM/state logic and the
+extra asset query. It does not establish common-path endpoint cost or a
+full-stack benefit. See [all medians and controls](review-readiness-20261029/benchmark-summary.json)
+and [chronological run output](review-readiness-20261029/benchmark-run.log).
 
 ## Start here
 
@@ -70,6 +91,7 @@ files or application production code; PostgreSQL/MySQL were not rerun after it.
 - [Pinned images and resource settings](e2e-20261028/source-manifest.json).
 - [Reproduction and analysis scripts](e2e-20261028/harness/).
 - [Current-head validation](current-head-validation/).
+- [Latest readiness logs, broader JUnit reports and alternating phase samples](review-readiness-20261029/).
 
 Per-arm folders retain raw memory/CPU samples, state transitions and service
 logs. Bind `e2e-20261028/` at `/evidence` when using its reproduction harness.
@@ -81,8 +103,9 @@ Read its resource and private-network requirements first.
   arm. The separate unchanged-baseline control reproduced four cold errors
   and zero after execution-health warm-up. The exact transport mechanism was
   not established, and the large comparison was not rerun with the warm-up.
-- The upstream performance protocol still needs at least three alternating
-  baseline and three candidate runs with an unaffected control.
+- The isolated changed-code protocol now has three alternating pairs with
+  an unaffected control. A warmed, three-pair live full-stack comparison
+  remains pending; historical component peaks are not newly repeated results.
 - Empty/small configuration, legacy/foreign compatibility costs and actual
   HTTP/IPC byte counts require further measurement.
 - The event-collection read deliberately adds a database round trip to avoid

@@ -1,0 +1,4 @@
+✓ airflow-core
+  Run mypy for airflow-core..............................................Passed
+✓ task-sdk
+  Run mypy for task-sdk..................................................Passed

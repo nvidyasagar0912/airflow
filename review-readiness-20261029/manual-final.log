@@ -1,0 +1,30 @@
+✓ providers/common/ai
+  Compile Common AI provider assets..........................(no files to check)Skipped
+✓ dev/mypy
+  Run mypy for airflow-mypy (manual).........................(no files to check)Skipped
+✓ providers/edge3
+  Compile Edge provider assets...............................(no files to check)Skipped
+✓ providers/fab
+  Compile FAB provider assets................................(no files to check)Skipped
+✓ airflow-core
+  Compile ui assets (manual).................................(no files to check)Skipped
+  Compile ui assets in dev mode (manual)........................................Skipped
+  Migration round-trip SQLite FK enforcement.................(no files to check)Skipped
+✓ chart
+  Update chart dependencies to latest (manual)...............(no files to check)Skipped
+✓ providers
+  Run mypy for providers (manual)............................(no files to check)Skipped
+✓ ts-sdk
+  Compile TypeScript SDK.........................................................Passed
+  Verify TypeScript SDK package artifact.........................................Passed
+✓ <workspace>
+  Update NOTICE files to current year (manual)...................................Passed
+  Upgrade important versions (manual)........................(no files to check)Skipped
+  Upgrade curated dependency floors (manual).................(no files to check)Skipped
+  Make sure that there is an empty line at the end...............................Passed
+  Check that executables have shebang........................(no files to check)Skipped
+  Remove trailing whitespace at end of line......................................Passed
+  Run skill-eval against AGENTS.md and cases.................(no files to check)Skipped
+  Run skill-eval against AGENTS.md and cases (Codex runtime)....................Skipped
+  View skill-eval results in browser (manual)...................................Skipped
+  Update Docker build GPG keys (manual)......................(no files to check)Skipped

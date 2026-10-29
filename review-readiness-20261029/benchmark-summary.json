@@ -1,0 +1,202 @@
+{
+  "base": "24f3370758227ce1bb13e5df251d26a9271ceeee",
+  "head": "81fe003b3525c44b25ada97abe514289862853b5",
+  "order": [
+    "base-1",
+    "head-1",
+    "base-2",
+    "head-2",
+    "base-3",
+    "head-3"
+  ],
+  "controls": [
+    {
+      "Profile": "sql-null",
+      "BaseMs": 0.7742984218737092,
+      "HeadMs": 0.7651301718851755,
+      "DeltaPct": -1.184071893927885,
+      "WithinTenPct": true
+    },
+    {
+      "Profile": "empty",
+      "BaseMs": 0.8228255312587862,
+      "HeadMs": 0.76250261719224,
+      "DeltaPct": -7.331191337033771,
+      "WithinTenPct": true
+    },
+    {
+      "Profile": "small",
+      "BaseMs": 0.7677398047007955,
+      "HeadMs": 0.7628057734621052,
+      "DeltaPct": -0.6426697181101892,
+      "WithinTenPct": true
+    },
+    {
+      "Profile": "large",
+      "BaseMs": 0.7675991249982417,
+      "HeadMs": 0.7624384218729574,
+      "DeltaPct": -0.6723174841159585,
+      "WithinTenPct": true
+    }
+  ],
+  "phases": [
+    {
+      "Profile": "sql-null",
+      "Phase": "api-projection",
+      "BaseMs": 0.41159325064654695,
+      "HeadMs": 0.44647125014307676,
+      "TimeDeltaPct": 8.473899764328507,
+      "BasePeakMiB": 0.04175090789794922,
+      "HeadPeakMiB": 0.04178142547607422,
+      "PeakDeltaPct": 0.0730944059937455
+    },
+    {
+      "Profile": "sql-null",
+      "Phase": "supervisor",
+      "BaseMs": 0.07543299943790771,
+      "HeadMs": 0.06530700011353474,
+      "TimeDeltaPct": -13.423832274770053,
+      "BasePeakMiB": 0.04173564910888672,
+      "HeadPeakMiB": 0.04176616668701172,
+      "PeakDeltaPct": 0.07312112972146512
+    },
+    {
+      "Profile": "sql-null",
+      "Phase": "task",
+      "BaseMs": 0.04777999947691569,
+      "HeadMs": 0.03995399947598344,
+      "TimeDeltaPct": -16.379238356235824,
+      "BasePeakMiB": 0.04172039031982422,
+      "HeadPeakMiB": 0.04175090789794922,
+      "PeakDeltaPct": 0.07314787299701475
+    },
+    {
+      "Profile": "empty",
+      "Phase": "api-projection",
+      "BaseMs": 0.4191690004518023,
+      "HeadMs": 0.4537702498055296,
+      "TimeDeltaPct": 8.254725257934691,
+      "BasePeakMiB": 0.04170513153076172,
+      "HeadPeakMiB": 0.04173564910888672,
+      "PeakDeltaPct": 0.07317463584184392
+    },
+    {
+      "Profile": "empty",
+      "Phase": "supervisor",
+      "BaseMs": 0.07673325035284506,
+      "HeadMs": 0.07368274964392185,
+      "TimeDeltaPct": -3.9754613481065793,
+      "BasePeakMiB": 0.04168224334716797,
+      "HeadPeakMiB": 0.04171276092529297,
+      "PeakDeltaPct": 0.07321481684856579
+    },
+    {
+      "Profile": "empty",
+      "Phase": "task",
+      "BaseMs": 0.04868000087299151,
+      "HeadMs": 0.0476297500426881,
+      "TimeDeltaPct": -2.157458528079259,
+      "BasePeakMiB": 0.04166698455810547,
+      "HeadPeakMiB": 0.04169750213623047,
+      "PeakDeltaPct": 0.07324162871071849
+    },
+    {
+      "Profile": "small",
+      "Phase": "api-projection",
+      "BaseMs": 0.4983002500011935,
+      "HeadMs": 0.4275677501937025,
+      "TimeDeltaPct": -14.194755031192852,
+      "BasePeakMiB": 0.04165172576904297,
+      "HeadPeakMiB": 0.04168224334716797,
+      "PeakDeltaPct": 0.07326846021751265
+    },
+    {
+      "Profile": "small",
+      "Phase": "supervisor",
+      "BaseMs": 0.08845899992593331,
+      "HeadMs": 0.06938225033081835,
+      "TimeDeltaPct": -21.56564013959904,
+      "BasePeakMiB": 0.04163646697998047,
+      "HeadPeakMiB": 0.04166698455810547,
+      "PeakDeltaPct": 0.07329531139055323
+    },
+    {
+      "Profile": "small",
+      "Phase": "task",
+      "BaseMs": 0.04825475025427295,
+      "HeadMs": 0.04667949997383403,
+      "TimeDeltaPct": -3.2644460330606195,
+      "BasePeakMiB": 0.04163646697998047,
+      "HeadPeakMiB": 0.04166698455810547,
+      "PeakDeltaPct": 0.07329531139055323
+    },
+    {
+      "Profile": "large",
+      "Phase": "api-projection",
+      "BaseMs": 418.60312425069424,
+      "HeadMs": 261.2076240002352,
+      "TimeDeltaPct": -37.60017332221284,
+      "BasePeakMiB": 285.20259380340576,
+      "HeadPeakMiB": 127.63625526428223,
+      "PeakDeltaPct": -55.24716182901768
+    },
+    {
+      "Profile": "large",
+      "Phase": "supervisor",
+      "BaseMs": 323.8109069998245,
+      "HeadMs": 36.692372749712376,
+      "TimeDeltaPct": -88.66858034842777,
+      "BasePeakMiB": 488.4783115386963,
+      "HeadPeakMiB": 127.69233322143555,
+      "PeakDeltaPct": -73.85916012950351
+    },
+    {
+      "Profile": "large",
+      "Phase": "task",
+      "BaseMs": 91.70386749974568,
+      "HeadMs": 127.162202999898,
+      "TimeDeltaPct": 38.66612877613984,
+      "BasePeakMiB": 234.75904178619385,
+      "HeadPeakMiB": 239.7128438949585,
+      "PeakDeltaPct": 2.1101645632360055
+    }
+  ],
+  "serialized_sizes": [
+    {
+      "Profile": "sql-null",
+      "BaseJsonBytes": 353,
+      "HeadJsonBytes": 384,
+      "BaseGzip6Bytes": 208,
+      "HeadGzip6Bytes": 224,
+      "BaseFrameBytes": 933,
+      "HeadFrameBytes": 958
+    },
+    {
+      "Profile": "empty",
+      "BaseJsonBytes": 351,
+      "HeadJsonBytes": 384,
+      "BaseGzip6Bytes": 208,
+      "HeadGzip6Bytes": 227,
+      "BaseFrameBytes": 933,
+      "HeadFrameBytes": 960
+    },
+    {
+      "Profile": "small",
+      "BaseJsonBytes": 417,
+      "HeadJsonBytes": 468,
+      "BaseGzip6Bytes": 247,
+      "HeadGzip6Bytes": 279,
+      "BaseFrameBytes": 983,
+      "HeadFrameBytes": 1035
+    },
+    {
+      "Profile": "large",
+      "BaseJsonBytes": 11915142,
+      "HeadJsonBytes": 16055177,
+      "BaseGzip6Bytes": 1590760,
+      "HeadGzip6Bytes": 1681572,
+      "BaseFrameBytes": 8878176,
+      "HeadFrameBytes": 13387755
+    }
+  ]
+}

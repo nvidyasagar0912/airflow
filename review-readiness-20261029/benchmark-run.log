@@ -1,0 +1,390 @@
+BENCH_START base-1 2026-10-29T12:54:21.3889160+05:30
+HEAD is now at 24f3370 Add query and report inspection operators for Google Bid Manager (#71947)
+Average time: 0.367 ms
+Average time: 0.451 ms
+Average time: 0.372 ms
+Memory: 0 bytes
+Average time: 0.075 ms
+Average time: 0.075 ms
+Average time: 0.091 ms
+Memory: 0 bytes
+Average time: 0.038 ms
+Average time: 0.055 ms
+Average time: 0.061 ms
+Memory: 0 bytes
+Average time: 0.779 ms
+Average time: 0.793 ms
+Average time: 0.783 ms
+Average time: 0.405 ms
+Average time: 0.435 ms
+Average time: 0.419 ms
+Memory: 0 bytes
+Average time: 0.068 ms
+Average time: 0.077 ms
+Average time: 0.078 ms
+Memory: 0 bytes
+Average time: 0.043 ms
+Average time: 0.067 ms
+Average time: 0.068 ms
+Memory: 0 bytes
+Average time: 0.821 ms
+Average time: 0.850 ms
+Average time: 0.823 ms
+Average time: 0.692 ms
+Average time: 0.567 ms
+Average time: 0.554 ms
+Memory: 0 bytes
+Average time: 0.097 ms
+Average time: 0.120 ms
+Average time: 0.096 ms
+Memory: 0 bytes
+Average time: 0.045 ms
+Average time: 0.057 ms
+Average time: 0.052 ms
+Memory: 0 bytes
+Average time: 0.804 ms
+Average time: 0.794 ms
+Average time: 0.800 ms
+Average time: 418.603 ms
+Average time: 377.823 ms
+Average time: 466.805 ms
+Memory: 524439552 bytes
+Average time: 284.367 ms
+Average time: 359.960 ms
+Average time: 323.811 ms
+Memory: 855855104 bytes
+Average time: 111.732 ms
+Average time: 93.676 ms
+Average time: 94.134 ms
+Memory: 158334976 bytes
+Average time: 0.768 ms
+Average time: 0.762 ms
+Average time: 0.768 ms
+BENCH_REPORT /tmp/api-ready-benchmark-results/base-1.json
+BENCH_COMPLETE base-1 2026-10-29T12:55:13.7917362+05:30
+BENCH_START head-1 2026-10-29T12:55:13.7926205+05:30
+Previous HEAD position was 24f3370 Add query and report inspection operators for Google Bid Manager (#71947)
+HEAD is now at 81fe003 Reduce API and worker memory overhead for large Dag run conf
+Average time: 0.440 ms
+Average time: 0.446 ms
+Average time: 0.483 ms
+Memory: 0 bytes
+Average time: 0.072 ms
+Average time: 0.077 ms
+Average time: 0.082 ms
+Memory: 0 bytes
+Average time: 0.041 ms
+Average time: 0.040 ms
+Average time: 0.041 ms
+Memory: 0 bytes
+Average time: 0.766 ms
+Average time: 0.762 ms
+Average time: 0.767 ms
+Average time: 0.409 ms
+Average time: 0.524 ms
+Average time: 0.469 ms
+Memory: 0 bytes
+Average time: 0.066 ms
+Average time: 0.067 ms
+Average time: 0.063 ms
+Memory: 0 bytes
+Average time: 0.045 ms
+Average time: 0.053 ms
+Average time: 0.047 ms
+Memory: 0 bytes
+Average time: 0.763 ms
+Average time: 0.762 ms
+Average time: 0.768 ms
+Average time: 0.452 ms
+Average time: 0.403 ms
+Average time: 0.469 ms
+Memory: 0 bytes
+Average time: 0.068 ms
+Average time: 0.072 ms
+Average time: 0.093 ms
+Memory: 0 bytes
+Average time: 0.061 ms
+Average time: 0.049 ms
+Average time: 0.047 ms
+Memory: 0 bytes
+Average time: 0.763 ms
+Average time: 0.768 ms
+Average time: 0.762 ms
+Average time: 296.037 ms
+Average time: 250.986 ms
+Average time: 253.424 ms
+Memory: 122974208 bytes
+Average time: 36.448 ms
+Average time: 37.094 ms
+Average time: 35.902 ms
+Memory: 53428224 bytes
+Average time: 127.162 ms
+Average time: 120.380 ms
+Average time: 172.424 ms
+Memory: 535216128 bytes
+Average time: 0.762 ms
+Average time: 0.762 ms
+Average time: 0.771 ms
+BENCH_REPORT /tmp/api-ready-benchmark-results/head-1.json
+BENCH_COMPLETE head-1 2026-10-29T12:55:34.7070811+05:30
+BENCH_START base-2 2026-10-29T12:55:34.7077073+05:30
+Previous HEAD position was 81fe003 Reduce API and worker memory overhead for large Dag run conf
+HEAD is now at 24f3370 Add query and report inspection operators for Google Bid Manager (#71947)
+Average time: 0.445 ms
+Average time: 0.412 ms
+Average time: 0.396 ms
+Memory: 4096 bytes
+Average time: 0.067 ms
+Average time: 0.069 ms
+Average time: 0.074 ms
+Memory: 16384 bytes
+Average time: 0.048 ms
+Average time: 0.043 ms
+Average time: 0.058 ms
+Memory: 0 bytes
+Average time: 0.774 ms
+Average time: 0.772 ms
+Average time: 0.783 ms
+Average time: 0.389 ms
+Average time: 0.431 ms
+Average time: 0.376 ms
+Memory: 4096 bytes
+Average time: 0.081 ms
+Average time: 0.060 ms
+Average time: 0.066 ms
+Memory: 0 bytes
+Average time: 0.041 ms
+Average time: 0.042 ms
+Average time: 0.039 ms
+Memory: 0 bytes
+Average time: 0.763 ms
+Average time: 0.762 ms
+Average time: 0.762 ms
+Average time: 0.410 ms
+Average time: 0.448 ms
+Average time: 0.431 ms
+Memory: 0 bytes
+Average time: 0.071 ms
+Average time: 0.065 ms
+Average time: 0.066 ms
+Memory: 4096 bytes
+Average time: 0.044 ms
+Average time: 0.044 ms
+Average time: 0.040 ms
+Memory: 0 bytes
+Average time: 0.763 ms
+Average time: 0.765 ms
+Average time: 0.771 ms
+Average time: 372.686 ms
+Average time: 368.370 ms
+Average time: 377.618 ms
+Memory: 523538432 bytes
+Average time: 279.438 ms
+Average time: 310.452 ms
+Average time: 315.125 ms
+Memory: 853037056 bytes
+Average time: 94.474 ms
+Average time: 89.954 ms
+Average time: 91.704 ms
+Memory: 158957568 bytes
+Average time: 0.762 ms
+Average time: 0.760 ms
+Average time: 0.763 ms
+BENCH_REPORT /tmp/api-ready-benchmark-results/base-2.json
+BENCH_COMPLETE base-2 2026-10-29T12:56:17.4518703+05:30
+BENCH_START head-2 2026-10-29T12:56:17.4526035+05:30
+Previous HEAD position was 24f3370 Add query and report inspection operators for Google Bid Manager (#71947)
+HEAD is now at 81fe003 Reduce API and worker memory overhead for large Dag run conf
+Average time: 0.408 ms
+Average time: 0.395 ms
+Average time: 0.456 ms
+Memory: 0 bytes
+Average time: 0.065 ms
+Average time: 0.065 ms
+Average time: 0.097 ms
+Memory: 12288 bytes
+Average time: 0.041 ms
+Average time: 0.039 ms
+Average time: 0.040 ms
+Memory: 0 bytes
+Average time: 0.765 ms
+Average time: 0.833 ms
+Average time: 0.765 ms
+Average time: 0.374 ms
+Average time: 0.454 ms
+Average time: 0.459 ms
+Memory: 0 bytes
+Average time: 0.099 ms
+Average time: 0.090 ms
+Average time: 0.071 ms
+Memory: 0 bytes
+Average time: 0.058 ms
+Average time: 0.045 ms
+Average time: 0.048 ms
+Memory: 0 bytes
+Average time: 0.763 ms
+Average time: 0.762 ms
+Average time: 0.763 ms
+Average time: 0.420 ms
+Average time: 0.428 ms
+Average time: 0.429 ms
+Memory: 0 bytes
+Average time: 0.092 ms
+Average time: 0.062 ms
+Average time: 0.062 ms
+Memory: 0 bytes
+Average time: 0.046 ms
+Average time: 0.047 ms
+Average time: 0.047 ms
+Memory: 0 bytes
+Average time: 0.765 ms
+Average time: 0.761 ms
+Average time: 0.761 ms
+Average time: 279.208 ms
+Average time: 240.049 ms
+Average time: 261.208 ms
+Memory: 122974208 bytes
+Average time: 38.413 ms
+Average time: 37.617 ms
+Average time: 37.923 ms
+Memory: 53428224 bytes
+Average time: 138.834 ms
+Average time: 134.878 ms
+Average time: 147.873 ms
+Memory: 535212032 bytes
+Average time: 0.767 ms
+Average time: 0.762 ms
+Average time: 0.762 ms
+BENCH_REPORT /tmp/api-ready-benchmark-results/head-2.json
+BENCH_COMPLETE head-2 2026-10-29T12:56:38.2412579+05:30
+BENCH_START base-3 2026-10-29T12:56:38.2423795+05:30
+Previous HEAD position was 81fe003 Reduce API and worker memory overhead for large Dag run conf
+HEAD is now at 24f3370 Add query and report inspection operators for Google Bid Manager (#71947)
+Average time: 0.503 ms
+Average time: 0.464 ms
+Average time: 0.541 ms
+Memory: 4096 bytes
+Average time: 0.078 ms
+Average time: 0.080 ms
+Average time: 0.079 ms
+Memory: 12288 bytes
+Average time: 0.045 ms
+Average time: 0.041 ms
+Average time: 0.044 ms
+Memory: 0 bytes
+Average time: 0.767 ms
+Average time: 0.764 ms
+Average time: 0.765 ms
+Average time: 0.514 ms
+Average time: 0.469 ms
+Average time: 0.485 ms
+Memory: 4096 bytes
+Average time: 0.089 ms
+Average time: 0.119 ms
+Average time: 0.081 ms
+Memory: 4096 bytes
+Average time: 0.051 ms
+Average time: 0.049 ms
+Average time: 0.046 ms
+Memory: 0 bytes
+Average time: 0.913 ms
+Average time: 0.898 ms
+Average time: 0.918 ms
+Average time: 0.515 ms
+Average time: 0.498 ms
+Average time: 0.470 ms
+Memory: 0 bytes
+Average time: 0.086 ms
+Average time: 0.104 ms
+Average time: 0.088 ms
+Memory: 0 bytes
+Average time: 0.049 ms
+Average time: 0.048 ms
+Average time: 0.048 ms
+Memory: 0 bytes
+Average time: 0.767 ms
+Average time: 0.768 ms
+Average time: 0.781 ms
+Average time: 434.240 ms
+Average time: 383.284 ms
+Average time: 422.989 ms
+Memory: 524570624 bytes
+Average time: 338.565 ms
+Average time: 334.250 ms
+Average time: 360.651 ms
+Memory: 856432640 bytes
+Average time: 89.672 ms
+Average time: 99.151 ms
+Average time: 90.626 ms
+Memory: 157925376 bytes
+Average time: 0.798 ms
+Average time: 0.792 ms
+Average time: 0.780 ms
+BENCH_REPORT /tmp/api-ready-benchmark-results/base-3.json
+BENCH_COMPLETE base-3 2026-10-29T12:57:23.1489859+05:30
+BENCH_START head-3 2026-10-29T12:57:23.1494747+05:30
+Previous HEAD position was 24f3370 Add query and report inspection operators for Google Bid Manager (#71947)
+HEAD is now at 81fe003 Reduce API and worker memory overhead for large Dag run conf
+Average time: 0.565 ms
+Average time: 0.420 ms
+Average time: 0.452 ms
+Memory: 0 bytes
+Average time: 0.080 ms
+Average time: 0.062 ms
+Average time: 0.065 ms
+Memory: 4096 bytes
+Average time: 0.040 ms
+Average time: 0.050 ms
+Average time: 0.037 ms
+Memory: 0 bytes
+Average time: 0.763 ms
+Average time: 0.762 ms
+Average time: 0.761 ms
+Average time: 0.406 ms
+Average time: 0.426 ms
+Average time: 0.416 ms
+Memory: 0 bytes
+Average time: 0.066 ms
+Average time: 0.074 ms
+Average time: 0.131 ms
+Memory: 0 bytes
+Average time: 0.051 ms
+Average time: 0.047 ms
+Average time: 0.059 ms
+Memory: 0 bytes
+Average time: 0.763 ms
+Average time: 0.762 ms
+Average time: 0.761 ms
+Average time: 0.415 ms
+Average time: 0.406 ms
+Average time: 0.441 ms
+Memory: 0 bytes
+Average time: 0.064 ms
+Average time: 0.075 ms
+Average time: 0.069 ms
+Memory: 0 bytes
+Average time: 0.053 ms
+Average time: 0.043 ms
+Average time: 0.045 ms
+Memory: 0 bytes
+Average time: 0.763 ms
+Average time: 0.763 ms
+Average time: 0.764 ms
+Average time: 270.284 ms
+Average time: 261.248 ms
+Average time: 302.759 ms
+Memory: 122974208 bytes
+Average time: 37.409 ms
+Average time: 36.331 ms
+Average time: 36.692 ms
+Memory: 53428224 bytes
+Average time: 132.775 ms
+Average time: 125.176 ms
+Average time: 123.546 ms
+Memory: 535199744 bytes
+Average time: 0.776 ms
+Average time: 0.768 ms
+Average time: 0.777 ms
+BENCH_REPORT /tmp/api-ready-benchmark-results/head-3.json
+BENCH_COMPLETE head-3 2026-10-29T12:57:43.9231956+05:30
+HEAD is now at 81fe003 Reduce API and worker memory overhead for large Dag run conf

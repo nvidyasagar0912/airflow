@@ -1,0 +1,90 @@
+{
+  "final_head": "448ca150662cb9c5f8da0ee1655227de20186073",
+  "base": "24f3370758227ce1bb13e5df251d26a9271ceeee",
+  "python_regression_and_benchmark_head": "81fe003b3525c44b25ada97abe514289862853b5",
+  "final_commit_changes": "Only four official Go/TypeScript schema and generated export files; Python startup code unchanged.",
+  "verified_candidate_file_count": 20,
+  "files": [
+    {
+      "path": "airflow-core/src/airflow/api_fastapi/execution_api/datamodels/taskinstance.py",
+      "git_blob": "75e6cc973b6d23945f201adff5e9f2785e47bf14"
+    },
+    {
+      "path": "airflow-core/src/airflow/api_fastapi/execution_api/routes/task_instances.py",
+      "git_blob": "28a19c03eb510582e45b9c1f15c0291db6e0ba7c"
+    },
+    {
+      "path": "airflow-core/src/airflow/api_fastapi/execution_api/versions/__init__.py",
+      "git_blob": "f63a4ac9b28d3ef0043683487981dc2dabf0130f"
+    },
+    {
+      "path": "airflow-core/src/airflow/api_fastapi/execution_api/versions/v2027_02_28.py",
+      "git_blob": "3f6144578ac019e3dc91fc62b7ca4f70acbe682e"
+    },
+    {
+      "path": "airflow-core/tests/unit/api_fastapi/execution_api/versions/head/test_task_instances.py",
+      "git_blob": "f228ffa3d867543302f0cfa6608327559722a0b7"
+    },
+    {
+      "path": "contributing-docs/19_execution_api_versioning.rst",
+      "git_blob": "b146755fe041327c43e4d8a7c5ee43dabdf4e7bb"
+    },
+    {
+      "path": "go-sdk/pkg/execution/genmodels/models.gen.go",
+      "git_blob": "eec7a947c82554d738b380fe1fd9ab5b4093f1d2"
+    },
+    {
+      "path": "go-sdk/schema/supervisor-schema.json",
+      "git_blob": "a8fc03e525ca02a58b7ec9a40c9357e462693988"
+    },
+    {
+      "path": "task-sdk/src/airflow/sdk/api/datamodels/_generated.py",
+      "git_blob": "0161b224419bfbc95df0cebc25852a53acf7c106"
+    },
+    {
+      "path": "task-sdk/src/airflow/sdk/execution_time/dag_run_conf.py",
+      "git_blob": "9d2d3d918057eaed5ed0810c34382eb59d019a60"
+    },
+    {
+      "path": "task-sdk/src/airflow/sdk/execution_time/schema/schema.json",
+      "git_blob": "a8fc03e525ca02a58b7ec9a40c9357e462693988"
+    },
+    {
+      "path": "task-sdk/src/airflow/sdk/execution_time/schema/versions/__init__.py",
+      "git_blob": "4911c344c8e4877f6b6a1feaa65a233ba17467f1"
+    },
+    {
+      "path": "task-sdk/src/airflow/sdk/execution_time/schema/versions/v2026_10_30.py",
+      "git_blob": "bb87a0b064e715e48df6f089a2950991c5fa5ff4"
+    },
+    {
+      "path": "task-sdk/src/airflow/sdk/execution_time/supervisor.py",
+      "git_blob": "4cc9aaa6612a8fec2495d6ef61be0072a6b9ad0b"
+    },
+    {
+      "path": "task-sdk/src/airflow/sdk/execution_time/task_runner.py",
+      "git_blob": "8ebcd71576ee8b3d516c1d035b36eab0cec8addc"
+    },
+    {
+      "path": "task-sdk/tests/task_sdk/execution_time/schema/test_migrator.py",
+      "git_blob": "3ec627452b30c927fa5ade7516d9b9a550fff083"
+    },
+    {
+      "path": "task-sdk/tests/task_sdk/execution_time/test_dag_run_conf.py",
+      "git_blob": "5b4a61bb9d54368886e70a9e3f4550fe6ae5f849"
+    },
+    {
+      "path": "task-sdk/tests/task_sdk/execution_time/test_task_runner.py",
+      "git_blob": "988e7089ca092b45cda323c82a48b1fee6c3efab"
+    },
+    {
+      "path": "ts-sdk/schema/supervisor-schema.json",
+      "git_blob": "a8fc03e525ca02a58b7ec9a40c9357e462693988"
+    },
+    {
+      "path": "ts-sdk/src/generated/supervisor.ts",
+      "git_blob": "1b834f3103cf26a5dee53ed1d8ddc77f1644f8d8"
+    }
+  ],
+  "benchmark_script_sha256": "a2103b95ff48567355d23bbd55381a6350c044f31c019c6506ef2d914e1d06fa"
+}

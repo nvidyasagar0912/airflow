@@ -1,0 +1,4 @@
+ok  	github.com/apache/airflow/go-sdk/pkg/execution	(cached)
+ok  	github.com/apache/airflow/go-sdk/pkg/execution/genmodels	(cached)
+?   	github.com/apache/airflow/go-sdk/pkg/execution/genmodels/gen	[no test files]
+ok  	github.com/apache/airflow/go-sdk/sdk	(cached)

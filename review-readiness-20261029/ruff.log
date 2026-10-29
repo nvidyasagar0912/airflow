@@ -1,0 +1,4 @@
+Unstaged changes detected. Temporarily saving them to `/root/.cache/prek/patches/1793259669604-11471.patch`
+Run 'ruff' for extremely fast Python linting.............................Passed
+Run 'ruff format'........................................................Passed
+Restored unstaged changes from `/root/.cache/prek/patches/1793259669604-11471.patch`
